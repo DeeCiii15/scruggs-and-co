@@ -54,7 +54,11 @@ export default function PortfolioHomeGallery({
           className="group relative col-span-full block overflow-hidden bg-paper-deep lg:col-span-8"
         >
           <div
-            className={`relative w-full overflow-hidden ${isHome ? 'aspect-[16/11] sm:aspect-[16/10]' : 'aspect-[16/10] sm:aspect-[16/9]'}`}
+            className={`relative w-full overflow-hidden ${
+              isHome
+                ? 'aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/11]'
+                : 'aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10]'
+            }`}
           >
             <Image
               src={weddings.image}
@@ -83,7 +87,7 @@ export default function PortfolioHomeGallery({
           href={portraits.href}
           className="group relative col-span-full block overflow-hidden bg-paper-deep lg:col-span-4"
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden lg:aspect-auto lg:h-full">
+          <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[16/9] lg:aspect-auto lg:h-full">
             <Image
               src={portraits.image}
               alt={portraits.name}
