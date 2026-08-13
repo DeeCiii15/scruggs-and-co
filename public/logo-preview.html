@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Scruggs &amp; Co nav logo export</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Pinyon+Script&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: #edeee8;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 48px;
+      }
+      .sheet {
+        display: flex;
+        flex-direction: column;
+        gap: 48px;
+        align-items: center;
+      }
+      .card {
+        background: #edeee8;
+        padding: 48px 64px;
+        border: 1px solid rgb(26 28 25 / 0.12);
+      }
+      .card.dark {
+        background: #141612;
+      }
+      .mark {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        color: #1a1c19;
+        line-height: 1;
+      }
+      .card.dark .mark {
+        color: #f6f7f4;
+      }
+      .scruggs-wrap {
+        position: relative;
+        display: inline-block;
+        padding-right: 2.4em;
+      }
+      .scruggs {
+        font-family: 'Pinyon Script', cursive;
+        font-size: 128px;
+        letter-spacing: -0.01em;
+        line-height: 0.9;
+      }
+      .co {
+        position: absolute;
+        right: 0;
+        bottom: 0.08em;
+        font-family: 'Instrument Serif', serif;
+        font-size: 28px;
+        letter-spacing: 0.04em;
+      }
+      .tag {
+        margin-top: 18px;
+        font-family: 'Instrument Serif', serif;
+        font-size: 18px;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        opacity: 0.78;
+      }
+      .label {
+        font-family: system-ui, sans-serif;
+        font-size: 11px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #5e645c;
+        margin-bottom: 16px;
+      }
+      .card.dark .label {
+        color: #f6f7f4;
+        opacity: 0.55;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <div class="card" id="export-light">
+        <p class="label">Nav · paper</p>
+        <div class="mark" id="mark-light">
+          <span class="scruggs-wrap">
+            <span class="scruggs">Scruggs</span>
+            <span class="co">&amp; Co.</span>
+          </span>
+          <span class="tag">Photography by Liv</span>
+        </div>
+      </div>
+      <div class="card dark" id="export-dark">
+        <p class="label">On dark</p>
+        <div class="mark" id="mark-dark">
+          <span class="scruggs-wrap">
+            <span class="scruggs">Scruggs</span>
+            <span class="co">&amp; Co.</span>
+          </span>
+          <span class="tag">Photography by Liv</span>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
