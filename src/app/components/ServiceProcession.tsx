@@ -408,7 +408,7 @@ export default function ServiceProcession({
         }
       />
 
-      <section className="fl-letters border-t border-ink/8 bg-paper px-6 py-20 sm:px-10 lg:px-16">
+      <section className="fl-letters bg-paper px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-display text-3xl text-ink sm:text-4xl">
             {service.ctaHeadline}

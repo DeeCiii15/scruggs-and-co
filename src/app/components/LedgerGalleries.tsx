@@ -99,7 +99,7 @@ export default function LedgerGalleries() {
           {/* Weddings — always the market focal */}
           <Link
             href={weddings.href}
-            className="group relative z-[1] block w-[62%] fl-print fl-print-tilt-left sm:w-[88%]"
+            className="group relative z-[1] block w-[76%] fl-print fl-print-tilt-left sm:w-[88%]"
           >
             <div className="relative aspect-[4/5] overflow-hidden sm:aspect-[4/5] lg:aspect-[5/6]">
               <Image
@@ -110,11 +110,11 @@ export default function LedgerGalleries() {
                 sizes="(max-width: 1024px) 88vw, 52vw"
               />
             </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/70 to-transparent p-6 sm:p-8">
-              <p className="font-script text-2xl text-clay sm:text-3xl">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/70 to-transparent p-4 sm:p-8">
+              <p className="font-script text-lg text-clay sm:text-3xl">
                 featured
               </p>
-              <h3 className="mt-1 font-display text-3xl text-fog sm:text-4xl">
+              <h3 className="mt-1 font-display text-xl text-fog sm:text-4xl">
                 {weddings.name}
               </h3>
             </div>
@@ -123,7 +123,7 @@ export default function LedgerGalleries() {
           {/* Cycling secondary — sessions + portraits */}
           <Link
             href={activeSlide.href}
-            className="group relative z-[2] -mt-14 ml-auto block w-[64%] max-w-[16rem] fl-print fl-print-tilt-right sm:-mt-24 sm:mr-0 sm:w-[70%] sm:max-w-sm lg:-mt-28 lg:w-[38%] lg:max-w-none"
+            className="group relative z-[2] -mt-10 ml-auto block w-[50%] max-w-[13rem] fl-print fl-print-tilt-right sm:-mt-24 sm:mr-0 sm:w-[70%] sm:max-w-sm lg:-mt-28 lg:w-[38%] lg:max-w-none"
             aria-label={activeSlide.name}
           >
             <div className="relative aspect-[4/5] overflow-hidden">
@@ -143,8 +143,8 @@ export default function LedgerGalleries() {
                 />
               ))}
             </div>
-            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/65 to-transparent p-5 sm:p-6">
-              <h3 className="font-display text-2xl text-fog transition-opacity duration-500 sm:text-3xl">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/65 to-transparent p-3.5 sm:p-6">
+              <h3 className="font-display text-lg text-fog transition-opacity duration-500 sm:text-3xl">
                 {activeSlide.name}
               </h3>
             </div>
@@ -163,7 +163,7 @@ export default function LedgerGalleries() {
                 {i > 0 && (
                   <span
                     aria-hidden
-                    className="select-none font-display text-[0.65rem] tracking-[0.08em] text-ink/25 sm:text-sm"
+                    className="select-none font-display text-sm tracking-[0.08em] text-ink/25 sm:text-sm"
                   >
                     ·
                   </span>
@@ -186,7 +186,7 @@ export default function LedgerGalleries() {
                     if (idx >= 0) setCycleIndex(idx);
                   }}
                   onBlur={() => setHoveredName(null)}
-                  className={`font-display shrink-0 text-[0.65rem] tracking-[0.1em] transition-colors duration-300 sm:text-sm md:text-base lg:text-lg ${
+                  className={`font-display shrink-0 text-sm tracking-[0.1em] transition-colors duration-300 sm:text-sm md:text-base lg:text-lg ${
                     activeRailName === link.name
                       ? 'text-moss'
                       : hoveredName
