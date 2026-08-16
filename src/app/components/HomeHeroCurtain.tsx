@@ -8,6 +8,7 @@ import {
 import Image from 'next/image';
 import { CURTAIN_IMAGES, SITE_IMAGES } from '@/lib/siteImages';
 import { SITE_NAME } from '@/lib/siteConfig';
+import HeroBridgeType from './HeroBridgeType';
 
 type HomeHeroCurtainProps = {
   children: ReactNode;
@@ -118,15 +119,15 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
     // doesn't leave a black band before the intro.
     <section
       ref={sectionRef}
-      className="relative h-[calc(100svh+55vh)] w-full bg-paper"
+      className="relative h-[calc(100svh+22vh)] w-full bg-paper"
     >
-      <div className="sticky top-0 h-svh w-full overflow-hidden bg-night">
+      <div className="sticky top-0 h-svh w-full overflow-hidden bg-paper">
         <div className="absolute inset-0 z-0" aria-hidden>
           <Image
             src={CURTAIN_IMAGES.back.src}
             alt=""
             fill
-            className="object-cover"
+            className="object-cover fl-photo-earth"
             style={{ objectPosition: CURTAIN_IMAGES.back.objectPosition }}
             sizes="100vw"
             unoptimized
@@ -162,7 +163,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
                 src={CURTAIN_IMAGES.front.src}
                 alt=""
                 fill
-                className="origin-center object-cover"
+                className="origin-center object-cover fl-photo-earth"
                 style={frontImageStyle}
                 sizes="100vw"
                 unoptimized
@@ -181,7 +182,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
                 src={CURTAIN_IMAGES.front.src}
                 alt=""
                 fill
-                className="origin-center object-cover"
+                className="origin-center object-cover fl-photo-earth"
                 style={frontImageStyle}
                 sizes="100vw"
                 unoptimized
@@ -212,13 +213,18 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
         </div>
 
         <div
+          className="fl-photo-wash z-[1]"
+          aria-hidden
+        />
+
+        <div
           className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-[22%] bg-gradient-to-t from-night/55 via-night/15 to-transparent"
           aria-hidden
         />
 
         <div
           ref={copyRef}
-          className="pointer-events-none relative z-[4] flex h-full flex-col justify-end opacity-0"
+          className="pointer-events-none absolute inset-0 z-[4] flex flex-col justify-end opacity-0"
         >
           {children}
         </div>
@@ -229,6 +235,9 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
         >
           Scroll or click
         </p>
+      </div>
+      <div className="flex h-[22vh] items-center justify-center px-6 sm:px-10">
+        <HeroBridgeType />
       </div>
     </section>
   );

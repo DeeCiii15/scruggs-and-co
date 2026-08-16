@@ -68,5 +68,5 @@ export function getScrapbookStyleForMasonryIndex(
 
 /** Simple image frame — consistent aspect, no mat chrome */
 export function polaroidImageFrameClass(_index: number): string {
-  return 'relative isolate w-full max-w-full overflow-hidden bg-gray-100 aspect-[4/5]';
+  return 'relative isolate w-full max-w-full overflow-hidden bg-paper-deep aspect-[4/5]';
 }

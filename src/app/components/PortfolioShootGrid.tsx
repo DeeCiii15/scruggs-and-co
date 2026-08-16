@@ -19,7 +19,7 @@ function ShootCard({
     <div className="w-full min-w-0">
       <Link
         href={shoot.href}
-        className="group block w-full border border-gray-200 bg-white transition hover:border-gray-300"
+        className={`group block w-full fl-print ${index % 2 === 0 ? 'fl-print-tilt-left' : 'fl-print-tilt-right'}`}
       >
         <div className="flex flex-col overflow-hidden">
           <div className={polaroidImageFrameClass(index)}>
@@ -27,7 +27,7 @@ function ShootCard({
               src={shoot.image}
               alt={shoot.title}
               fill
-              className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
+              className="object-cover object-center fl-photo-earth transition duration-500 group-hover:scale-[1.02]"
               sizes="(max-width: 640px) 33vw, 33vw"
             />
           </div>

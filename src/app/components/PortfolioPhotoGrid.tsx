@@ -37,7 +37,7 @@ export default function PortfolioPhotoGrid({ photos }: PortfolioPhotoGridProps) 
             <button
               type="button"
               onClick={() => setActiveIndex(i)}
-              className="block w-full cursor-zoom-in border border-gray-200 bg-white text-left transition hover:border-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-900"
+              className={`block w-full cursor-zoom-in fl-print text-left ${i % 2 === 0 ? 'fl-print-tilt-left' : 'fl-print-tilt-right'}`}
               aria-label={`View larger: ${photo.alt}`}
             >
               <div className={polaroidImageFrameClass(i)}>
@@ -45,7 +45,7 @@ export default function PortfolioPhotoGrid({ photos }: PortfolioPhotoGridProps) 
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
+                  className="object-cover object-center fl-photo-earth transition duration-500 group-hover:scale-[1.02]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>

@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Figtree, Instrument_Serif, Pinyon_Script } from "next/font/google";
+import { Cabin, IBM_Plex_Mono, Mrs_Saint_Delafield } from "next/font/google";
 import "./globals.css";
 import ContactRibbon from "./components/ContactRibbon";
 import SiteJsonLd from "./components/SiteJsonLd";
@@ -10,35 +10,36 @@ import {
   DEFAULT_OG_IMAGE_PATH,
   getSiteUrl,
   LOCAL_KEYWORDS,
-  PRIMARY_REGION,
+  PRIMARY_CITY,
+  PRIMARY_STATE_ABBR,
   SITE_DESCRIPTION,
   SITE_NAME,
 } from "@/lib/siteConfig";
 
-const instrument = Instrument_Serif({
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument",
+  weight: ["100", "200"],
+  variable: "--font-typewriter",
   display: "swap",
 });
 
-const pinyon = Pinyon_Script({
+const saintDelafield = Mrs_Saint_Delafield({
   subsets: ["latin"],
   weight: "400",
-  variable: "--font-pinyon",
+  variable: "--font-script-face",
   display: "swap",
 });
 
-const figtree = Figtree({
+const cabin = Cabin({
   subsets: ["latin"],
-  variable: "--font-figtree",
+  variable: "--font-cabin",
   display: "swap",
 });
 
 const siteUrl = getSiteUrl();
 const favicon = (path: string) => `${CANONICAL_SITE_URL}${path}`;
 
-const HOME_PAGE_TITLE = `${SITE_NAME} | Documentary Wedding Photographer in ${PRIMARY_REGION}`;
+const HOME_PAGE_TITLE = `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Photographer | Wedding & Portrait | ${SITE_NAME}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -124,7 +125,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrument.variable} ${pinyon.variable} ${figtree.variable}`}
+      className={`${plexMono.variable} ${saintDelafield.variable} ${cabin.variable}`}
     >
       <body className="antialiased font-sans text-ink bg-paper">
         <SiteJsonLd />

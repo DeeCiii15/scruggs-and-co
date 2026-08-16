@@ -11,7 +11,7 @@ function AboutCopy() {
   return (
     <>
       <p className="font-script text-4xl text-moss md:text-5xl">hello,</p>
-      <h2 className="mt-2 font-display text-4xl leading-none text-ink sm:text-5xl md:text-6xl">
+      <h2 className="mt-2 font-display text-4xl leading-none tracking-[0.08em] text-ink sm:text-5xl md:text-6xl">
         I&apos;m Liv
       </h2>
       <p className="mt-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.2em] text-ink-soft">
@@ -51,9 +51,8 @@ function AboutCopy() {
         <Link href="/contact" className="fl-btn">
           Let&apos;s connect
         </Link>
-        <Link href="/services/weddings" className="fl-link text-moss">
+        <Link href="/services/weddings" className="fl-btn fl-btn-ghost">
           Wedding collections
-          <span aria-hidden>→</span>
         </Link>
       </div>
     </>
@@ -99,49 +98,55 @@ export default function ProcessionAbout() {
     <section
       id="about"
       ref={sectionRef}
-      className="relative w-full scroll-mt-24 overflow-x-clip bg-paper lg:h-[calc(100svh+32vh)]"
+      className="fl-letters relative w-full scroll-mt-24 overflow-x-clip bg-paper lg:min-h-[calc(100svh+28vh)]"
     >
       {/* Mobile / tablet — photo + copy slide in from the left */}
       <div
         ref={mobileRef}
-        className="bg-paper will-change-transform lg:hidden"
+        className="fl-letters bg-paper will-change-transform lg:hidden"
         style={{ transform: 'translate3d(-100%, 0, 0)' }}
       >
-        <Image
-          src={SITE_IMAGES.photographer}
-          alt={BRAND_IMAGE_ALT}
-          width={1600}
-          height={2000}
-          className="h-[70svh] w-full object-cover object-[center_38%]"
-          sizes="100vw"
-          quality={95}
-          priority
-        />
+        <div className="fl-print fl-print-tilt-right mx-5 mt-5">
+          <Image
+            src={SITE_IMAGES.photographer}
+            alt={BRAND_IMAGE_ALT}
+            width={1600}
+            height={2000}
+            className="h-[62svh] w-full object-cover object-[center_38%] fl-photo-earth"
+            sizes="100vw"
+            quality={95}
+            priority
+          />
+        </div>
         <div className="px-6 py-10 sm:px-12 sm:py-14">
           <AboutCopy />
         </div>
       </div>
 
       {/* Desktop — sticky split, portrait slides in from the right */}
-      <div className="sticky top-0 hidden h-svh w-full overflow-hidden bg-paper lg:grid lg:grid-cols-2">
+      <div className="fl-letters sticky top-0 hidden min-h-svh w-full bg-paper lg:grid lg:grid-cols-2">
         <div
           ref={photoRef}
-          className="relative h-full will-change-transform"
+          className="relative flex min-h-full will-change-transform p-10 pr-8"
           style={{ transform: 'translate3d(100%, 0, 0)' }}
         >
-          <Image
-            src={SITE_IMAGES.photographer}
-            alt={BRAND_IMAGE_ALT}
-            fill
-            className="object-cover object-[center_28%]"
-            sizes="50vw"
-            quality={95}
-          />
+          <div className="fl-print relative min-h-0 w-full">
+            <div className="relative h-full min-h-0 overflow-hidden">
+              <Image
+                src={SITE_IMAGES.photographer}
+                alt={BRAND_IMAGE_ALT}
+                fill
+                className="object-cover object-[center_28%] fl-photo-earth"
+                sizes="50vw"
+                quality={95}
+              />
+            </div>
+          </div>
         </div>
 
         <div
           ref={copyRef}
-          className="flex min-h-0 flex-col justify-center overflow-y-auto bg-paper px-14 py-14 opacity-35 xl:px-16"
+          className="fl-letters flex flex-col justify-center bg-paper px-14 py-16 opacity-35 xl:px-16 xl:py-20"
         >
           <AboutCopy />
         </div>

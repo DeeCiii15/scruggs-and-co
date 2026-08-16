@@ -65,7 +65,7 @@ export const SITE_TAGLINE =
   'Authentic, heartfelt documentary wedding & lifestyle photography';
 
 /** Default meta description (home + fallback) */
-export const SITE_DESCRIPTION = `${SITE_NAME} captures intimate, sweet, forever moments across ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR}, ${PRIMARY_REGION}, and beyond—weddings, elopements, and lifestyle sessions since 2019.`;
+export const SITE_DESCRIPTION = `${SITE_NAME} is a ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} wedding and portrait photographer. Wedding and portrait photographer serving ${PRIMARY_CITY}, Spartanburg, and the Upstate of South Carolina.`;
 
 /** Generic label for service-area landing pages (map pins, location titles) */
 export const SERVICE_AREA_PAGE_LABEL = 'Wedding Photography';

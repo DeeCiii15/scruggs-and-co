@@ -28,12 +28,18 @@ function TheaterSplit({
   photoOnLeft,
   id,
   labelledBy,
+  lockViewport = true,
+  lined = false,
+  roomyTop = false,
 }: {
   photo: ReactNode;
   copy: ReactNode;
   photoOnLeft: boolean;
   id?: string;
   labelledBy?: string;
+  lockViewport?: boolean;
+  lined?: boolean;
+  roomyTop?: boolean;
 }) {
   const sectionRef = useRef<HTMLElement>(null);
   const photoRef = useRef<HTMLDivElement>(null);
@@ -67,17 +73,25 @@ function TheaterSplit({
   useScrollOpen(sectionRef, onOpen, { trigger: 'visible' });
 
   const photoFrame = photoOnLeft
-    ? 'mx-4 mt-4 lg:mx-6 lg:my-10 lg:ml-12 xl:ml-16'
-    : 'mx-4 mt-4 lg:mx-6 lg:my-10 lg:mr-12 xl:mr-16';
+    ? `mx-4 lg:mx-6 lg:mb-10 lg:ml-12 xl:ml-16 ${roomyTop ? 'mt-10 lg:mt-20' : 'mt-4 lg:my-10'}`
+    : `mx-4 lg:mx-6 lg:mb-10 lg:mr-12 xl:mr-16 ${roomyTop ? 'mt-10 lg:mt-20' : 'mt-4 lg:my-10'}`;
 
   return (
     <section
       id={id}
       ref={sectionRef}
-      className="relative w-full scroll-mt-24 bg-paper lg:h-[calc(100svh+32vh)]"
+      className={`relative w-full scroll-mt-24 bg-paper ${
+        lined ? 'fl-letters' : ''
+      } ${lockViewport ? 'lg:h-[calc(100svh+32vh)]' : ''}`}
       aria-labelledby={labelledBy}
     >
-      <div className="grid bg-paper lg:sticky lg:top-0 lg:h-svh lg:grid-cols-2 lg:overflow-hidden">
+      <div
+        className={`grid bg-paper ${lined ? 'fl-letters' : ''} ${
+          lockViewport
+            ? 'lg:sticky lg:top-0 lg:h-svh lg:grid-cols-2 lg:overflow-hidden'
+            : 'lg:grid-cols-2'
+        }`}
+      >
         <div
           ref={photoRef}
           className={`order-1 ${
@@ -85,15 +99,31 @@ function TheaterSplit({
           } lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:will-change-transform`}
         >
           <div
-            className={`relative aspect-[4/5] overflow-hidden bg-paper-deep sm:max-h-[52svh] sm:aspect-[5/6] lg:aspect-auto lg:h-full lg:min-h-0 lg:max-h-none lg:flex-1 ${photoFrame}`}
+            className={`relative lg:flex-1 lg:min-h-0 ${photoFrame}`}
           >
-            {photo}
+            <div className="fl-print h-full">
+              <div
+                className="relative aspect-[4/5] overflow-hidden sm:max-h-[52svh] sm:aspect-[5/6] lg:aspect-auto lg:h-full lg:min-h-0 lg:max-h-none"
+              >
+                {photo}
+              </div>
+            </div>
           </div>
         </div>
 
         <div
           ref={copyRef}
-          className={`order-2 px-6 pt-4 pb-12 sm:px-10 sm:pt-5 sm:pb-16 lg:flex lg:h-full lg:min-h-0 lg:flex-col lg:justify-center lg:overflow-y-auto lg:px-16 lg:py-14 lg:will-change-transform xl:px-20 2xl:px-24 ${
+          className={`order-2 px-6 pb-12 sm:px-10 sm:pb-16 lg:flex lg:flex-col lg:justify-center lg:px-16 xl:px-20 2xl:px-24 ${
+            roomyTop
+              ? 'pt-12 sm:pt-16 lg:pt-24 lg:pb-20'
+              : 'pt-4 sm:pt-5 lg:py-14'
+          } ${
+            lockViewport
+              ? 'lg:h-full lg:min-h-0 lg:overflow-y-auto lg:will-change-transform'
+              : roomyTop
+                ? ''
+                : 'lg:py-16'
+          } ${
             photoOnLeft ? 'lg:order-2 fl-theater-from-right' : 'lg:order-1 fl-theater-from-left'
           }`}
         >
@@ -124,7 +154,7 @@ function ChapterStill({
       src={src}
       alt={alt}
       fill
-      className="object-cover object-center"
+      className="object-cover object-center fl-photo-earth"
       sizes="(max-width: 1024px) 100vw, 50vw"
       quality={90}
       priority={priority}
@@ -151,6 +181,7 @@ function GalleryChapter({
       id="galleries"
       labelledBy="service-galleries-heading"
       photoOnLeft={false}
+      lockViewport={false}
       photo={
         active ? (
           <Link href={active.href} className="absolute inset-0 block">
@@ -160,7 +191,7 @@ function GalleryChapter({
                 src={shoot.image}
                 alt={shoot.title}
                 fill
-                className={`object-cover object-center transition-opacity duration-500 ${
+                className={`object-cover object-center fl-photo-earth transition-opacity duration-500 ${
                   shoot.slug === active.slug ? 'opacity-100' : 'opacity-0'
                 }`}
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -204,20 +235,20 @@ function GalleryChapter({
                       className={`group block ${isActive ? '' : 'opacity-70 hover:opacity-100'}`}
                     >
                       <div
-                        className={`relative aspect-[3/4] overflow-hidden bg-paper-deep shadow-[0_10px_24px_rgb(20_22_18_/_0.16)] ring-1 transition ${
-                          isActive
-                            ? 'ring-moss/50'
-                            : 'ring-ink/10 group-hover:ring-moss/30'
+                        className={`fl-print ${
+                          isActive ? 'fl-print-tilt-left' : 'fl-print-tilt-right'
                         }`}
                       >
+                        <div className="relative aspect-[3/4] overflow-hidden bg-paper-deep">
                         <Image
                           src={shoot.image}
                           alt=""
                           fill
-                          className="object-cover"
+                          className="object-cover fl-photo-earth"
                           sizes="(max-width: 1024px) 42vw, 16vw"
                           quality={90}
                         />
+                        </div>
                       </div>
                       <p className="mt-2.5 text-center font-sans text-[0.65rem] font-medium uppercase leading-tight tracking-[0.12em] text-ink">
                         {shoot.label}
@@ -254,6 +285,7 @@ export default function ServiceProcession({
       <TheaterSplit
         labelledBy="service-intro-heading"
         photoOnLeft
+        lined
         photo={
           <ChapterStill
             src={images.intro}
@@ -298,6 +330,9 @@ export default function ServiceProcession({
         id="collections"
         labelledBy="service-pricing-heading"
         photoOnLeft
+        lined
+        lockViewport={false}
+        roomyTop
         photo={
           <ChapterStill
             src={images.pricing}
@@ -373,7 +408,7 @@ export default function ServiceProcession({
         }
       />
 
-      <section className="border-t border-ink/8 bg-paper-deep/80 px-6 py-20 sm:px-10 lg:px-16">
+      <section className="fl-letters border-t border-ink/8 bg-paper px-6 py-20 sm:px-10 lg:px-16">
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-display text-3xl text-ink sm:text-4xl">
             {service.ctaHeadline}

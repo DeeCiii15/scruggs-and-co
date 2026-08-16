@@ -34,6 +34,22 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     portrait: '/images/engagement_1.jpg',
     services: ['weddings', 'sessions'],
   },
+  {
+    quote:
+      'She has a way of making the in-between feel important. Our family gallery is the one we actually print.',
+    name: 'The Harpers',
+    detail: 'Family session',
+    portrait: '/images/inspiration_3.jpg',
+    services: ['sessions'],
+  },
+  {
+    quote:
+      'Quiet, unhurried, and so us. We still talk about how easy the whole evening felt.',
+    name: 'Jordan & Elise',
+    detail: 'Couples session',
+    portrait: '/images/inspiration_2.jpg',
+    services: ['sessions'],
+  },
 ];
 
 export function getTestimonialsForService(

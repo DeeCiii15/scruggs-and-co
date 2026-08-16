@@ -52,7 +52,7 @@ export default function ProcessionIntro() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[calc(100svh+40vh)] w-full bg-paper"
+      className="relative h-[calc(100svh+24vh)] w-full bg-paper"
       aria-label="Introduction"
     >
       <div className="sticky top-0 h-svh w-full overflow-hidden bg-night">
@@ -68,7 +68,7 @@ export default function ProcessionIntro() {
               src={SITE_IMAGES.moodArch}
               alt=""
               fill
-              className="object-cover"
+              className="object-cover fl-photo-earth"
               style={{ objectPosition: '72% 42%' }}
               sizes="120vw"
               priority
@@ -88,7 +88,7 @@ export default function ProcessionIntro() {
                 src={SITE_IMAGES.moodArch}
                 alt=""
                 fill
-                className="object-cover"
+                className="object-cover fl-photo-earth"
                 style={imageStyle}
                 sizes="100vw"
                 priority
@@ -106,7 +106,7 @@ export default function ProcessionIntro() {
                 src={SITE_IMAGES.moodArch}
                 alt=""
                 fill
-                className="object-cover"
+                className="object-cover fl-photo-earth"
                 style={imageStyle}
                 sizes="100vw"
                 priority
@@ -115,17 +115,21 @@ export default function ProcessionIntro() {
           </div>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[50%] bg-gradient-to-t from-night/85 via-night/25 to-transparent" />
+        <div className="fl-photo-wash z-[1]" aria-hidden />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[50%] bg-gradient-to-t from-night/85 via-night/25 to-transparent" />
 
         <div
           ref={copyRef}
-          className="relative z-[1] flex h-full flex-col justify-end px-6 pb-16 opacity-0 sm:px-10 sm:pb-20 lg:px-16 lg:pb-24"
+          className="absolute inset-0 z-[2] flex flex-col justify-end px-6 pb-16 opacity-0 sm:px-10 sm:pb-20 lg:px-16 lg:pb-24"
         >
           <div className="mx-auto w-full max-w-2xl lg:mx-0">
             <p className="font-script text-3xl text-clay md:text-4xl">since 2019</p>
             <h2 className="mt-3 font-display text-3xl leading-snug text-fog sm:text-4xl md:text-[2.5rem]">
-              Authentic, heartfelt, and documentary wedding and lifestyle
-              photography.
+              Authentic, heartfelt documentary wedding and lifestyle{' '}
+              <span className="font-script text-[1.35em] font-normal normal-case tracking-normal text-clay">
+                photography
+              </span>
+              .
             </h2>
             <Link
               href="/#about"

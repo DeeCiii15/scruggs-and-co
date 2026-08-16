@@ -12,6 +12,21 @@ import {
 } from '@/lib/siteConfig';
 import { SITE_IMAGES } from '@/lib/siteImages';
 
+function MenuMark({ className = '' }: { className?: string }) {
+  return (
+    <span className={`flex flex-col items-center ${className}`}>
+      <span className="flex w-[1.65rem] flex-col gap-[0.32rem]" aria-hidden>
+        <span className="h-[1.5px] w-full bg-current" />
+        <span className="h-[1.5px] w-full bg-current" />
+        <span className="h-[1.5px] w-full bg-current" />
+      </span>
+      <span className="mt-2 font-display text-[0.58rem] leading-none tracking-[0.38em] text-current">
+        Menu
+      </span>
+    </span>
+  );
+}
+
 function MenuCloseIcon() {
   return (
     <svg
@@ -161,10 +176,10 @@ export default function Navigation() {
   const showMenuTrigger = mounted && isHome && !showNav;
 
   const linkClass =
-    'relative px-2.5 py-2 font-sans text-[0.65rem] font-medium uppercase tracking-[0.2em] text-ink/75 transition hover:text-ink';
+    'relative px-2.5 py-2 font-display text-[0.75rem] text-ink/75 transition hover:text-ink';
 
   const mobileLinkClass =
-    'touch-manipulation border-b border-ink/10 px-1 py-4 font-sans text-[0.72rem] font-medium uppercase tracking-[0.18em] text-ink';
+    'touch-manipulation border-b border-ink/10 px-1 py-4 font-display text-[0.82rem] text-ink';
 
   useEffect(() => {
     const onOpen = () => revealNav();
@@ -178,14 +193,10 @@ export default function Navigation() {
         <button
           type="button"
           onClick={revealNav}
-          className="fixed right-5 top-5 z-[70] flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-black/20 text-white/75 backdrop-blur-[2px] transition hover:border-white/25 hover:bg-black/30 hover:text-white sm:right-8 sm:top-6"
+          className="fixed right-5 top-5 z-[70] p-0 text-fog transition hover:text-fog/80 sm:right-8 sm:top-6"
           aria-label="Open menu"
         >
-          <span className="flex w-[1.25rem] flex-col gap-[5px]" aria-hidden>
-            <span className="h-[1.5px] w-full rounded-full bg-current" />
-            <span className="h-[1.5px] w-full rounded-full bg-current" />
-            <span className="h-[1.5px] w-full rounded-full bg-current" />
-          </span>
+          <MenuMark />
         </button>
       )}
 
@@ -269,7 +280,7 @@ export default function Navigation() {
                         key={link.label}
                         href={link.href}
                         role="menuitem"
-                        className="block px-3 py-2.5 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink/80 transition hover:bg-paper-deep hover:text-ink"
+                        className="block px-3 py-2.5 font-display text-[0.72rem] text-ink/80 transition hover:bg-paper-deep hover:text-ink"
                         onClick={() => {
                           clearServicesCloseTimer();
                           setServicesOpen(false);
@@ -360,7 +371,7 @@ export default function Navigation() {
                       key={link.label}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="py-3 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-ink-soft"
+                      className="py-3 font-display text-[0.72rem] text-ink-soft"
                     >
                       {link.label}
                     </Link>

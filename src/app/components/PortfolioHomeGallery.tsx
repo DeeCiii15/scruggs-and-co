@@ -51,7 +51,7 @@ export default function PortfolioHomeGallery({
       <div className="grid gap-3 sm:gap-4 lg:grid-cols-12 lg:gap-5">
         <Link
           href={weddings.href}
-          className="group relative col-span-full block overflow-hidden bg-paper-deep lg:col-span-8"
+          className="group relative col-span-full block fl-print fl-print-tilt-left lg:col-span-8"
         >
           <div
             className={`relative w-full overflow-hidden ${
@@ -64,7 +64,7 @@ export default function PortfolioHomeGallery({
               src={weddings.image}
               alt={weddings.name}
               fill
-              className="object-cover fl-media-zoom"
+              className="object-cover fl-media-zoom fl-photo-earth"
               sizes="(max-width: 1024px) 100vw, 66vw"
               priority={isHome}
             />
@@ -76,23 +76,20 @@ export default function PortfolioHomeGallery({
               <h2 className="mt-1 font-display text-3xl text-fog sm:text-4xl">
                 {weddings.name}
               </h2>
-              <p className="mt-2 max-w-sm font-sans text-[0.7rem] font-medium uppercase tracking-[0.16em] text-fog/75">
-                {weddings.tagline}
-              </p>
             </div>
           </div>
         </Link>
 
         <Link
           href={portraits.href}
-          className="group relative col-span-full block overflow-hidden bg-paper-deep lg:col-span-4"
+          className="group relative col-span-full block fl-print fl-print-tilt-right lg:col-span-4"
         >
           <div className="relative aspect-[16/10] w-full overflow-hidden sm:aspect-[16/9] lg:aspect-auto lg:h-full">
             <Image
               src={portraits.image}
               alt={portraits.name}
               fill
-              className="object-cover fl-media-zoom"
+              className="object-cover fl-media-zoom fl-photo-earth"
               sizes="(max-width: 1024px) 100vw, 33vw"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/65 via-transparent to-transparent" />
@@ -100,27 +97,24 @@ export default function PortfolioHomeGallery({
               <h2 className="font-display text-2xl text-fog sm:text-3xl">
                 {portraits.name}
               </h2>
-              <p className="mt-2 font-sans text-[0.65rem] font-medium uppercase tracking-[0.16em] text-fog/75">
-                {portraits.tagline}
-              </p>
             </div>
           </div>
         </Link>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-2 sm:mt-8 sm:grid-cols-4 sm:gap-3">
-        {SESSION_CARDS.map((card) => (
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:mt-8 sm:grid-cols-4 sm:gap-5">
+        {SESSION_CARDS.map((card, i) => (
           <Link
             key={card.name}
             href={card.href}
-            className="group relative block overflow-hidden bg-paper-deep"
+            className={`group relative block fl-print ${i % 2 === 0 ? 'fl-print-tilt-left' : 'fl-print-tilt-right'}`}
           >
             <div className="relative aspect-[3/4]">
               <Image
                 src={card.image}
                 alt={card.name}
                 fill
-                className="object-cover fl-media-zoom"
+                className="object-cover fl-media-zoom fl-photo-earth"
                 sizes="(max-width: 640px) 50vw, 25vw"
               />
             </div>
@@ -128,9 +122,6 @@ export default function PortfolioHomeGallery({
               <h2 className="font-display text-base text-fog sm:text-lg">
                 {card.name}
               </h2>
-              <p className="mt-0.5 font-sans text-[0.55rem] font-medium uppercase tracking-[0.14em] text-fog/75">
-                {card.tagline}
-              </p>
             </div>
           </Link>
         ))}

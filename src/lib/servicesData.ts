@@ -13,6 +13,7 @@ import {
 import {
   PRIMARY_CITY,
   PRIMARY_REGION,
+  PRIMARY_STATE,
   PRIMARY_STATE_ABBR,
   SITE_NAME,
 } from './siteConfig';
@@ -129,8 +130,8 @@ export const SERVICE_DEFS: ServiceDef[] = [
     ],
     ctaHeadline: 'Ready to claim your wedding date?',
     ctaButton: 'Check availability',
-    metaTitle: `Chesnee Wedding Photographer | ${SITE_NAME}`,
-    metaDescription: `Wedding photographer in Chesnee, SC. Documentary wedding photography for Upstate days—Whole-Day, Half-Day, and elopement collections.`,
+    metaTitle: `Wedding Photography | ${SITE_NAME}`,
+    metaDescription: `Documentary wedding photographer in ${PRIMARY_CITY}, ${PRIMARY_STATE}.`,
   },
   {
     slug: 'sessions',

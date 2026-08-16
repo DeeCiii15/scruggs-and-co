@@ -177,10 +177,5 @@ function MobileCallButton() {
 }
 
 export default function ContactRibbon() {
-  return (
-    <>
-      <DesktopRibbon />
-      <MobileCallButton />
-    </>
-  );
+  return <MobileCallButton />;
 }

@@ -74,13 +74,13 @@ export default function ContactPage() {
             </div>
 
             <div className="order-1 bg-paper lg:sticky lg:top-0 lg:order-2 lg:flex lg:h-svh lg:flex-col">
-              <div className="m-5 ml-4 overflow-hidden bg-paper-deep sm:m-8 sm:ml-6 lg:my-10 lg:mr-12 lg:ml-6 lg:min-h-0 lg:flex-1 xl:mr-16">
+              <div className="fl-print fl-print-tilt-right m-5 ml-4 sm:m-8 sm:ml-6 lg:my-10 lg:mr-12 lg:ml-6 lg:min-h-0 lg:flex-1 xl:mr-16">
                 <Image
                   src={SITE_IMAGES.photographer}
                   alt={BRAND_IMAGE_ALT}
                   width={1600}
                   height={2000}
-                  className="h-[70svh] w-full object-cover object-[center_38%] lg:h-full"
+                  className="h-[62svh] w-full object-cover object-[center_38%] fl-photo-earth lg:h-full"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   quality={95}
                   priority
