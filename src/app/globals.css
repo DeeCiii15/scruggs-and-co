@@ -99,21 +99,10 @@ body {
 }
 
 @media (max-width: 767px) {
-  html {
-    --fl-paper-grain: url("/images/textures/paper-grain-alpha.png");
-  }
-
-  body {
-    background-attachment: scroll;
-    background-blend-mode: normal, normal, normal, normal, normal;
-    background-size: 140px 140px, 140px 140px, auto, auto, auto;
-  }
-
+  body,
   .bg-paper:not(.fl-letters):not(body):not(footer),
-  .bg-paper-deep:not(.fl-letters) {
-    background-image: var(--fl-paper-grain), var(--fl-paper-grain);
-    background-size: 180px 180px, 90px 90px;
-    background-blend-mode: normal, normal;
+  .bg-paper-deep:not(.fl-letters),
+  .fl-letters {
     background-attachment: scroll;
   }
 }
@@ -559,14 +548,6 @@ body {
     var(--fl-paper-grain);
   background-size: auto, 240px 240px, 110px 110px;
   background-blend-mode: normal, overlay, overlay;
-}
-
-@media (max-width: 767px) {
-  .fl-letters {
-    background-size: auto, 180px 180px, 90px 90px;
-    background-blend-mode: normal, normal, normal;
-    background-attachment: scroll;
-  }
 }
 
 .fl-scatter {

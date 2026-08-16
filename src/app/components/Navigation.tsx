@@ -208,10 +208,10 @@ export default function Navigation() {
       )}
 
       <nav
-        className={`fixed left-0 right-0 top-0 z-[60] transition-all duration-500 ${
+        className={`fixed left-0 right-0 top-0 z-[60] border-b border-ink/10 bg-paper/90 backdrop-blur-md transition-all duration-500 ${
           mobileMenuOpen
-            ? 'bottom-0 overflow-y-auto bg-paper'
-            : 'overflow-visible border-b border-ink/10 bg-paper/90 backdrop-blur-md'
+            ? 'bottom-0 overflow-y-auto'
+            : 'overflow-visible'
         } ${
           showNav
             ? 'translate-y-0 opacity-100'
@@ -346,7 +346,7 @@ export default function Navigation() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="min-h-[calc(100dvh-4.75rem-env(safe-area-inset-top,0px))] border-t border-ink/10 bg-paper pb-10 pt-2 md:hidden">
+          <div className="min-h-[calc(100dvh-4.75rem-env(safe-area-inset-top,0px))] border-t border-ink/10 pb-10 pt-2 md:hidden">
             <div className="flex flex-col">
               <Link
                 href="/#about"

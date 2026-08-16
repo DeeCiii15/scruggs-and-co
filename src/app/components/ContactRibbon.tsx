@@ -163,26 +163,15 @@ function DesktopRibbon() {
 const fabBubbleClass =
   'pointer-events-auto flex h-14 w-14 shrink-0 touch-manipulation items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-lg transition-all duration-200 active:scale-95';
 
-/** Mobile — phone only; taps dial the business line. Falls back to email if no number is set. */
+/** Mobile — phone icon; taps dial the business line. */
 function MobileCallButton() {
-  const href = CONTACT_PHONE_TEL
-    ? `tel:${CONTACT_PHONE_TEL}`
-    : `mailto:${CONTACT_EMAIL}?subject=Inquiry%20from%20${encodeURIComponent(SITE_NAME)}`;
-  const label = CONTACT_PHONE
-    ? `Call ${CONTACT_PHONE}`
-    : `Email ${CONTACT_EMAIL}`;
-
   return (
     <a
-      href={href}
-      aria-label={label}
+      href={`tel:${CONTACT_PHONE_TEL}`}
+      aria-label={CONTACT_PHONE ? `Call ${CONTACT_PHONE}` : 'Call'}
       className={`fixed bottom-[max(0.75rem,env(safe-area-inset-bottom,0px))] right-3 z-[80] sm:hidden ${fabBubbleClass}`}
     >
-      {CONTACT_PHONE_TEL ? (
-        <PhoneIcon className="h-6 w-6" />
-      ) : (
-        <MailIcon className="h-6 w-6" />
-      )}
+      <PhoneIcon className="h-6 w-6" />
     </a>
   );
 }
