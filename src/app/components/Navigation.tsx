@@ -99,6 +99,13 @@ export default function Navigation() {
     setNavVisible(true);
   };
 
+  const openHeroMenu = () => {
+    revealNav();
+    if (window.matchMedia('(max-width: 767px)').matches) {
+      setMobileMenuOpen(true);
+    }
+  };
+
   useEffect(() => {
     const updateVisibility = () => {
       if (!isHome) {
@@ -182,7 +189,7 @@ export default function Navigation() {
     'touch-manipulation border-b border-ink/10 px-1 py-4 font-display text-[0.82rem] text-ink';
 
   useEffect(() => {
-    const onOpen = () => revealNav();
+    const onOpen = () => openHeroMenu();
     window.addEventListener('scruggs:open-nav', onOpen);
     return () => window.removeEventListener('scruggs:open-nav', onOpen);
   }, []);
@@ -192,7 +199,7 @@ export default function Navigation() {
       {showMenuTrigger && (
         <button
           type="button"
-          onClick={revealNav}
+          onClick={openHeroMenu}
           className="fixed right-5 top-5 z-[70] p-0 text-fog transition hover:text-fog/80 sm:right-8 sm:top-6"
           aria-label="Open menu"
         >

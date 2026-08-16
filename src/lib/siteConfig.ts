@@ -48,7 +48,16 @@ export const CONTACT_EMAIL =
 export const CONTACT_PHONE =
   process.env.NEXT_PUBLIC_CONTACT_PHONE?.trim() || '';
 
-export const CONTACT_PHONE_TEL = CONTACT_PHONE.replace(/[^\d+]/g, '');
+function toTelNumber(phone: string): string {
+  const digits = phone.replace(/[^\d+]/g, '');
+  if (!digits) return '';
+  if (digits.startsWith('+')) return digits;
+  if (digits.length === 11 && digits.startsWith('1')) return `+${digits}`;
+  if (digits.length === 10) return `+1${digits}`;
+  return digits;
+}
+
+export const CONTACT_PHONE_TEL = toTelNumber(CONTACT_PHONE);
 
 /** Existing-client proofing / delivery galleries (Pixieset). */
 export const CLIENT_GALLERY_URL =
