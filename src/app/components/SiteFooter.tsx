@@ -19,16 +19,18 @@ export default function SiteFooter() {
             aria-label={SITE_NAME}
             className="inline-flex flex-col items-center"
           >
-            {/* Vector oval S — grain-free layer, sage fill in the SVG */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={SITE_IMAGES.logoFooterMark}
-              alt=""
-              width={1024}
-              height={892}
-              decoding="async"
-              className="fl-brand-mark mb-1 h-24 w-auto overflow-visible object-contain sm:mb-1.5 sm:h-28"
-            />
+            {/* Same crisp recipe as the hero mark: path-only SVG, width-driven, grain-free wrapper */}
+            <div className="fl-brand-mark mb-1 overflow-visible sm:mb-1.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={SITE_IMAGES.logoFooterMark}
+                alt=""
+                width={1024}
+                height={892}
+                decoding="async"
+                className="h-auto w-[calc(6rem*1024/892)] overflow-visible object-contain sm:w-[calc(7rem*1024/892)]"
+              />
+            </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={SITE_IMAGES.logoFooter}
