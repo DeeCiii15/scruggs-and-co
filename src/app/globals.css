@@ -89,8 +89,8 @@ body {
   background-attachment: fixed;
 }
 
-/* Grain on paper fills — skip lined sections (they add their own), body, and footer */
-.bg-paper:not(.fl-letters):not(body):not(footer) {
+/* Grain on paper fills — skip lined sections, body, footer, and the photo hero stage */
+.bg-paper:not(.fl-letters):not(body):not(footer):not(.fl-hero-stage) {
   background-image: var(--fl-paper-grain), var(--fl-paper-grain);
   background-size: 240px 240px, 110px 110px;
   background-blend-mode: overlay, overlay;
@@ -113,7 +113,7 @@ body {
     background-size: 256px 256px, 256px 256px, auto, auto, auto;
   }
 
-  .bg-paper:not(.fl-letters):not(body):not(footer) {
+  .bg-paper:not(.fl-letters):not(body):not(footer):not(.fl-hero-stage) {
     background-image: var(--fl-paper-grain);
     background-size: 256px 256px;
     background-blend-mode: normal;
@@ -129,6 +129,28 @@ body {
 ::selection {
   background: color-mix(in srgb, var(--color-moss) 28%, transparent);
   color: var(--color-ink);
+}
+
+/* Oval monogram sits above paper grain; never blend or filter the strokes on mobile */
+.fl-brand-mark {
+  isolation: isolate;
+  background: none;
+  mix-blend-mode: normal;
+}
+
+.fl-brand-mark img {
+  display: block;
+  background: none;
+  mix-blend-mode: normal;
+}
+
+@media (max-width: 767px) {
+  .fl-brand-mark,
+  .fl-brand-mark img {
+    filter: none;
+    transform: none;
+    will-change: auto;
+  }
 }
 
 /* ——— Brand logos ——— */

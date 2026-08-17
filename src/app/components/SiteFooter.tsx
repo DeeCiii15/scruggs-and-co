@@ -19,15 +19,15 @@ export default function SiteFooter() {
             aria-label={SITE_NAME}
             className="inline-flex flex-col items-center"
           >
-            {/* Plain img — SVG stays vector-sharp on mobile (next/image can soft-blur marks) */}
+            {/* Vector oval S — grain-free layer, sage fill in the SVG */}
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={SITE_IMAGES.logoFooterMark}
               alt=""
-              width={1060}
-              height={950}
+              width={1024}
+              height={892}
               decoding="async"
-              className="mb-1 h-24 w-auto overflow-visible object-contain sm:mb-1.5 sm:h-28"
+              className="fl-brand-mark mb-1 h-24 w-auto overflow-visible object-contain sm:mb-1.5 sm:h-28"
             />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img

@@ -42,9 +42,9 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
       // Panels are half-width, so 100% clears each side from the center line
       const slide = eased * 100;
       const copyOpacity = Math.min(Math.max((t - 0.28) / 0.4, 0), 1);
-      const narrow = window.innerWidth < 640;
+      const narrow = window.innerWidth < 768;
       const monoScale = narrow ? 1 : 1 - eased * 0.08;
-      const monoOpacity = 0.95 - eased * 0.2;
+      const monoOpacity = narrow ? 1 : 0.95 - eased * 0.2;
 
       if (leftRef.current) {
         leftRef.current.style.transform = `translate3d(-${slide}%, 0, 0)`;
@@ -123,7 +123,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
       ref={sectionRef}
       className="relative h-[calc(100svh+22vh)] w-full bg-paper"
     >
-      <div className="sticky top-0 h-svh w-full overflow-hidden bg-paper">
+      <div className="fl-hero-stage sticky top-0 h-svh w-full overflow-hidden bg-night">
         <div className="absolute inset-0 z-0" aria-hidden>
           <Image
             src={CURTAIN_IMAGES.back.src}
@@ -194,17 +194,17 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
           </div>
         </div>
 
-        {/* Monogram centered on the curtain seam — plain img, no translate3d (keeps SVG crisp on mobile) */}
+        {/* Vector monogram on its own layer — above photos/wash, no paper grain */}
         <div
           ref={monoRef}
-          className="pointer-events-none absolute inset-x-0 top-[16vh] z-[2] flex justify-center overflow-visible sm:top-[18vh]"
+          className="fl-brand-mark pointer-events-none absolute inset-x-0 top-[16vh] z-[2] flex justify-center overflow-visible sm:top-[18vh]"
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={SITE_IMAGES.logoHero}
             alt={SITE_NAME}
-            width={1060}
-            height={950}
+            width={1024}
+            height={892}
             decoding="async"
             fetchPriority="high"
             className="h-auto w-[clamp(7rem,22vw,9.5rem)] overflow-visible object-contain sm:drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)]"
