@@ -82,7 +82,7 @@ export default function ServiceGalleryRail({
               {i > 0 && (
                 <span
                   aria-hidden
-                  className="select-none font-display text-xl text-ink/25 sm:text-2xl"
+                  className="select-none font-display text-lg text-ink/25 sm:text-2xl"
                 >
                   ·
                 </span>
@@ -100,7 +100,7 @@ export default function ServiceGalleryRail({
                   if (idx >= 0) setCycleIndex(idx);
                 }}
                 onBlur={() => setHoveredName(null)}
-                className={`font-display text-2xl transition-colors duration-300 sm:text-3xl md:text-4xl ${
+                className={`font-display text-xl transition-colors duration-300 sm:text-3xl md:text-4xl ${
                   active.slug === shoot.slug
                     ? 'text-moss'
                     : hoveredName

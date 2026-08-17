@@ -328,7 +328,7 @@ export default function Navigation() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="relative z-[61] flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center text-ink transition md:hidden"
+            className="relative z-[61] flex h-11 w-11 shrink-0 touch-manipulation items-center justify-center text-sage transition hover:text-moss md:hidden"
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={mobileMenuOpen}
             tabIndex={showNav ? undefined : -1}

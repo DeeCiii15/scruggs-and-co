@@ -42,7 +42,8 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
       // Panels are half-width, so 100% clears each side from the center line
       const slide = eased * 100;
       const copyOpacity = Math.min(Math.max((t - 0.28) / 0.4, 0), 1);
-      const monoScale = 1 - eased * 0.08;
+      const narrow = window.innerWidth < 640;
+      const monoScale = narrow ? 1 : 1 - eased * 0.08;
       const monoOpacity = 0.95 - eased * 0.2;
 
       if (leftRef.current) {
@@ -53,7 +54,8 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
       }
       if (monoRef.current) {
         monoRef.current.style.opacity = String(monoOpacity);
-        monoRef.current.style.transform = `translate3d(-50%, 0, 0) scale(${monoScale})`;
+        monoRef.current.style.transform =
+          monoScale === 1 ? 'none' : `scale(${monoScale})`;
       }
       if (copyRef.current) {
         copyRef.current.style.opacity = String(copyOpacity);
@@ -192,23 +194,20 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
           </div>
         </div>
 
-        {/* Monogram centered on the curtain seam */}
+        {/* Monogram centered on the curtain seam — plain img, no translate3d (keeps SVG crisp on mobile) */}
         <div
           ref={monoRef}
-          className="pointer-events-none absolute top-[16vh] z-[2] flex w-[min(22rem,88vw)] flex-col items-center overflow-visible sm:top-[18vh]"
-          style={{
-            left: '50%',
-            transform: 'translate3d(-50%, 0, 0)',
-          }}
+          className="pointer-events-none absolute inset-x-0 top-[16vh] z-[2] flex justify-center overflow-visible sm:top-[18vh]"
         >
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src={SITE_IMAGES.logoHero}
             alt={SITE_NAME}
             width={1060}
             height={950}
-            className="h-auto w-[clamp(6rem,16vw,9.5rem)] overflow-visible object-contain drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)]"
-            unoptimized
-            priority
+            decoding="async"
+            fetchPriority="high"
+            className="h-auto w-[clamp(7rem,22vw,9.5rem)] overflow-visible object-contain sm:drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)]"
           />
         </div>
 

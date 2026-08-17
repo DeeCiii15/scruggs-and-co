@@ -161,7 +161,7 @@ function DesktopRibbon() {
 }
 
 const fabBubbleClass =
-  'pointer-events-auto flex h-14 w-14 shrink-0 touch-manipulation items-center justify-center rounded-sm border border-gray-300 bg-white text-gray-900 shadow-lg transition-all duration-200 active:scale-95';
+  'pointer-events-auto flex h-14 w-14 shrink-0 touch-manipulation items-center justify-center rounded-sm border border-sage/45 bg-paper text-sage shadow-lg transition-all duration-200 hover:border-moss hover:text-moss active:scale-95';
 
 /** Mobile — phone icon; taps dial the business line. */
 function MobileCallButton() {

@@ -163,7 +163,7 @@ export default function LedgerGalleries() {
                 {i > 0 && (
                   <span
                     aria-hidden
-                    className="select-none font-display text-sm tracking-[0.08em] text-ink/25 sm:text-sm"
+                    className="select-none font-display text-[0.62rem] tracking-[0.06em] text-ink/25 sm:text-sm sm:tracking-[0.08em]"
                   >
                     ·
                   </span>
@@ -186,7 +186,7 @@ export default function LedgerGalleries() {
                     if (idx >= 0) setCycleIndex(idx);
                   }}
                   onBlur={() => setHoveredName(null)}
-                  className={`font-display shrink-0 text-sm tracking-[0.1em] transition-colors duration-300 sm:text-sm md:text-base lg:text-lg ${
+                  className={`font-display shrink-0 text-[0.62rem] tracking-[0.08em] transition-colors duration-300 sm:text-sm sm:tracking-[0.1em] md:text-base lg:text-lg ${
                     activeRailName === link.name
                       ? 'text-moss'
                       : hoveredName

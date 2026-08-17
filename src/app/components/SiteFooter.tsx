@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { FOOTER_SERVICE_LINKS } from '@/lib/servicesData';
 import { SERVICE_AREA_LABEL, SITE_NAME } from '@/lib/siteConfig';
@@ -20,21 +19,24 @@ export default function SiteFooter() {
             aria-label={SITE_NAME}
             className="inline-flex flex-col items-center"
           >
-            <Image
+            {/* Plain img — SVG stays vector-sharp on mobile (next/image can soft-blur marks) */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={SITE_IMAGES.logoFooterMark}
               alt=""
               width={1060}
               height={950}
+              decoding="async"
               className="mb-1 h-24 w-auto overflow-visible object-contain sm:mb-1.5 sm:h-28"
-              unoptimized
             />
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={SITE_IMAGES.logoFooter}
               alt=""
               width={1800}
               height={260}
+              decoding="async"
               className="h-auto w-[min(22rem,90vw)] overflow-visible object-contain sm:w-[28rem]"
-              unoptimized
             />
             {/* Tagline in HTML — brand SVGs only had live Sweet Fancy / Baskerville */}
             <p className="mt-0.5 flex flex-wrap items-baseline justify-center gap-x-2.5 text-sage sm:gap-x-3">
@@ -80,7 +82,7 @@ export default function SiteFooter() {
                 )}
                 <Link
                   href={link.href}
-                  className="fl-link text-sage hover:text-moss"
+                  className="fl-link !text-[0.58rem] !tracking-[0.12em] text-sage hover:text-moss sm:!text-[0.72rem] sm:!tracking-[0.16em]"
                 >
                   {link.label}
                 </Link>
