@@ -53,7 +53,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
       }
       if (monoRef.current) {
         monoRef.current.style.opacity = String(monoOpacity);
-        monoRef.current.style.transform = `translate3d(calc(-50% - 12px), 0, 0) scale(${monoScale})`;
+        monoRef.current.style.transform = `translate3d(-50%, 0, 0) scale(${monoScale})`;
       }
       if (copyRef.current) {
         copyRef.current.style.opacity = String(copyOpacity);
@@ -192,21 +192,21 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
           </div>
         </div>
 
-        {/* Monogram on the curtain seam; slight left optical nudge (asset weight sits right) */}
+        {/* Monogram centered on the curtain seam */}
         <div
           ref={monoRef}
-          className="pointer-events-none absolute top-[16vh] z-[2] w-[clamp(6rem,16vw,9.5rem)] drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)] sm:top-[18vh]"
+          className="pointer-events-none absolute top-[16vh] z-[2] flex w-[min(22rem,88vw)] flex-col items-center overflow-visible sm:top-[18vh]"
           style={{
             left: '50%',
-            transform: 'translate3d(calc(-50% - 12px), 0, 0)',
+            transform: 'translate3d(-50%, 0, 0)',
           }}
         >
           <Image
-            src={SITE_IMAGES.logoMonogram}
+            src={SITE_IMAGES.logoHero}
             alt={SITE_NAME}
-            width={280}
-            height={360}
-            className="h-auto w-full fl-logo-monogram-on-photo"
+            width={1060}
+            height={950}
+            className="h-auto w-[clamp(6rem,16vw,9.5rem)] overflow-visible object-contain drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)]"
             unoptimized
             priority
           />

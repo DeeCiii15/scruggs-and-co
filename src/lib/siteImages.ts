@@ -158,14 +158,20 @@ export const FILMSTRIP_FRAMES = [
 
 export const SITE_IMAGES = {
   logo: '/images/logo.png',
-  /** Dark wordmark for paper / scrolled nav (tight crop, retina-ready) */
-  logoNav: '/images/brand/scruggs-co-nav-wordmark.png',
+  /** Same wordmark as footer — sage outlined SCRUGGS AND CO. PHOTO */
+  logoNav: '/images/brand/scruggs-co-logo-lockup.svg',
   /** Script wordmark — Pinyon + Instrument, no botanical */
   logoScriptNav: '/images/brand/scruggs-co-script-nav.png',
   /** Light mark for dark photo overlays */
   logoOnDark: '/images/brand/scruggs-liv-logo-on-dark.png',
   /** Center monogram */
   logoMonogram: '/images/brand/scruggs-co-logo-monogram.png',
+  /** White oval hero mark for dark photo overlays (Artboard 2) */
+  logoHero: '/images/brand/scruggs-co-hero-mark.svg',
+  /** Sage oval S for footer (same mask as logoHero, fill #929c7c) */
+  logoFooterMark: '/images/brand/scruggs-co-hero-mark-sage.svg',
+  /** Footer wordmark only (sage outlined SCRUGGS AND CO. PHOTO; tagline is HTML) */
+  logoFooter: '/images/brand/scruggs-co-logo-lockup.svg',
   heroField: '/images/inspiration_2.jpg',
   heroArch: '/images/inspiration_1.jpg',
   moodField: '/images/inspiration_1.jpg',

@@ -12,7 +12,7 @@ Same documentary structure — curtains, procession, galleries — restyled as a
 | `--paper-deep` | `#E8D8C6` | Alternate bands |
 | `--ink` | `#2C241C` | Text — espresso |
 | `--ink-soft` | `#74685C` | Body secondary |
-| `--moss` | `#6F7D56` | Accent / links — sage |
+| `--moss` | `#929c7c` | Accent / links — sage |
 | `--clay` | `#C57A5A` | Script / hover — terracotta |
 | `--night` | `#231C16` | Dark quote / theater bands |
 | `--fog` | `#FBF6EF` | Type on photos |
@@ -20,7 +20,7 @@ Same documentary structure — curtains, procession, galleries — restyled as a
 ### Type
 
 - **Display:** IBM Plex Mono Extra Light — thin caps typewriter, open tracking
-- **Script accent:** Great Vibes — eloquent copperplate
+- **Script accent:** Mrs Saint Delafield — eloquent copperplate
 - **UI / body:** Cabin — warm humanist sans
 
 Photos sit as prints: warm grade, oat mats, a little tilt. Curtains stay full-bleed.

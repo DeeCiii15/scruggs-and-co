@@ -183,10 +183,10 @@ export default function Navigation() {
   const showMenuTrigger = mounted && isHome && !showNav;
 
   const linkClass =
-    'relative px-2.5 py-2 font-display text-[0.75rem] text-ink/75 transition hover:text-ink';
+    'relative px-2.5 py-2 font-display text-[0.75rem] text-sage transition hover:text-moss';
 
   const mobileLinkClass =
-    'touch-manipulation border-b border-ink/10 px-1 py-4 font-display text-[0.82rem] text-ink';
+    'touch-manipulation border-b border-ink/10 px-1 py-4 font-display text-[0.82rem] text-sage transition hover:text-moss';
 
   useEffect(() => {
     const onOpen = () => openHeroMenu();
@@ -223,15 +223,15 @@ export default function Navigation() {
         <div className="flex h-[4.75rem] items-center justify-between gap-4 overflow-visible pt-[env(safe-area-inset-top,0px)] md:h-[5.25rem]">
           <Link
             href="/"
-            className="group relative z-10 flex min-w-0 shrink items-center overflow-visible"
+            className="group relative z-10 ml-2 flex shrink-0 items-center overflow-visible pl-3 sm:ml-4 sm:pl-5"
             aria-label={SITE_NAME}
             tabIndex={showNav ? undefined : -1}
           >
             <Image
-              src={SITE_IMAGES.logoNav}
+              src={SITE_IMAGES.logoFooter}
               alt={SITE_NAME}
-              width={1241}
-              height={113}
+              width={1800}
+              height={260}
               className="fl-logo-nav fl-logo-on-paper"
               unoptimized
               priority
@@ -262,7 +262,7 @@ export default function Navigation() {
             >
               <button
                 type="button"
-                className={`${linkClass} inline-flex items-center ${onServices ? 'text-ink' : ''}`}
+                className={`${linkClass} inline-flex items-center ${onServices ? 'text-moss' : ''}`}
                 aria-expanded={servicesOpen}
                 aria-haspopup="menu"
                 tabIndex={showNav ? undefined : -1}
@@ -287,7 +287,7 @@ export default function Navigation() {
                         key={link.label}
                         href={link.href}
                         role="menuitem"
-                        className="block px-3 py-2.5 font-display text-[0.72rem] text-ink/80 transition hover:bg-paper-deep hover:text-ink"
+                        className="block px-3 py-2.5 font-display text-[0.72rem] text-sage transition hover:bg-paper-deep hover:text-moss"
                         onClick={() => {
                           clearServicesCloseTimer();
                           setServicesOpen(false);
@@ -378,7 +378,7 @@ export default function Navigation() {
                       key={link.label}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="py-3 font-display text-[0.72rem] text-ink-soft"
+                      className="py-3 font-display text-[0.72rem] text-sage transition hover:text-moss"
                     >
                       {link.label}
                     </Link>
@@ -397,7 +397,7 @@ export default function Navigation() {
                 onClick={() => setMobileMenuOpen(false)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${mobileLinkClass} border-b-0 text-ink-soft`}
+                className={`${mobileLinkClass} border-b-0`}
               >
                 {CLIENT_GALLERY_LABEL}
               </a>

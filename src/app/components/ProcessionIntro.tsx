@@ -126,7 +126,7 @@ export default function ProcessionIntro() {
             <p className="font-script text-3xl text-clay md:text-4xl">since 2019</p>
             <h2 className="mt-3 font-display text-3xl leading-snug text-fog sm:text-4xl md:text-[2.5rem]">
               Authentic, heartfelt documentary wedding and lifestyle{' '}
-              <span className="font-script text-[1.35em] font-normal normal-case tracking-normal text-clay">
+              <span className="font-script text-[1.35em] normal-case text-clay">
                 photography
               </span>
               .

@@ -36,7 +36,7 @@ export default function ContinuumReviews() {
               </div>
             </div>
             <blockquote className="fl-note-quote">{review.quote}</blockquote>
-            <p className="fl-note-from">{review.name}</p>
+            <p className="fl-note-from font-script">{review.name}</p>
           </article>
         ))}
       </div>

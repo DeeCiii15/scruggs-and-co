@@ -7,7 +7,8 @@
   --color-paper-deep: #e8d8c6;
   --color-ink: #2c241c;
   --color-ink-soft: #74685c;
-  --color-moss: #6f7d56;
+  --color-moss: #929c7c;
+  --color-sage: #929c7c;
   --color-clay: #c57a5a;
   --color-night: #231c16;
   --color-fog: #fbf6ef;
@@ -32,10 +33,13 @@
   text-transform: uppercase;
 }
 
+/* Match footer “forever moments”: Mrs Saint Delafield 400 + slight slant */
 .font-script {
   font-weight: 400;
   font-synthesis: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
+  display: inline-block;
+  transform: skewX(-5deg);
 }
 
 html {
@@ -130,9 +134,10 @@ body {
 /* ——— Brand logos ——— */
 .fl-logo-nav {
   width: auto;
-  /* Tight-cropped wordmark — size with height only (no scale distort) */
   height: 1.75rem;
   max-width: min(18rem, 56vw);
+  overflow: visible;
+  object-fit: contain;
 }
 
 @media (min-width: 768px) {
@@ -683,10 +688,12 @@ body {
   font-family: var(--font-script);
   font-weight: 400;
   font-synthesis: none;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.01em;
   font-size: 1.55rem;
   line-height: 1.1;
   color: var(--color-moss);
+  display: inline-block;
+  transform: skewX(-5deg);
 }
 
 .fl-note-1 { z-index: 3; }
