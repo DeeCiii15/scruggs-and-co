@@ -99,11 +99,26 @@ body {
 }
 
 @media (max-width: 767px) {
-  body,
-  .bg-paper:not(.fl-letters):not(body):not(footer),
-  .bg-paper-deep:not(.fl-letters),
-  .fl-letters {
+  html {
+    --fl-paper-grain: url("/images/textures/paper-grain-soft.png");
+  }
+
+  body {
     background-attachment: scroll;
+    background-blend-mode: normal, normal, normal, normal, normal;
+    background-size: 256px 256px, 256px 256px, auto, auto, auto;
+  }
+
+  .bg-paper:not(.fl-letters):not(body):not(footer) {
+    background-image: var(--fl-paper-grain);
+    background-size: 256px 256px;
+    background-blend-mode: normal;
+    background-attachment: scroll;
+  }
+
+  .bg-paper-deep:not(.fl-letters) {
+    background-image: none;
+    background-blend-mode: normal;
   }
 }
 
@@ -549,6 +564,22 @@ body {
     var(--fl-paper-grain);
   background-size: auto, 240px 240px, 110px 110px;
   background-blend-mode: normal, overlay, overlay;
+}
+
+@media (max-width: 767px) {
+  .fl-letters {
+    background-size: auto, 256px 256px;
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 11px,
+        color-mix(in srgb, var(--color-ink) 7.75%, transparent) 12px
+      ),
+      var(--fl-paper-grain);
+    background-blend-mode: normal, normal;
+    background-attachment: scroll;
+  }
 }
 
 .fl-letters::before,
