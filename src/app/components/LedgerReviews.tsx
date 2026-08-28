@@ -26,13 +26,15 @@ export default function LedgerReviews() {
         {TESTIMONIALS.map((t) => (
           <figure key={t.name} className="text-center">
             <div className="relative mx-auto mb-8 h-16 w-16 overflow-hidden bg-paper-deep sm:h-20 sm:w-20">
-              <Image
-                src={t.portrait}
-                alt=""
-                fill
-                className="object-cover"
-                sizes="80px"
-              />
+              {t.portrait ? (
+                <Image
+                  src={t.portrait}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              ) : null}
             </div>
             <blockquote>
               <p className="font-display text-2xl italic leading-snug text-ink sm:text-[1.85rem] md:text-[2.05rem]">

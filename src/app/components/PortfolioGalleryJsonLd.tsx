@@ -23,7 +23,10 @@ export function PortfolioCategoryJsonLd({ category }: CategoryJsonLdProps) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: meta.title,
+    name:
+      typeof meta.title === 'string'
+        ? meta.title
+        : (category.pageHeading ?? category.name),
     description: meta.description,
     url,
     isPartOf: { '@id': `${base}#website` },

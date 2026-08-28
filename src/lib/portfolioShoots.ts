@@ -1,22 +1,34 @@
 /**
- * Register each gallery shoot here (folder must exist under public/images/galleries/).
+ * Register each photo shoot here (folder must exist under public/images/galleries/).
  * Then run: npm run galleries:sync
+ *
+ * title       — shown under the shoot polaroid + used in page title & image alt text
+ * description — optional; used for SEO meta description & blurb on the shoot page
+ * name        — optional; couple/client names (e.g. "Maddie & Cole") for
+ *               personalized copy on weddings & engagements when known
+ * venue       — optional; venue or location name (e.g. "Duncan Estate")
  */
 
 export type PortfolioShootDef = {
   /** Folder name — must match public/images/galleries/{category}/{slug}/ */
   slug: string;
-  /** Display title */
+  /** Display title, e.g. "Maddie & Cole" */
   title: string;
   /** SEO & on-page blurb */
   description?: string;
-  /** Optional client name for personalized copy */
+  /**
+   * Optional couple or client name for personalized copy
+   * (e.g. "Maddie & Cole") — mainly weddings & engagements.
+   */
   name?: string;
-  /** Optional venue or place name */
+  /** Optional venue or place name (e.g. "Duncan Estate", "Lake Bowen") */
   venue?: string;
 };
 
-/** Short polaroid caption — first names only when `name` is set */
+/**
+ * Short polaroid caption — first names only when `name` is set
+ * (e.g. "Maddie & Cole Scruggs" → "Maddie & Cole").
+ */
 export function shootGalleryLabel(shoot: PortfolioShootDef): string {
   const raw = shoot.name?.trim();
   if (!raw) return shoot.title;
@@ -38,25 +50,29 @@ export const SHOOTS_BY_CATEGORY: Record<string, PortfolioShootDef[]> = {
       slug: 'forever-moments',
       title: 'Maddie & Cole',
       name: 'Maddie & Cole',
+      venue: 'South Carolina',
       description:
         'Documentary wedding frames—vows, details, and the soft in-between that becomes the story you keep.',
-      venue: 'South Carolina',
     },
     {
       slug: 'golden-hour',
       title: 'Kate & Davis',
       name: 'Kate & Davis',
+      venue: 'Upstate SC & beyond',
       description:
         'Warm light, quiet closeness, and celebration energy from full wedding days across the Carolinas.',
-      venue: 'Upstate SC & beyond',
     },
   ],
+  Engagement: [],
+  Family: [],
+  Maternity: [],
   Portraits: [
     {
       slug: 'lifestyle-sessions',
       title: 'Lifestyle Sessions',
       description:
-        'Couples, engagement, and lifestyle portraits that feel easy, sweet, and true to you.',
+        'Engagement and lifestyle portraits that feel easy, sweet, and true to you.',
     },
   ],
+  Seniors: [],
 };

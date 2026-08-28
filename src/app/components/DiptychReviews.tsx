@@ -36,13 +36,15 @@ export default function DiptychReviews() {
         );
         const frame = (
           <div className="relative min-h-[20rem] bg-paper-deep sm:min-h-[26rem] lg:min-h-[min(62vh,34rem)]">
-            <Image
-              src={t.portrait}
-              alt=""
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 50vw"
-            />
+            {t.portrait ? (
+              <Image
+                src={t.portrait}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+            ) : null}
           </div>
         );
 

@@ -31,6 +31,21 @@ const nextConfig: NextConfig = {
         destination: "/#about",
         permanent: true,
       },
+      {
+        source: "/services/sessions",
+        destination: "/services/portraits",
+        permanent: true,
+      },
+      {
+        source: "/services/couples",
+        destination: "/services/engagement",
+        permanent: true,
+      },
+      {
+        source: "/portfolio/couples",
+        destination: "/portfolio/engagement",
+        permanent: true,
+      },
     ];
   },
   images: {

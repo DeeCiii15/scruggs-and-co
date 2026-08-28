@@ -295,16 +295,18 @@ export default function ServiceProcession({
         }
         copy={
           <>
-            <p className="font-script text-4xl text-moss md:text-5xl">
-              {service.eyebrow}
-            </p>
             <h1
               id="service-intro-heading"
-              className="mt-2 font-display text-4xl leading-none text-ink sm:text-5xl md:text-[3.15rem] md:leading-[1.05]"
+              className="font-script text-4xl text-moss md:text-5xl"
             >
-              {service.headline}{' '}
-              <span className="italic text-moss">{service.headlineAccent}</span>
+              {service.eyebrow}
             </h1>
+            <p className="mt-2 font-display text-4xl leading-none text-ink sm:text-5xl md:text-[3.15rem] md:leading-[1.05]">
+              {service.headline}{' '}
+              <span className="italic text-moss">
+                {service.headlineAccent}
+              </span>
+            </p>
             <p className="mt-7 font-sans text-[0.95rem] font-light leading-[1.85] text-ink-soft">
               {service.intro}
             </p>
@@ -399,7 +401,7 @@ export default function ServiceProcession({
               id="faq-heading"
               className="mt-2 font-display text-4xl leading-none text-ink sm:text-5xl"
             >
-              Straight answers about {service.navLabel.toLowerCase()}
+              Straight answers about {service.faqLabel}
             </h2>
             <div className="mt-10">
               <ServiceFaqSection faqs={service.faqs} embedded />

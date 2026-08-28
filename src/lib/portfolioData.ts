@@ -3,9 +3,11 @@
  *
  * Upload layout:
  *   public/images/galleries/{category-folder}/{shoot-slug}/
- *     cover.jpg or cover.jpeg   ← polaroid thumbnail for this shoot
- *     01.jpg      ← first gallery photo
- *     02.jpg      ← second …
+ *     cover.jpg or cover.jpeg   ← polaroid thumbnail + first gallery image
+ *     01.jpg      ← gallery photo
+ *     02.jpg      ← …
+ *
+ * Then register the shoot in portfolioShoots.ts and run: npm run galleries:sync
  */
 
 import { SHOOTS_BY_CATEGORY, type PortfolioShootDef, shootGalleryLabel } from './portfolioShoots';
@@ -33,7 +35,10 @@ export type PortfolioPhoto = {
 
 export type PortfolioCategoryDef = {
   name: string;
+  /** On-page body blurb under the category H1 */
   description: string;
+  /** Dedicated SEO / Open Graph description (≤160 chars preferred) */
+  metaDescription: string;
   homeTagline: string;
   folder: string;
   coverSrc: string;
@@ -60,13 +65,21 @@ export type PortfolioShootCard = {
 /** Category → folder under public/images/galleries/ */
 export const GALLERY_UPLOAD_FOLDERS: Record<string, string> = {
   Weddings: 'weddings',
+  Engagement: 'engagement',
+  Family: 'family',
+  Maternity: 'maternity',
   Portraits: 'portraits',
+  Seniors: 'seniors',
 };
 
 /** Fallback polaroid covers when a category has no shoots yet */
 const LEGACY_CATEGORY_COVERS: Record<string, string> = {
   Weddings: '/images/wedding_1.jpg',
+  Engagement: '/images/engagement_1.jpg',
+  Family: '/images/inspiration_3.jpg',
+  Maternity: '/images/inspiration_1.jpg',
   Portraits: '/images/portrait_1.jpg',
+  Seniors: '/images/hero_5.jpg',
 };
 
 export function shootImageSrc(
@@ -114,9 +127,16 @@ function buildShootPhotos(
   shoot: PortfolioShootDef,
 ): PortfolioPhoto[] {
   const manifest = getShootManifest(categoryFolder, shoot.slug);
-  if (!manifest?.photos.length) return [];
+  if (!manifest) return [];
 
-  return manifest.photos.map((filename, i) => ({
+  const cover = manifest.cover;
+  const rest = cover
+    ? manifest.photos.filter((filename) => filename !== cover)
+    : manifest.photos;
+  const filenames = cover ? [cover, ...rest] : rest;
+  if (!filenames.length) return [];
+
+  return filenames.map((filename, i) => ({
     id: `${shoot.slug}-${i + 1}`,
     src: shootGallerySrc(categoryFolder, shoot.slug, filename),
     alt: `${shoot.title}, ${categoryName} photography — image ${i + 1}`,
@@ -131,17 +151,61 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       name: 'Weddings',
       description:
         'Documentary wedding galleries—vows, details, golden light, and the soft in-between frames that become forever moments.',
+      metaDescription:
+        'Wedding photography portfolios from Chesnee, SC & the Upstate—documentary wedding-day galleries in natural light by Scruggs & Co Photo.',
       homeTagline: 'Documentary wedding days',
       pageHeading: 'Wedding Portfolios',
-      metaTitle: 'Wedding Portfolio',
+      metaTitle: 'Wedding Photography Portfolio',
+    },
+    {
+      name: 'Engagement',
+      description:
+        'Easy love, soft light, and room to laugh—engagement sessions that feel like you, not a pose.',
+      metaDescription:
+        'Engagement photography portfolios from Chesnee, SC & the Upstate—engagement galleries in honest light by Scruggs & Co Photo.',
+      homeTagline: 'Easy love, soft light',
+      pageHeading: 'Engagement Portfolios',
+      metaTitle: 'Engagement Photography Portfolio',
+    },
+    {
+      name: 'Family',
+      description:
+        'The pile-on, the kid who will not look at the camera, the laugh when you stop trying—family galleries that look like you.',
+      metaDescription:
+        'Family photography portfolios from Chesnee, SC & the Upstate—unhurried family galleries in natural light by Scruggs & Co Photo.',
+      homeTagline: 'The everyday forever moments',
+      pageHeading: 'Family Portfolios',
+      metaTitle: 'Family Photography Portfolio',
+    },
+    {
+      name: 'Maternity',
+      description:
+        'This quiet, anticipating season—bump, partner, and the feeling that everything is about to change.',
+      metaDescription:
+        'Maternity photography portfolios from Chesnee, SC & the Upstate—soft documentary bump galleries by Scruggs & Co Photo.',
+      homeTagline: 'Quiet anticipation',
+      pageHeading: 'Maternity Portfolios',
+      metaTitle: 'Maternity Photography Portfolio',
     },
     {
       name: 'Portraits',
       description:
-        'Lifestyle, engagement, and portrait sessions that feel easy, sweet, and true to you.',
+        'Just you—soft light and room to breathe. Lifestyle portraits that feel like a compliment, not a performance.',
+      metaDescription:
+        'Portrait photography portfolios from Chesnee, SC & the Upstate—individual lifestyle galleries by Scruggs & Co Photo.',
       homeTagline: 'Lifestyle & portraits',
       pageHeading: 'Portrait Portfolios',
-      metaTitle: 'Portrait Portfolio',
+      metaTitle: 'Portrait Photography Portfolio',
+    },
+    {
+      name: 'Seniors',
+      description:
+        'Cap, gown, letter jacket, or just you at the end of this chapter—senior galleries that feel like now.',
+      metaDescription:
+        'Senior photography portfolios from Chesnee, SC & the Upstate—graduation & senior galleries by Scruggs & Co Photo.',
+      homeTagline: 'This chapter, documented',
+      pageHeading: 'Senior Portfolios',
+      metaTitle: 'Senior Photography Portfolio',
     },
   ];
 
@@ -234,7 +298,11 @@ export const PORTFOLIO_HOME_CARDS_CENTERED = (() => {
 export const FOOTER_PORTFOLIO_LINKS = (
   [
     ['Weddings', 'Weddings'],
+    ['Engagement', 'Engagement'],
+    ['Family', 'Family'],
+    ['Maternity', 'Maternity'],
     ['Portraits', 'Portraits'],
+    ['Seniors', 'Seniors'],
   ] as const
 ).map(([categoryName, label]) => ({
   label,

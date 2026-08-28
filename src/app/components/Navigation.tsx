@@ -279,7 +279,7 @@ export default function Navigation() {
                 <div
                   role="menu"
                   aria-label="Photography services"
-                  className="absolute left-1/2 top-full z-[70] w-52 -translate-x-1/2 pt-3"
+                  className="absolute left-1/2 top-full z-[70] w-60 -translate-x-1/2 pt-3"
                 >
                   <div className="border border-ink/10 bg-fog p-2">
                     {FOOTER_SERVICE_LINKS.map((link) => (

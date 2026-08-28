@@ -23,13 +23,15 @@ export default function ProcessionReviews() {
           {TESTIMONIALS.map((t) => (
             <figure key={t.name} className="text-center md:text-left">
               <div className="relative mx-auto mb-6 h-14 w-14 overflow-hidden bg-paper-deep md:mx-0">
-                <Image
-                  src={t.portrait}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="56px"
-                />
+                {t.portrait ? (
+                  <Image
+                    src={t.portrait}
+                    alt=""
+                    fill
+                    className="object-cover"
+                    sizes="56px"
+                  />
+                ) : null}
               </div>
               <blockquote>
                 <p className="font-display text-xl italic leading-snug text-ink sm:text-[1.35rem]">

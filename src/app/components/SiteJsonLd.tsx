@@ -1,4 +1,4 @@
-import { getSocialLinks } from '@/lib/siteSocial';
+import { getSameAsLinks, GOOGLE_BUSINESS_PROFILE_URL } from '@/lib/siteSocial';
 import {
   DEFAULT_OG_IMAGE_PATH,
   GEO_COORDINATES,
@@ -6,10 +6,8 @@ import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   PRIMARY_CITY,
-  PRIMARY_REGION,
-  PRIMARY_STATE,
   PRIMARY_STATE_ABBR,
-  SERVICE_AREAS,
+  schemaAreaServed,
   SITE_DESCRIPTION,
   SITE_NAME,
 } from '@/lib/siteConfig';
@@ -17,7 +15,7 @@ import {
 /** Local business + website schema for rich results */
 export default function SiteJsonLd() {
   const url = getSiteUrl();
-  const sameAs = getSocialLinks().map((link) => link.href);
+  const sameAs = getSameAsLinks();
 
   const business: Record<string, unknown> = {
     '@type': ['LocalBusiness', 'ProfessionalService', 'Photographer'],
@@ -40,24 +38,16 @@ export default function SiteJsonLd() {
       latitude: GEO_COORDINATES.latitude,
       longitude: GEO_COORDINATES.longitude,
     },
-    areaServed: [
-      {
-        '@type': 'AdministrativeArea',
-        name: `${PRIMARY_REGION} region, ${PRIMARY_STATE}`,
-      },
-      ...SERVICE_AREAS.map((city) => ({
-        '@type': 'City',
-        name: `${city}, ${PRIMARY_STATE_ABBR}`,
-      })),
-    ],
+    areaServed: schemaAreaServed(),
+    hasMap: GOOGLE_BUSINESS_PROFILE_URL,
     serviceType: [
       'Wedding photography',
+      'Engagement photography',
       'Family photography',
+      'Maternity photography',
       'Portrait photography',
+      'Senior and graduation photography',
       'Elopement photography',
-      'Couples & engagement photography',
-      'Motherhood photography',
-      'Event photography',
     ],
     ...(sameAs.length > 0 ? { sameAs } : {}),
   };

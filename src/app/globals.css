@@ -694,6 +694,18 @@ body {
   transform: rotate(40deg);
 }
 
+.fl-note-6 .fl-note-stamp::after {
+  top: -0.1rem;
+  left: -0.28rem;
+  transform: rotate(-36deg);
+}
+
+.fl-note-7 .fl-note-stamp::after {
+  top: -0.08rem;
+  right: -0.3rem;
+  transform: rotate(34deg);
+}
+
 .fl-note-quote {
   margin: 0;
   font-family: var(--font-typewriter), "Courier New", Courier, monospace;
@@ -723,10 +735,12 @@ body {
 .fl-note-3 { z-index: 2; }
 .fl-note-4 { z-index: 5; }
 .fl-note-5 { z-index: 3; }
+.fl-note-6 { z-index: 4; }
+.fl-note-7 { z-index: 3; }
 
 @media (min-width: 768px) {
   .fl-scatter {
-  min-height: 46rem;
+  min-height: 66rem;
   }
 
   .fl-note {
@@ -767,6 +781,20 @@ body {
     width: 19.5rem;
     transform: rotate(-2.2deg);
   }
+
+  .fl-note-6 {
+    top: 31rem;
+    right: 8%;
+    width: 18.5rem;
+    transform: rotate(1.5deg);
+  }
+
+  .fl-note-7 {
+    top: 46rem;
+    left: 28%;
+    width: 19rem;
+    transform: rotate(-1.1deg);
+  }
 }
 
 @media (max-width: 767px) {
@@ -783,6 +811,8 @@ body {
   .fl-note-3 { transform: rotate(-0.7deg); align-self: center; }
   .fl-note-4 { transform: rotate(2.4deg); align-self: flex-start; }
   .fl-note-5 { transform: rotate(-1.4deg); align-self: flex-end; }
+  .fl-note-6 { transform: rotate(1.2deg); align-self: center; }
+  .fl-note-7 { transform: rotate(-1.1deg); align-self: flex-end; }
 }
 
 /* Link underline draw */

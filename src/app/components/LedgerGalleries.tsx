@@ -8,28 +8,28 @@ import { serviceHref } from '@/lib/servicesData';
 
 const SESSION_LINKS = [
   {
-    name: 'Couples',
+    name: 'Engagement',
     tagline: 'Easy love, soft light',
     image: '/images/engagement_1.jpg',
-    href: serviceHref('sessions'),
+    href: serviceHref('engagement'),
   },
   {
     name: 'Family',
     tagline: 'The everyday forever moments',
     image: '/images/inspiration_3.jpg',
-    href: serviceHref('sessions'),
+    href: serviceHref('family'),
   },
   {
     name: 'Maternity',
     tagline: 'Quiet anticipation',
     image: '/images/inspiration_1.jpg',
-    href: serviceHref('sessions'),
+    href: serviceHref('maternity'),
   },
   {
     name: 'Seniors / Graduation',
     tagline: 'This chapter, documented',
     image: '/images/hero_5.jpg',
-    href: serviceHref('sessions'),
+    href: serviceHref('seniors'),
   },
 ] as const;
 

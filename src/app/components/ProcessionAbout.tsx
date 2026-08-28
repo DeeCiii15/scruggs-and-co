@@ -7,13 +7,14 @@ import { SITE_IMAGES } from '@/lib/siteImages';
 import { BRAND_IMAGE_ALT } from '@/lib/siteConfig';
 import { smoothstep, useScrollOpen } from '../hooks/useScrollOpen';
 
-function AboutCopy() {
+function AboutCopy({ headingAs = 'h2' }: { headingAs?: 'h2' | 'p' }) {
+  const Heading = headingAs;
   return (
     <>
       <p className="font-script text-4xl text-moss md:text-5xl">hello,</p>
-      <h2 className="mt-2 font-display text-4xl leading-none tracking-[0.08em] text-ink sm:text-5xl md:text-6xl">
+      <Heading className="mt-2 font-display text-4xl leading-none tracking-[0.08em] text-ink sm:text-5xl md:text-6xl">
         I&apos;m Liv
-      </h2>
+      </Heading>
       <p className="mt-3 font-sans text-[0.65rem] font-medium uppercase tracking-[0.2em] text-ink-soft">
         Wedding & lifestyle photographer
       </p>
@@ -31,10 +32,11 @@ function AboutCopy() {
           things that make my heart gushy.
         </p>
         <p>
-          I am currently based in the gorgeous state of South Carolina, but
-          I&apos;m so down to travel anywhere! What I love most about photography
-          is the fact that I am the one who can capture those ultra-real moments
-          that we get to experience with this amazing life we live!
+          I am currently based in Chesnee, a small Upstate town just north of
+          Spartanburg, but I&apos;m so down to travel anywhere! What I love most
+          about photography is the fact that I am the one who can capture those
+          ultra-real moments that we get to experience with this amazing life we
+          live!
         </p>
         <p>
           Whatever your heart desires, I am here for it! I want to bring out the
@@ -148,7 +150,7 @@ export default function ProcessionAbout() {
           ref={copyRef}
           className="fl-letters flex flex-col justify-center bg-paper px-14 py-16 opacity-35 xl:px-16 xl:py-20"
         >
-          <AboutCopy />
+          <AboutCopy headingAs="p" />
         </div>
       </div>
     </section>

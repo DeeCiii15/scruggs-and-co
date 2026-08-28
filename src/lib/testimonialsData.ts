@@ -1,10 +1,17 @@
-export type ServiceSlug = 'weddings' | 'sessions';
+export type ServiceSlug =
+  | 'engagement'
+  | 'family'
+  | 'maternity'
+  | 'portraits'
+  | 'seniors'
+  | 'weddings';
 
 export type Testimonial = {
   quote: string;
   name: string;
   detail: string;
-  portrait: string;
+  /** Omit for a text-only note (no stamp photo). */
+  portrait?: string;
   /** Which service pages should show this review */
   services: ServiceSlug[];
 };
@@ -24,7 +31,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     name: 'Paige & Kyle',
     detail: 'Lifestyle session',
     portrait: '/images/portrait_1.jpg',
-    services: ['sessions'],
+    services: ['engagement', 'portraits'],
   },
   {
     quote:
@@ -32,23 +39,38 @@ export const TESTIMONIALS: readonly Testimonial[] = [
     name: 'Kate & Davis',
     detail: 'Wedding · Half-day coverage',
     portrait: '/images/engagement_1.jpg',
-    services: ['weddings', 'sessions'],
+    services: ['weddings', 'engagement'],
   },
   {
     quote:
-      'She has a way of making the in-between feel important. Our family gallery is the one we actually print.',
-    name: 'The Harpers',
-    detail: 'Family session',
-    portrait: '/images/inspiration_3.jpg',
-    services: ['sessions'],
+      "Olivia was so nice and personable! She knew what she was doing and made sure our pictures turned out great! We will be using her again!",
+    name: 'Kinley Blackwell',
+    detail: 'Facebook',
+    portrait: '/images/reviews/kinley-blackwell.png',
+    services: ['engagement'],
   },
   {
     quote:
-      'Quiet, unhurried, and so us. We still talk about how easy the whole evening felt.',
-    name: 'Jordan & Elise',
-    detail: 'Couples session',
-    portrait: '/images/inspiration_2.jpg',
-    services: ['sessions'],
+      'Olivia was absolutely fabulous! She made us feel completely comfortable, which made the shot so much more natural and fun. She was amazing at staging poses and capturing the sweet moments in between. Definitely an amazing photographer to work with.',
+    name: 'Nikki & Roy Hunsberger',
+    detail: 'Facebook',
+    portrait: '/images/reviews/nikki-roy-hunsberger.png',
+    services: ['engagement'],
+  },
+  {
+    quote:
+      "I've had three shoots with Olivia and all of them have come out amazing! She is really talented and outgoing. There is never an awkward moment with her. When she is taking photos, she poses me, makes me laugh, and makes the whole shoot a good time. I would recommend Olivia to anyone!",
+    name: 'Ashley LeBrun',
+    detail: 'Facebook',
+    portrait: '/images/reviews/ashley-lebrun.png',
+    services: ['portraits'],
+  },
+  {
+    quote:
+      "Olivia is a beautiful soul! She's professional and loves what she does! We loved our pictures and she's reasonably priced! Ten out of ten.",
+    name: 'Taylor Williams',
+    detail: 'Facebook',
+    services: [],
   },
 ];
 

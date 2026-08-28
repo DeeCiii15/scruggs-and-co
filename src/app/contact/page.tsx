@@ -4,29 +4,35 @@ import Navigation from '../components/Navigation';
 import SiteFooter from '../components/SiteFooter';
 import HomeStylePageIntro from '../components/HomeStylePageIntro';
 import BookingForm from '../components/BookingForm';
+import { pageShareMeta } from '@/lib/shareMeta';
 import {
   BRAND_IMAGE_ALT,
   CONTACT_EMAIL,
+  CONTACT_PHONE,
+  CONTACT_PHONE_TEL,
   PRIMARY_CITY,
-  PRIMARY_REGION,
   PRIMARY_STATE_ABBR,
   SITE_NAME,
 } from '@/lib/siteConfig';
 import { SITE_IMAGES } from '@/lib/siteImages';
 
-const CONTACT_TITLE = `Contact | ${SITE_NAME}`;
+const CONTACT_TITLE = `Contact a ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Photographer | ${SITE_NAME}`;
+const CONTACT_DESCRIPTION = `Book wedding, portrait, engagement, family, maternity & senior photography in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} & the Upstate. Share your date or vision—Liv reads every message.`;
+const contactShare = pageShareMeta({
+  title: CONTACT_TITLE,
+  description: CONTACT_DESCRIPTION,
+  url: '/contact',
+  image: SITE_IMAGES.photographer,
+  imageAlt: BRAND_IMAGE_ALT,
+});
 
 export const metadata: Metadata = {
   title: {
     absolute: CONTACT_TITLE,
   },
-  description: `Contact ${SITE_NAME} for wedding and lifestyle photography in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} & ${PRIMARY_REGION}. Share your date, location, or vision—Liv reads every message.`,
+  description: CONTACT_DESCRIPTION,
   alternates: { canonical: '/contact' },
-  openGraph: {
-    title: CONTACT_TITLE,
-    description: `Get in touch with ${SITE_NAME} in ${PRIMARY_CITY} & the ${PRIMARY_REGION}.`,
-    url: '/contact',
-  },
+  ...contactShare,
 };
 
 /**
@@ -51,24 +57,40 @@ export default function ContactPage() {
                 </h1>
                 <p className="mt-5 font-sans text-sm font-light leading-[1.8] text-ink-soft md:text-base">
                   Share your date, location, and the kind of day you are
-                  dreaming up—wedding, elopement, or lifestyle session. Liv
-                  reads every message.
+                  dreaming up—wedding, engagement, family, maternity, portraits,
+                  or seniors. Liv reads every message.
                 </p>
 
-                <div className="mt-10">
+                <h2 className="mt-10 font-display text-2xl text-ink">
+                  Send a message
+                </h2>
+                <div className="mt-6">
                   <BookingForm className="mx-0 max-w-lg" />
                 </div>
 
                 <div className="mt-12 border-t border-ink/10 pt-8">
                   <p className="font-sans text-[0.6rem] font-medium uppercase tracking-[0.2em] text-ink-soft">
-                    Or write directly
+                    Write directly
                   </p>
                   <a
                     href={`mailto:${CONTACT_EMAIL}?subject=Inquiry%20from%20${encodeURIComponent(SITE_NAME)}`}
-                    className="fl-link mt-3 text-moss"
+                    className="fl-link mt-3 block text-moss"
                   >
                     {CONTACT_EMAIL}
                   </a>
+                  {CONTACT_PHONE_TEL ? (
+                    <>
+                      <p className="mt-6 font-sans text-[0.6rem] font-medium uppercase tracking-[0.2em] text-ink-soft">
+                        Call
+                      </p>
+                      <a
+                        href={`tel:${CONTACT_PHONE_TEL}`}
+                        className="fl-link mt-3 block text-moss"
+                      >
+                        {CONTACT_PHONE}
+                      </a>
+                    </>
+                  ) : null}
                 </div>
               </div>
             </div>

@@ -2,10 +2,13 @@ import {
   getCategoryByName,
   getShootInCategory,
   PORTFOLIO_CATEGORY_DEFS,
+  shootCoverSrc,
   type PortfolioCategoryDef,
 } from './portfolioData';
 import type { PortfolioShootDef } from './portfolioShoots';
+import { pageShareMeta } from './shareMeta';
 import {
+  DEFAULT_OG_IMAGE_PATH,
   PRIMARY_CITY,
   PRIMARY_REGION,
   PRIMARY_STATE_ABBR,
@@ -25,31 +28,38 @@ export function portfolioShootPath(
 
 export function categoryMetadata(category: PortfolioCategoryDef) {
   const path = portfolioCategoryPath(category.folder);
-  const description = `${category.description} ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} & ${PRIMARY_REGION} photography by ${SITE_NAME}.`;
+  const description = category.metaDescription;
+  const ogTitle =
+    category.documentTitle ??
+    `${category.metaTitle ?? category.pageHeading ?? `${category.name} Portfolio`} | ${SITE_NAME}`;
+  const share = pageShareMeta({
+    title: ogTitle,
+    description,
+    url: path,
+    image: category.coverSrc || DEFAULT_OG_IMAGE_PATH,
+    imageAlt: `${category.name} photography by ${SITE_NAME}`,
+  });
 
   if (category.documentTitle) {
     return {
       title: { absolute: category.documentTitle },
-      description: description.slice(0, 160),
+      description,
       path,
-      openGraph: {
-        title: category.documentTitle,
-        description: description.slice(0, 200),
-        url: path,
-      },
+      openGraph: share.openGraph,
+      twitter: share.twitter,
     };
   }
 
-  const title = category.metaTitle ?? `${category.name} Gallery`;
+  const title =
+    category.metaTitle ??
+    category.pageHeading ??
+    `${category.name} Portfolio`;
   return {
     title,
-    description: description.slice(0, 160),
+    description,
     path,
-    openGraph: {
-      title: `${title} | ${SITE_NAME}`,
-      description: description.slice(0, 200),
-      url: path,
-    },
+    openGraph: share.openGraph,
+    twitter: share.twitter,
   };
 }
 
@@ -62,16 +72,21 @@ export function shootMetadata(
     shoot.description?.trim() ||
     `${shoot.title} — ${category.name.toLowerCase()} photography in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} & the ${PRIMARY_REGION} by ${SITE_NAME}.`;
   const path = portfolioShootPath(category.folder, shoot.slug);
+  const cover = shootCoverSrc(category.folder, shoot);
+  const share = pageShareMeta({
+    title: `${title} | ${category.name} | ${SITE_NAME}`,
+    description: description.slice(0, 200),
+    url: path,
+    image: cover || DEFAULT_OG_IMAGE_PATH,
+    imageAlt: `${shoot.title} — ${category.name} by ${SITE_NAME}`,
+  });
 
   return {
     title,
     description: description.slice(0, 160),
     path,
-    openGraph: {
-      title: `${title} | ${category.name} | ${SITE_NAME}`,
-      description: description.slice(0, 200),
-      url: path,
-    },
+    openGraph: share.openGraph,
+    twitter: share.twitter,
   };
 }
 

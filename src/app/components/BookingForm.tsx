@@ -175,8 +175,12 @@ export default function BookingForm({ className }: BookingFormProps) {
           <option value="" disabled>
             Choose one&hellip;
           </option>
+          <option value="Engagement">Engagement</option>
+          <option value="Family">Family</option>
+          <option value="Maternity">Maternity</option>
+          <option value="Portraits">Portraits</option>
+          <option value="Seniors / Graduation">Seniors / Graduation</option>
           <option value="Wedding">Wedding</option>
-          <option value="Lifestyle session">Lifestyle session / portraits</option>
           <option value="Elopement">Elopement</option>
           <option value="Something else">Something else</option>
         </select>

@@ -6,6 +6,8 @@
     "dev": "next dev",
     "dev:unlock": "powershell -NoProfile -ExecutionPolicy Bypass -File ./scripts/dev-unlock.ps1",
     "galleries:sync": "node scripts/sync-galleries.mjs",
+    "predev": "npm run galleries:sync",
+    "prebuild": "npm run galleries:sync",
     "images:download": "node scripts/download-client-images.mjs",
     "assets:demo": "node scripts/generate-demo-assets.mjs",
     "favicons": "node scripts/generate-favicons.mjs",

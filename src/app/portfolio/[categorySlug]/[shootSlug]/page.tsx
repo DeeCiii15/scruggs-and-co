@@ -43,6 +43,7 @@ export async function generateMetadata({
     description: meta.description,
     alternates: { canonical: meta.path },
     openGraph: meta.openGraph,
+    ...(meta.twitter ? { twitter: meta.twitter } : {}),
   };
 }
 

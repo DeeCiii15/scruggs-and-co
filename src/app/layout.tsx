@@ -4,10 +4,9 @@ import { Cabin, IBM_Plex_Mono, Mrs_Saint_Delafield } from "next/font/google";
 import "./globals.css";
 import ContactRibbon from "./components/ContactRibbon";
 import SiteJsonLd from "./components/SiteJsonLd";
+import { pageShareMeta } from "@/lib/shareMeta";
 import {
-  BRAND_IMAGE_ALT,
   CANONICAL_SITE_URL,
-  DEFAULT_OG_IMAGE_PATH,
   getSiteUrl,
   LOCAL_KEYWORDS,
   PRIMARY_CITY,
@@ -39,7 +38,12 @@ const cabin = Cabin({
 const siteUrl = getSiteUrl();
 const favicon = (path: string) => `${CANONICAL_SITE_URL}${path}`;
 
-const HOME_PAGE_TITLE = `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Photographer | Wedding & Portrait | ${SITE_NAME}`;
+const HOME_PAGE_TITLE = `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Photographer | Weddings & Portraits | ${SITE_NAME}`;
+const homeShare = pageShareMeta({
+  title: HOME_PAGE_TITLE,
+  description: SITE_DESCRIPTION,
+  url: "/",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -51,26 +55,8 @@ export const metadata: Metadata = {
   keywords: [...LOCAL_KEYWORDS],
   authors: [{ name: SITE_NAME, url: siteUrl }],
   creator: SITE_NAME,
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: siteUrl,
-    siteName: SITE_NAME,
-    title: HOME_PAGE_TITLE,
-    description: SITE_DESCRIPTION,
-    images: [
-      {
-        url: DEFAULT_OG_IMAGE_PATH,
-        alt: BRAND_IMAGE_ALT,
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: HOME_PAGE_TITLE,
-    description: SITE_DESCRIPTION,
-    images: [DEFAULT_OG_IMAGE_PATH],
-  },
+  openGraph: homeShare.openGraph,
+  twitter: homeShare.twitter,
   robots: {
     index: true,
     follow: true,

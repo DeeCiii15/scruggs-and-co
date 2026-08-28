@@ -44,9 +44,9 @@ export const CONTACT_EMAIL =
   process.env.NEXT_PUBLIC_CONTACT_EMAIL?.trim() ||
   'scruggsandcophoto@gmail.com';
 
-/** Public booking line — set NEXT_PUBLIC_CONTACT_PHONE (e.g. 864-555-0100). */
+/** Public booking line — override with NEXT_PUBLIC_CONTACT_PHONE if needed. */
 export const CONTACT_PHONE =
-  process.env.NEXT_PUBLIC_CONTACT_PHONE?.trim() || '';
+  process.env.NEXT_PUBLIC_CONTACT_PHONE?.trim() || '(864) 365-8044';
 
 function toTelNumber(phone: string): string {
   const digits = phone.replace(/[^\d+]/g, '');
@@ -74,10 +74,21 @@ export const SITE_TAGLINE =
   'Authentic, heartfelt documentary wedding & lifestyle photography';
 
 /** Default meta description (home + fallback) */
-export const SITE_DESCRIPTION = `${SITE_NAME} is a ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} wedding and portrait photographer. Wedding and portrait photographer serving ${PRIMARY_CITY}, Spartanburg, and the Upstate of South Carolina.`;
+export const SITE_DESCRIPTION = `${SITE_NAME} is a ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} wedding & portrait photographer serving the Upstate—${SERVICE_AREAS.slice(1, 5).join(', ')}, & beyond.`;
 
-/** Generic label for service-area landing pages (map pins, location titles) */
-export const SERVICE_AREA_PAGE_LABEL = 'Wedding Photography';
+/** schema.org areaServed list reused by LocalBusiness / Service JSON-LD */
+export function schemaAreaServed() {
+  return [
+    {
+      '@type': 'AdministrativeArea' as const,
+      name: `${PRIMARY_REGION} region, ${PRIMARY_STATE}`,
+    },
+    ...SERVICE_AREAS.map((city) => ({
+      '@type': 'City' as const,
+      name: `${city}, ${PRIMARY_STATE_ABBR}`,
+    })),
+  ];
+}
 
 export const LOCAL_KEYWORDS = [
   `${PRIMARY_CITY} wedding photographer`,

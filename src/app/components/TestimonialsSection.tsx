@@ -123,13 +123,15 @@ export default function TestimonialsSection({
                 aria-label={`Read full review from ${t.name}`}
               >
                 <div className="relative mb-5 h-14 w-14 overflow-hidden">
-                  <Image
-                    src={t.portrait}
-                    alt=""
-                    fill
-                    className="object-cover opacity-90 transition group-hover:opacity-100"
-                    sizes="56px"
-                  />
+                  {t.portrait ? (
+                    <Image
+                      src={t.portrait}
+                      alt=""
+                      fill
+                      className="object-cover opacity-90 transition group-hover:opacity-100"
+                      sizes="56px"
+                    />
+                  ) : null}
                 </div>
                 <p className="font-display text-xl italic leading-snug text-fog/90 sm:text-[1.35rem]">
                   &ldquo;{t.quote}&rdquo;
