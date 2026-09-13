@@ -99,4 +99,5 @@ export const LOCAL_KEYWORDS = [
 ] as const;
 
 /** Used for Open Graph / Twitter when a page does not set its own image */
-export const DEFAULT_OG_IMAGE_PATH = '/images/hero_1.jpg';
+export const DEFAULT_OG_IMAGE_PATH =
+  '/images/miscellaneous-site-photos/hero_1.jpg';

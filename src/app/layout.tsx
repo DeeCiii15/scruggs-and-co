@@ -17,7 +17,7 @@ import {
 
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["100", "200"],
+  weight: ["100", "200", "400"],
   variable: "--font-typewriter",
   display: "swap",
 });
@@ -115,7 +115,7 @@ export default function RootLayout({
     >
       <body className="antialiased font-sans text-ink bg-paper">
         <SiteJsonLd />
-        <div className="relative z-10 min-h-dvh overflow-x-hidden max-sm:pb-[calc(4.75rem+env(safe-area-inset-bottom,0px))]">
+        <div className="relative z-10 min-h-dvh overflow-x-clip max-sm:pb-[calc(4.75rem+env(safe-area-inset-bottom,0px))]">
           {children}
         </div>
         <ContactRibbon />

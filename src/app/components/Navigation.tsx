@@ -183,10 +183,10 @@ export default function Navigation() {
   const showMenuTrigger = mounted && isHome && !showNav;
 
   const linkClass =
-    'relative px-2.5 py-2 font-display text-[0.75rem] text-sage transition hover:text-moss';
+    'relative px-2.5 py-2 font-display fl-nav-tab text-[0.75rem] text-sage transition hover:text-moss';
 
   const mobileLinkClass =
-    'touch-manipulation border-b border-ink/10 px-1 py-4 font-display text-[0.82rem] text-sage transition hover:text-moss';
+    'touch-manipulation border-b border-ink/10 px-1 py-4 font-display fl-nav-tab text-[0.82rem] text-sage transition hover:text-moss';
 
   useEffect(() => {
     const onOpen = () => openHeroMenu();
@@ -287,7 +287,7 @@ export default function Navigation() {
                         key={link.label}
                         href={link.href}
                         role="menuitem"
-                        className="block px-3 py-2.5 font-display text-[0.72rem] text-sage transition hover:bg-paper-deep hover:text-moss"
+                        className="block px-3 py-2.5 font-display fl-nav-tab text-[0.72rem] text-sage transition hover:bg-paper-deep hover:text-moss"
                         onClick={() => {
                           clearServicesCloseTimer();
                           setServicesOpen(false);
@@ -378,7 +378,7 @@ export default function Navigation() {
                       key={link.label}
                       href={link.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className="py-3 font-display text-[0.72rem] text-sage transition hover:text-moss"
+                      className="py-3 font-display fl-nav-tab text-[0.72rem] text-sage transition hover:text-moss"
                     >
                       {link.label}
                     </Link>

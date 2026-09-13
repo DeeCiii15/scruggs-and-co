@@ -12,6 +12,7 @@
 
 import { SHOOTS_BY_CATEGORY, type PortfolioShootDef, shootGalleryLabel } from './portfolioShoots';
 import galleryManifest from './galleryManifest.json';
+import { shootHeadline, shootPlace, shootWho } from './shootCopy';
 
 type ShootManifestEntry = { cover: string | null; photos: string[] };
 type GalleryManifest = Record<string, Record<string, ShootManifestEntry>>;
@@ -74,12 +75,12 @@ export const GALLERY_UPLOAD_FOLDERS: Record<string, string> = {
 
 /** Fallback polaroid covers when a category has no shoots yet */
 const LEGACY_CATEGORY_COVERS: Record<string, string> = {
-  Weddings: '/images/wedding_1.jpg',
-  Engagement: '/images/engagement_1.jpg',
-  Family: '/images/inspiration_3.jpg',
-  Maternity: '/images/inspiration_1.jpg',
-  Portraits: '/images/portrait_1.jpg',
-  Seniors: '/images/hero_5.jpg',
+  Weddings: '/images/miscellaneous-site-photos/wedding_1.jpg',
+  Engagement: '/images/miscellaneous-site-photos/engagement_1.jpg',
+  Family: '/images/miscellaneous-site-photos/inspiration_3.jpg',
+  Maternity: '/images/miscellaneous-site-photos/inspiration_1.jpg',
+  Portraits: '/images/miscellaneous-site-photos/portrait_1.jpg',
+  Seniors: '/images/miscellaneous-site-photos/hero_5.jpg',
 };
 
 export function shootImageSrc(
@@ -139,9 +140,9 @@ function buildShootPhotos(
   return filenames.map((filename, i) => ({
     id: `${shoot.slug}-${i + 1}`,
     src: shootGallerySrc(categoryFolder, shoot.slug, filename),
-    alt: `${shoot.title}, ${categoryName} photography — image ${i + 1}`,
+    alt: `${shootWho(shoot)}, ${categoryName} photography in ${shootPlace(shoot)} — image ${i + 1}`,
     category: categoryName,
-    shoot: shoot.title,
+    shoot: shootWho(shoot),
   }));
 }
 
@@ -258,7 +259,7 @@ export function getShootCards(categoryName: string): PortfolioShootCard[] {
     category: category.name,
     categoryFolder: category.folder,
     slug: shoot.slug,
-    title: shoot.title,
+    title: shootHeadline(shoot),
     label: shootGalleryLabel(shoot),
     image: shootCoverSrc(category.folder, shoot),
     href: portfolioShootHref(category.folder, shoot.slug),

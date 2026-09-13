@@ -75,8 +75,8 @@ export default function ProcessionAbout() {
     const desktop =
       typeof window !== 'undefined' &&
       window.matchMedia('(min-width: 1024px)').matches;
-    const t = smoothstep(Math.min(open / (desktop ? 0.55 : 0.28), 1));
-    const fromRight = (1 - t) * 100;
+    const t = smoothstep(Math.min(open / (desktop ? 0.18 : 0.14), 1));
+    const fromRight = (1 - t) * 8;
     const copyOpacity = Math.min(Math.max((t - 0.15) / 0.45, 0), 1);
 
     if (!desktop) {
@@ -100,13 +100,13 @@ export default function ProcessionAbout() {
     <section
       id="about"
       ref={sectionRef}
-      className="fl-letters relative w-full scroll-mt-24 overflow-x-clip bg-paper lg:min-h-[calc(100svh+28vh)]"
+      className="fl-letters relative w-full scroll-mt-24 overflow-x-clip bg-paper"
     >
       {/* Mobile / tablet — photo + copy slide in from the left */}
       <div
         ref={mobileRef}
         className="fl-letters bg-paper will-change-transform lg:hidden"
-        style={{ transform: 'translate3d(-100%, 0, 0)' }}
+        style={{ transform: 'translate3d(-8%, 0, 0)' }}
       >
         <div className="fl-print fl-print-tilt-right mx-5 mt-5">
           <Image
@@ -114,7 +114,7 @@ export default function ProcessionAbout() {
             alt={BRAND_IMAGE_ALT}
             width={1600}
             height={2000}
-            className="h-[62svh] w-full object-cover object-[center_38%] fl-photo-earth"
+            className="h-[62svh] w-full object-cover object-[center_58%] fl-photo-earth"
             sizes="100vw"
             quality={95}
             priority
@@ -125,30 +125,29 @@ export default function ProcessionAbout() {
         </div>
       </div>
 
-      {/* Desktop — sticky split, portrait slides in from the right */}
-      <div className="fl-letters sticky top-0 hidden min-h-svh w-full bg-paper lg:grid lg:grid-cols-2">
+      {/* Desktop — split, portrait stretches to the copy */}
+      <div className="fl-letters hidden w-full bg-paper lg:grid lg:grid-cols-2 lg:items-stretch">
         <div
           ref={photoRef}
-          className="relative flex min-h-full will-change-transform p-10 pr-8"
-          style={{ transform: 'translate3d(100%, 0, 0)' }}
+          className="relative flex h-full min-h-[36rem] will-change-transform p-10 pr-8 pb-8"
+          style={{ transform: 'translate3d(8%, 0, 0)' }}
         >
-          <div className="fl-print relative min-h-0 w-full">
-            <div className="relative h-full min-h-0 overflow-hidden">
-              <Image
-                src={SITE_IMAGES.photographer}
-                alt={BRAND_IMAGE_ALT}
-                fill
-                className="object-cover object-[center_28%] fl-photo-earth"
-                sizes="50vw"
-                quality={95}
-              />
-            </div>
+          <div className="fl-print relative min-h-0 w-full flex-1">
+            <Image
+              src={SITE_IMAGES.photographer}
+              alt={BRAND_IMAGE_ALT}
+              fill
+              className="object-cover object-[center_58%] fl-photo-earth"
+              sizes="50vw"
+              quality={95}
+              priority
+            />
           </div>
         </div>
 
         <div
           ref={copyRef}
-          className="fl-letters flex flex-col justify-center bg-paper px-14 py-16 opacity-35 xl:px-16 xl:py-20"
+          className="fl-letters flex flex-col justify-start bg-paper px-14 py-10 opacity-35 xl:px-16 xl:py-10"
         >
           <AboutCopy headingAs="p" />
         </div>

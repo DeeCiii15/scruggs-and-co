@@ -6,23 +6,23 @@
 /** Legacy hero rotation slides */
 export const HERO_SLIDES = [
   {
-    src: '/images/hero_1.jpg',
+    src: '/images/miscellaneous-site-photos/hero_1.jpg',
     objectPosition: 'center 30%',
   },
   {
-    src: '/images/hero_2.jpg',
+    src: '/images/miscellaneous-site-photos/hero_2.jpg',
     objectPosition: 'center center',
   },
   {
-    src: '/images/hero_3.jpg',
+    src: '/images/miscellaneous-site-photos/hero_3.jpg',
     objectPosition: 'center 40%',
   },
   {
-    src: '/images/hero_4.jpg',
+    src: '/images/miscellaneous-site-photos/hero_4.jpg',
     objectPosition: 'center center',
   },
   {
-    src: '/images/hero_5.jpg',
+    src: '/images/miscellaneous-site-photos/hero_5.jpg',
     objectPosition: 'center 25%',
   },
 ] as const;
@@ -33,56 +33,56 @@ export const HERO_SLIDES = [
  */
 export const MOSAIC_FRAMES = [
   {
-    src: '/images/hero_1.jpg',
+    src: '/images/miscellaneous-site-photos/hero_1.jpg',
     objectPosition: 'center 30%',
     area: 'a',
     href: '/portfolio',
   },
   {
-    src: '/images/hero_2.jpg',
+    src: '/images/miscellaneous-site-photos/hero_2.jpg',
     objectPosition: 'center center',
     area: 'b',
   },
   {
-    src: '/images/hero_3.jpg',
+    src: '/images/miscellaneous-site-photos/hero_3.jpg',
     objectPosition: 'center 40%',
     area: 'c',
     href: '/portfolio/weddings',
   },
   {
-    src: '/images/inspiration_1.jpg',
+    src: '/images/miscellaneous-site-photos/inspiration_1.jpg',
     objectPosition: 'center center',
     area: 'd',
   },
   {
-    src: '/images/hero_4.jpg',
+    src: '/images/miscellaneous-site-photos/hero_4.jpg',
     objectPosition: 'center center',
     area: 'e',
   },
   {
-    src: '/images/inspiration_2.jpg',
+    src: '/images/miscellaneous-site-photos/inspiration_2.jpg',
     objectPosition: 'center 35%',
     area: 'f',
     href: '/portfolio',
   },
   {
-    src: '/images/hero_5.jpg',
+    src: '/images/miscellaneous-site-photos/hero_5.jpg',
     objectPosition: 'center 25%',
     area: 'g',
   },
   {
-    src: '/images/inspiration_3.jpg',
+    src: '/images/miscellaneous-site-photos/inspiration_3.jpg',
     objectPosition: 'center center',
     area: 'h',
   },
   {
-    src: '/images/contact.jpg',
-    objectPosition: 'center 20%',
+    src: '/images/miscellaneous-site-photos/contact.jpg',
+    objectPosition: 'center 75%',
     area: 'i',
   },
   {
-    src: '/images/about.jpg',
-    objectPosition: 'center top',
+    src: '/images/miscellaneous-site-photos/liv-about.jpg',
+    objectPosition: 'center 62%',
     area: 'j',
   },
 ] as const;
@@ -90,7 +90,7 @@ export const MOSAIC_FRAMES = [
 /** Homepage curtain reveal — front parts, back shows through */
 export const CURTAIN_IMAGES = {
   front: {
-    src: '/images/hero_1.jpg',
+    src: '/images/miscellaneous-site-photos/hero_1.jpg',
     /**
      * Seam stays at screen center (with the monogram).
      * Shift/crop the photo so the gap between their arms lands on that center.
@@ -103,7 +103,7 @@ export const CURTAIN_IMAGES = {
   },
   back: {
     // Same couple — kiss under floral ceremony wreath/arch
-    src: '/images/hero_4.jpg',
+    src: '/images/miscellaneous-site-photos/hero_4.jpg',
     objectPosition: 'center 40%',
     scale: 1,
   },
@@ -112,47 +112,47 @@ export const CURTAIN_IMAGES = {
 /** Homepage scroll-scrub filmstrip — horizontal contact sheet */
 export const FILMSTRIP_FRAMES = [
   {
-    src: '/images/hero_1.jpg',
+    src: '/images/miscellaneous-site-photos/hero_1.jpg',
     objectPosition: 'center 30%',
     href: '/portfolio',
   },
   {
-    src: '/images/hero_2.jpg',
+    src: '/images/miscellaneous-site-photos/hero_2.jpg',
     objectPosition: 'center center',
   },
   {
-    src: '/images/hero_3.jpg',
+    src: '/images/miscellaneous-site-photos/hero_3.jpg',
     objectPosition: 'center 40%',
     href: '/portfolio/weddings',
   },
   {
-    src: '/images/inspiration_1.jpg',
+    src: '/images/miscellaneous-site-photos/inspiration_1.jpg',
     objectPosition: 'center center',
   },
   {
-    src: '/images/hero_4.jpg',
+    src: '/images/miscellaneous-site-photos/hero_4.jpg',
     objectPosition: 'center center',
   },
   {
-    src: '/images/inspiration_2.jpg',
+    src: '/images/miscellaneous-site-photos/inspiration_2.jpg',
     objectPosition: 'center 35%',
     href: '/portfolio',
   },
   {
-    src: '/images/hero_5.jpg',
+    src: '/images/miscellaneous-site-photos/hero_5.jpg',
     objectPosition: 'center 25%',
   },
   {
-    src: '/images/inspiration_3.jpg',
+    src: '/images/miscellaneous-site-photos/inspiration_3.jpg',
     objectPosition: 'center center',
   },
   {
-    src: '/images/contact.jpg',
-    objectPosition: 'center 20%',
+    src: '/images/miscellaneous-site-photos/contact.jpg',
+    objectPosition: 'center 75%',
   },
   {
-    src: '/images/about.jpg',
-    objectPosition: 'center top',
+    src: '/images/miscellaneous-site-photos/liv-about.jpg',
+    objectPosition: 'center 62%',
   },
 ] as const;
 
@@ -172,14 +172,14 @@ export const SITE_IMAGES = {
   logoFooterMark: '/images/brand/scruggs-co-hero-mark-sage.svg',
   /** Footer wordmark only (sage outlined SCRUGGS AND CO. PHOTO; tagline is HTML) */
   logoFooter: '/images/brand/scruggs-co-logo-lockup.svg',
-  heroField: '/images/inspiration_2.jpg',
-  heroArch: '/images/inspiration_1.jpg',
-  moodField: '/images/inspiration_1.jpg',
-  moodArch: '/images/inspiration_2.jpg',
-  moodFilm: '/images/inspiration_3.jpg',
+  heroField: '/images/miscellaneous-site-photos/inspiration_2.jpg',
+  heroArch: '/images/miscellaneous-site-photos/inspiration_1.jpg',
+  moodField: '/images/miscellaneous-site-photos/inspiration_1.jpg',
+  moodArch: '/images/miscellaneous-site-photos/inspiration_2.jpg',
+  moodFilm: '/images/miscellaneous-site-photos/inspiration_3.jpg',
   /** About section — Liv */
-  photographer: '/images/about.jpg',
+  photographer: '/images/miscellaneous-site-photos/liv-about.jpg',
   /** Contact page main photo */
-  contactPhoto: '/images/contact.jpg',
-  contactSidebar: '/images/inspiration_2.jpg',
+  contactPhoto: '/images/miscellaneous-site-photos/contact.jpg',
+  contactSidebar: '/images/miscellaneous-site-photos/inspiration_2.jpg',
 } as const;

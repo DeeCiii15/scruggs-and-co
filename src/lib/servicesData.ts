@@ -84,7 +84,7 @@ export const SERVICE_DEFS: ServiceDef[] = [
     name: 'Engagement Photography',
     navLabel: 'Engagement',
     portfolioCategory: 'Engagement',
-    heroImage: '/images/engagement_1.jpg',
+    heroImage: '/images/miscellaneous-site-photos/engagement_1.jpg',
     eyebrow: 'Engagement photography',
     headline: 'That feels like the two of you,',
     headlineAccent: 'not a pose',
@@ -136,7 +136,7 @@ export const SERVICE_DEFS: ServiceDef[] = [
     name: 'Family Portrait Photography',
     navLabel: 'Family',
     portfolioCategory: 'Family',
-    heroImage: '/images/inspiration_3.jpg',
+    heroImage: '/images/miscellaneous-site-photos/inspiration_3.jpg',
     eyebrow: 'Family portrait photography',
     headline: 'For the everyday,',
     headlineAccent: 'forever moments',
@@ -188,7 +188,7 @@ export const SERVICE_DEFS: ServiceDef[] = [
     name: 'Maternity Photography',
     navLabel: 'Maternity',
     portfolioCategory: 'Maternity',
-    heroImage: '/images/inspiration_1.jpg',
+    heroImage: '/images/miscellaneous-site-photos/inspiration_1.jpg',
     eyebrow: 'Maternity photography',
     headline: 'For this quiet,',
     headlineAccent: 'anticipating season',
@@ -240,7 +240,7 @@ export const SERVICE_DEFS: ServiceDef[] = [
     name: 'Portrait Photography',
     navLabel: 'Portraits',
     portfolioCategory: 'Portraits',
-    heroImage: '/images/portrait_1.jpg',
+    heroImage: '/images/miscellaneous-site-photos/portrait_1.jpg',
     eyebrow: 'Portrait photography',
     headline: 'That still feels like',
     headlineAccent: 'you',
@@ -292,7 +292,7 @@ export const SERVICE_DEFS: ServiceDef[] = [
     name: 'Senior & Graduation Photography',
     navLabel: 'Seniors / Graduation',
     portfolioCategory: 'Seniors',
-    heroImage: '/images/hero_5.jpg',
+    heroImage: '/images/miscellaneous-site-photos/hero_5.jpg',
     eyebrow: 'Senior photography',
     headline: 'For this chapter,',
     headlineAccent: 'documented',
@@ -456,7 +456,7 @@ export function getServiceTestimonials(service: ServiceDef): Testimonial[] {
 export function getServiceHeroImage(service: ServiceDef): string {
   if (service.heroImage) return service.heroImage;
   const category = getCategoryByName(service.portfolioCategory);
-  if (!category) return '/images/wedding_1.jpg';
+  if (!category) return '/images/miscellaneous-site-photos/wedding_1.jpg';
   if (category.shoots.length > 0) {
     return shootCoverSrc(category.folder, category.shoots[0]!);
   }

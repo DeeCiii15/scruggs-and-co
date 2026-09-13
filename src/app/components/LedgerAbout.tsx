@@ -15,7 +15,7 @@ export default function LedgerAbout() {
             src={SITE_IMAGES.photographer}
             alt={BRAND_IMAGE_ALT}
             fill
-            className="object-cover object-[center_18%]"
+            className="object-cover object-[center_58%]"
             sizes="(max-width: 1024px) 100vw, 50vw"
             priority
           />

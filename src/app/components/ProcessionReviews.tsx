@@ -54,7 +54,7 @@ export default function ProcessionReviews() {
       {/* Soft CTA chapter */}
       <section className="relative flex min-h-[70svh] items-end bg-night sm:min-h-[75svh]">
         <Image
-          src="/images/hero_4.jpg"
+          src="/images/miscellaneous-site-photos/hero_4.jpg"
           alt=""
           fill
           className="object-cover object-[center_40%]"

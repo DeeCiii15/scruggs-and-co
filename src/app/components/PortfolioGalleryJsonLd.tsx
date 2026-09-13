@@ -54,7 +54,7 @@ export function PortfolioShootJsonLd({ category, shoot }: ShootJsonLdProps) {
   const data = {
     '@context': 'https://schema.org',
     '@type': 'ImageGallery',
-    name: shoot.title,
+    name: meta.title,
     description: meta.description,
     url,
     author: { '@id': `${base}#business` },

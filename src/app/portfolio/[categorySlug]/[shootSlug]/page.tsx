@@ -13,6 +13,7 @@ import {
   portfolioCategoryHref,
 } from '@/lib/portfolioData';
 import { shootMetadata } from '@/lib/portfolioSeo';
+import { shootHeadline, shootPageDescription } from '@/lib/shootCopy';
 
 type ShootPageProps = {
   params: Promise<{ categorySlug: string; shootSlug: string }>;
@@ -61,8 +62,8 @@ export default async function PortfolioShootPage({ params }: ShootPageProps) {
     <PortfolioPageShell>
       <PortfolioShootJsonLd category={category} shoot={shoot} />
       <section
-        className="border-t border-gray-200 bg-gray-50 px-6 py-16 dark:border-gray-700 dark:bg-gray-900 sm:px-10 lg:px-16 lg:py-20"
-        aria-label={shoot.title}
+        className="scroll-mt-24 border-t border-ink/8 px-5 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
+        aria-label={shootHeadline(shoot)}
       >
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between lg:mb-14">
@@ -77,17 +78,15 @@ export default async function PortfolioShootPage({ params }: ShootPageProps) {
               />
             </div>
             <div className="text-left sm:text-right">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 sm:text-right">
+              <p className="font-script text-3xl text-moss sm:text-right">
                 {category.name}
               </p>
-              <h1 className="mt-2 font-sans text-2xl font-medium text-gray-900 dark:text-gray-100 md:text-3xl lg:text-[2.35rem]">
-                {shoot.title}
+              <h1 className="mt-2 font-display text-4xl text-ink md:text-5xl">
+                {shootHeadline(shoot)}
               </h1>
-              {shoot.description ? (
-                <p className="mt-3 max-w-md font-sans text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400 sm:ml-auto sm:text-right">
-                  {shoot.description}
-                </p>
-              ) : null}
+              <p className="mt-3 max-w-md font-sans text-sm font-light leading-relaxed text-ink-soft sm:ml-auto sm:text-right">
+                {shootPageDescription(category, shoot)}
+              </p>
             </div>
           </div>
           <PortfolioPhotoGrid photos={photos} />

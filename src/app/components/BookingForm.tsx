@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { CONTACT_EMAIL } from '@/lib/siteConfig';
 
@@ -8,6 +9,12 @@ const FORMSPREE_FORM_ID =
 
 type BookingFormProps = {
   className?: string;
+  /** When set, fields / photo / submit become separate grid items (`display: contents`). */
+  photo?: ReactNode;
+  beforeFields?: ReactNode;
+  fieldsClassName?: string;
+  actionsClassName?: string;
+  afterActions?: ReactNode;
 };
 
 const fieldClass =
@@ -23,7 +30,14 @@ const fieldErrorClass = 'mt-2 font-sans text-sm font-light text-ink-soft';
 const errorClass =
   'border border-ink/15 bg-paper-deep p-5 font-sans text-sm font-light leading-relaxed text-ink';
 
-export default function BookingForm({ className }: BookingFormProps) {
+export default function BookingForm({
+  className,
+  photo,
+  beforeFields,
+  fieldsClassName,
+  actionsClassName,
+  afterActions,
+}: BookingFormProps) {
   const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
 
   if (state.succeeded) {
@@ -55,11 +69,8 @@ export default function BookingForm({ className }: BookingFormProps) {
     );
   }
 
-  return (
-    <form
-      onSubmit={handleSubmit}
-      className={`relative mx-auto min-w-0 w-full max-w-xl space-y-7 text-left sm:space-y-8 ${className ?? ''}`}
-    >
+  const fields = (
+    <>
       <input
         type="text"
         name="_gotcha"
@@ -212,17 +223,47 @@ export default function BookingForm({ className }: BookingFormProps) {
           className={fieldErrorClass}
         />
       </div>
+    </>
+  );
 
-      <div className="flex justify-start pt-2">
-        <button
-          type="submit"
-          disabled={state.submitting}
-          className="fl-btn disabled:cursor-not-allowed disabled:opacity-60"
+  const submit = (
+    <div className="flex justify-start pt-2">
+      <button
+        type="submit"
+        disabled={state.submitting}
+        className="fl-btn disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {state.submitting ? 'Sending…' : 'Send message'}
+        {!state.submitting && <span aria-hidden>→</span>}
+      </button>
+    </div>
+  );
+
+  if (photo) {
+    return (
+      <form onSubmit={handleSubmit} className="contents">
+        <div
+          className={`relative min-w-0 space-y-7 text-left sm:space-y-8 ${fieldsClassName ?? ''}`}
         >
-          {state.submitting ? 'Sending…' : 'Send message'}
-          {!state.submitting && <span aria-hidden>→</span>}
-        </button>
-      </div>
+          {beforeFields}
+          {fields}
+        </div>
+        {photo}
+        <div className={actionsClassName}>
+          {submit}
+          {afterActions}
+        </div>
+      </form>
+    );
+  }
+
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className={`relative mx-auto min-w-0 w-full max-w-xl space-y-7 text-left sm:space-y-8 ${className ?? ''}`}
+    >
+      {fields}
+      {submit}
     </form>
   );
 }

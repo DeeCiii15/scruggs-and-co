@@ -7,13 +7,13 @@ import {
 } from './portfolioData';
 import type { PortfolioShootDef } from './portfolioShoots';
 import { pageShareMeta } from './shareMeta';
+import { DEFAULT_OG_IMAGE_PATH, SITE_NAME } from './siteConfig';
 import {
-  DEFAULT_OG_IMAGE_PATH,
-  PRIMARY_CITY,
-  PRIMARY_REGION,
-  PRIMARY_STATE_ABBR,
-  SITE_NAME,
-} from './siteConfig';
+  shootDocumentTitle,
+  shootPageDescription,
+  shootPlace,
+  shootWho,
+} from './shootCopy';
 
 export function portfolioCategoryPath(categoryFolder: string): string {
   return `/portfolio/${categoryFolder}`;
@@ -67,23 +67,23 @@ export function shootMetadata(
   category: PortfolioCategoryDef,
   shoot: PortfolioShootDef,
 ) {
-  const title = shoot.title;
-  const description =
-    shoot.description?.trim() ||
-    `${shoot.title} — ${category.name.toLowerCase()} photography in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} & the ${PRIMARY_REGION} by ${SITE_NAME}.`;
+  const title = shootDocumentTitle(category, shoot);
+  const description = shootPageDescription(category, shoot).slice(0, 160);
   const path = portfolioShootPath(category.folder, shoot.slug);
   const cover = shootCoverSrc(category.folder, shoot);
+  const who = shootWho(shoot);
+  const place = shootPlace(shoot);
   const share = pageShareMeta({
-    title: `${title} | ${category.name} | ${SITE_NAME}`,
-    description: description.slice(0, 200),
+    title: `${title} | ${SITE_NAME}`,
+    description,
     url: path,
     image: cover || DEFAULT_OG_IMAGE_PATH,
-    imageAlt: `${shoot.title} — ${category.name} by ${SITE_NAME}`,
+    imageAlt: `${who} — ${category.name} photography in ${place} by ${SITE_NAME}`,
   });
 
   return {
     title,
-    description: description.slice(0, 160),
+    description,
     path,
     openGraph: share.openGraph,
     twitter: share.twitter,

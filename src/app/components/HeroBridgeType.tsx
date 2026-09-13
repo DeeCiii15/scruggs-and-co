@@ -62,7 +62,7 @@ export default function HeroBridgeType() {
         inView.current = visible;
         if (visible && timeout === 0) step();
       },
-      { threshold: 0.35 },
+      { threshold: 0 },
     );
     observer.observe(node);
 

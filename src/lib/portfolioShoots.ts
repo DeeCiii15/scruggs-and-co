@@ -2,8 +2,9 @@
  * Register each photo shoot here (folder must exist under public/images/galleries/).
  * Then run: npm run galleries:sync
  *
- * title       — shown under the shoot polaroid + used in page title & image alt text
- * description — optional; used for SEO meta description & blurb on the shoot page
+ * title       — fallback heading if `name` is not set; used in some alt text
+ * description — optional override; unique title + blurb are generated from
+ *               name, venue, slug, and category copy in portfolioData.ts
  * name        — optional; couple/client names (e.g. "Maddie & Cole") for
  *               personalized copy on weddings & engagements when known
  * venue       — optional; venue or location name (e.g. "Duncan Estate")
@@ -47,32 +48,79 @@ export function shootGalleryLabel(shoot: PortfolioShootDef): string {
 export const SHOOTS_BY_CATEGORY: Record<string, PortfolioShootDef[]> = {
   Weddings: [
     {
-      slug: 'forever-moments',
-      title: 'Maddie & Cole',
-      name: 'Maddie & Cole',
-      venue: 'South Carolina',
-      description:
-        'Documentary wedding frames—vows, details, and the soft in-between that becomes the story you keep.',
+      slug: 'greenville-sc-wedding-family-farm',
+      title: 'Brook & Ethan | Family Farm Wedding in Greenville, SC',
+      name: 'Brook & Ethan',
+      venue: 'Family Farm',
     },
     {
-      slug: 'golden-hour',
-      title: 'Kate & Davis',
-      name: 'Kate & Davis',
-      venue: 'Upstate SC & beyond',
-      description:
-        'Warm light, quiet closeness, and celebration energy from full wedding days across the Carolinas.',
+      slug: 'raleigh-nc-wedding-backyard',
+      title: 'Autumn & Robby | Backyard Wedding in Raleigh, NC',
+      name: 'Autumn & Robby',
+      venue: 'Backyard',
+    },
+    {
+      slug: 'spartanburg-sc-wedding-adelaide-venue',
+      title: 'Abby & Dawson | Wedding at Adelaide Venue in Spartanburg, SC',
+      name: 'Abby & Dawson Bishop',
+      venue: 'Adelaide Venue',
+    },
+    {
+      slug: 'townville-sc-wedding-the-venue-at-edgewood',
+      title: 'Lillie & Jake | Wedding at The Venue at Edgewood in Townville, SC',
+      name: 'Lillie & Jake',
+      venue: 'The Venue at Edgewood',
     },
   ],
   Engagement: [],
-  Family: [],
-  Maternity: [],
-  Portraits: [
+  Family: [
     {
-      slug: 'lifestyle-sessions',
-      title: 'Lifestyle Sessions',
-      description:
-        'Engagement and lifestyle portraits that feel easy, sweet, and true to you.',
+      slug: 'lyman-sc-family-portraits-countryside',
+      title: 'The Burnettes | Countryside Family Portraits in Lyman, SC',
+      name: 'The Burnettes',
+      venue: 'Countryside',
     },
   ],
-  Seniors: [],
+  Maternity: [
+    {
+      slug: 'hartsville-sc-maternity-lake-robinson',
+      title: 'Cait & Davis | Maternity at Lake Robinson in Hartsville, SC',
+      name: 'Cait & Davis',
+      venue: 'Lake Robinson',
+    },
+  ],
+  Portraits: [
+    {
+      slug: 'landrum-sc-portraits-countryside',
+      title: 'Brooke & Kip | Countryside Portraits in Landrum, SC',
+      name: 'Brooke & Kip',
+      venue: 'Countryside',
+    },
+    {
+      slug: 'greenville-sc-couples-portraits-furman-university',
+      title: 'Lilly & Tyler | Couples Portraits at Furman University in Greenville, SC',
+      name: 'Lilly & Tyler',
+      venue: 'Furman University',
+    },
+    {
+      slug: 'greenville-sc-portraits-backyard',
+      title: 'Hannah & Collin | Backyard Portraits in Greenville, SC',
+      name: 'Hannah & Collin',
+      venue: 'Backyard',
+    },
+    {
+      slug: 'greenville-sc-portraits-furman-university',
+      title: 'Katelyn | Portraits at Furman University in Greenville, SC',
+      name: 'Katelyn',
+      venue: 'Furman University',
+    },
+  ],
+  Seniors: [
+    {
+      slug: 'greenville-sc-senior-pictures-furman-university',
+      title: 'Searlait | Senior Pictures at Furman University in Greenville, SC',
+      name: 'Searlait',
+      venue: 'Furman University',
+    },
+  ],
 };

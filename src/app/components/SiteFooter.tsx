@@ -84,7 +84,7 @@ export default function SiteFooter() {
                 )}
                 <Link
                   href={link.href}
-                  className="fl-link !text-[0.58rem] !tracking-[0.12em] text-sage hover:text-moss sm:!text-[0.72rem] sm:!tracking-[0.16em]"
+                  className="fl-link fl-nav-tab !text-[0.58rem] !tracking-[0.12em] text-sage hover:text-moss sm:!text-[0.72rem] sm:!tracking-[0.16em]"
                 >
                   {link.label}
                 </Link>

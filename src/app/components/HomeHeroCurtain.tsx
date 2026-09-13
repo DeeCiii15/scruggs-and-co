@@ -117,8 +117,9 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
   } as const;
 
   return (
-    // Scrub just long enough for a paced open; paper track so unpinning
-    // doesn't leave a black band before the intro.
+    <>
+    {/* Scrub just long enough for a paced open; paper track so unpinning
+        doesn't leave a black band before the typewriter line. */}
     <section
       ref={sectionRef}
       className="relative h-[calc(100svh+22vh)] w-full bg-paper"
@@ -235,9 +236,10 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
           Scroll or click
         </p>
       </div>
-      <div className="flex h-[22vh] items-center justify-center px-6 sm:px-10">
-        <HeroBridgeType />
-      </div>
     </section>
+    <div className="relative z-[1] flex h-[22vh] items-center justify-center bg-paper px-6 sm:px-10">
+      <HeroBridgeType />
+    </div>
+    </>
   );
 }

@@ -8,6 +8,15 @@ THREE LEVELS ON THE SITE
   3. Photos — full gallery for one shoot
 
 
+SITE PHOTOS (not galleries)
+---------------------------
+  Homepage / about / contact / service heroes live in:
+
+    public/images/miscellaneous-site-photos/
+
+  Do not put those in galleries/ — that folder is only for client photo shoots.
+
+
 ADD A NEW PHOTO SHOOT (2 steps)
 -------------------------------
 
@@ -71,7 +80,8 @@ WHAT SYNC DOES
   • Compresses large gallery images (max 2400px edge, ~85% JPEG quality)
   • Updates src/lib/galleryManifest.json (the site reads this)
 
-  Hero / home page images in public/images/ are NOT touched — only galleries/.
+  Hero / about / contact photos live in public/images/miscellaneous-site-photos/
+  and are not touched by this script.
 
 
 TIPS

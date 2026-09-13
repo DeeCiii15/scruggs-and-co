@@ -32,7 +32,7 @@ function ShootCard({
             />
           </div>
           <div className="mt-2 mb-2 shrink-0 px-2 text-center sm:mt-3 sm:mb-3">
-            <h3 className="font-sans text-[0.8rem] leading-snug text-gray-900 sm:text-xl">
+            <h3 className="font-sans text-[0.8rem] leading-snug text-ink sm:text-xl">
               {shoot.label}
             </h3>
           </div>
@@ -47,9 +47,9 @@ export default function PortfolioShootGrid({
 }: PortfolioShootGridProps) {
   if (shoots.length === 0) {
     return (
-      <div className="rounded-sm border border-gray-200 bg-white py-24 text-center">
-        <p className="text-lg text-gray-900">Sessions coming soon</p>
-        <p className="mt-3 text-gray-600">
+      <div className="border border-ink/10 bg-paper py-24 text-center">
+        <p className="font-display text-lg text-ink">Sessions coming soon</p>
+        <p className="mt-3 font-sans text-sm font-light text-ink-soft">
           New shoots are on the way—check back shortly.
         </p>
       </div>

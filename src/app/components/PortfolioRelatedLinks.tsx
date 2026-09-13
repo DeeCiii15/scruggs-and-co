@@ -25,7 +25,7 @@ export default function PortfolioRelatedLinks({
     >
       <Link
         href={`/services/${service.slug}`}
-        className="font-sans text-sm font-light text-gray-900 underline decoration-gray-400 underline-offset-4 transition hover:text-gray-700 dark:text-gray-400 sm:text-base"
+        className="fl-link text-moss sm:text-base"
       >
         Learn about our {service.name.toLowerCase()} services →
       </Link>

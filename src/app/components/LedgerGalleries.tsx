@@ -10,25 +10,25 @@ const SESSION_LINKS = [
   {
     name: 'Engagement',
     tagline: 'Easy love, soft light',
-    image: '/images/engagement_1.jpg',
+    image: '/images/miscellaneous-site-photos/engagement_1.jpg',
     href: serviceHref('engagement'),
   },
   {
     name: 'Family',
     tagline: 'The everyday forever moments',
-    image: '/images/inspiration_3.jpg',
+    image: '/images/miscellaneous-site-photos/inspiration_3.jpg',
     href: serviceHref('family'),
   },
   {
     name: 'Maternity',
     tagline: 'Quiet anticipation',
-    image: '/images/inspiration_1.jpg',
+    image: '/images/miscellaneous-site-photos/inspiration_1.jpg',
     href: serviceHref('maternity'),
   },
   {
     name: 'Seniors / Graduation',
     tagline: 'This chapter, documented',
-    image: '/images/hero_5.jpg',
+    image: '/images/miscellaneous-site-photos/hero_5.jpg',
     href: serviceHref('seniors'),
   },
 ] as const;

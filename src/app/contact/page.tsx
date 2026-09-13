@@ -22,7 +22,7 @@ const contactShare = pageShareMeta({
   title: CONTACT_TITLE,
   description: CONTACT_DESCRIPTION,
   url: '/contact',
-  image: SITE_IMAGES.photographer,
+  image: SITE_IMAGES.contactPhoto,
   imageAlt: BRAND_IMAGE_ALT,
 });
 
@@ -46,9 +46,9 @@ export default function ContactPage() {
 
       <main>
         <section className="scroll-mt-24 bg-paper">
-          <div className="grid lg:grid-cols-2">
-            <div className="order-2 flex flex-col justify-center bg-paper px-6 py-12 sm:px-12 sm:py-16 lg:order-1 lg:px-16 lg:py-20 xl:px-20 2xl:px-24">
-              <div className="mx-auto w-full max-w-lg">
+          <div className="grid lg:grid-cols-[minmax(0,1.4fr)_minmax(0,0.9fr)] lg:items-stretch lg:[grid-template-areas:'intro_.'_'fields_photo'_'footer_.']">
+            <div className="order-2 bg-paper px-6 pt-12 sm:px-12 sm:pt-16 lg:order-none lg:px-16 lg:pr-5 lg:pt-20 lg:[grid-area:intro] xl:px-20 xl:pr-6 2xl:pl-24 2xl:pr-8">
+              <div className="mx-auto w-full max-w-lg lg:mx-0 lg:max-w-none">
                 <p className="font-script text-4xl text-moss md:text-5xl">
                   say hello
                 </p>
@@ -60,15 +60,36 @@ export default function ContactPage() {
                   dreaming up—wedding, engagement, family, maternity, portraits,
                   or seniors. Liv reads every message.
                 </p>
+              </div>
+            </div>
 
-                <h2 className="mt-10 font-display text-2xl text-ink">
+            <BookingForm
+              beforeFields={
+                <h2 className="font-display text-2xl text-ink">
                   Send a message
                 </h2>
-                <div className="mt-6">
-                  <BookingForm className="mx-0 max-w-lg" />
+              }
+              fieldsClassName="order-3 mx-auto w-full max-w-lg bg-paper px-6 pb-0 pt-10 sm:px-12 lg:order-none lg:mx-0 lg:max-w-none lg:px-16 lg:pr-5 lg:pt-10 lg:[grid-area:fields] xl:px-20 xl:pr-6 2xl:pl-24 2xl:pr-8"
+              actionsClassName="order-4 mx-auto w-full max-w-lg bg-paper px-6 pb-12 pt-8 sm:px-12 sm:pb-16 lg:order-none lg:mx-0 lg:max-w-none lg:px-16 lg:pr-5 lg:pb-20 xl:px-20 xl:pr-6 2xl:pl-24 2xl:pr-8 lg:[grid-area:footer]"
+              photo={
+                <div className="relative order-1 min-h-[62svh] bg-paper lg:order-none lg:min-h-0 lg:[grid-area:photo]">
+                  <div className="fl-print fl-print-tilt-right absolute inset-5 sm:inset-8 lg:inset-y-0 lg:top-10 lg:right-8 lg:left-4 xl:right-10">
+                    <div className="relative h-full min-h-[20rem] w-full">
+                      <Image
+                        src={SITE_IMAGES.contactPhoto}
+                        alt={BRAND_IMAGE_ALT}
+                        fill
+                        className="object-cover object-[center_72%] fl-photo-earth"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        quality={95}
+                        priority
+                      />
+                    </div>
+                  </div>
                 </div>
-
-                <div className="mt-12 border-t border-ink/10 pt-8">
+              }
+              afterActions={
+                <div className="mx-auto mt-12 w-full max-w-lg border-t border-ink/10 pt-8 lg:mx-0 lg:max-w-none">
                   <p className="font-sans text-[0.6rem] font-medium uppercase tracking-[0.2em] text-ink-soft">
                     Write directly
                   </p>
@@ -92,23 +113,8 @@ export default function ContactPage() {
                     </>
                   ) : null}
                 </div>
-              </div>
-            </div>
-
-            <div className="order-1 bg-paper lg:sticky lg:top-0 lg:order-2 lg:flex lg:h-svh lg:flex-col">
-              <div className="fl-print fl-print-tilt-right m-5 ml-4 sm:m-8 sm:ml-6 lg:my-10 lg:mr-12 lg:ml-6 lg:min-h-0 lg:flex-1 xl:mr-16">
-                <Image
-                  src={SITE_IMAGES.photographer}
-                  alt={BRAND_IMAGE_ALT}
-                  width={1600}
-                  height={2000}
-                  className="h-[62svh] w-full object-cover object-[center_38%] fl-photo-earth lg:h-full"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={95}
-                  priority
-                />
-              </div>
-            </div>
+              }
+            />
           </div>
         </section>
       </main>

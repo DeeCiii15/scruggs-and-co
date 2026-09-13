@@ -47,7 +47,7 @@ export default function ContinuumAbout() {
             src={SITE_IMAGES.photographer}
             alt={BRAND_IMAGE_ALT}
             fill
-            className="object-cover object-[center_18%]"
+            className="object-cover object-[center_58%]"
             sizes="100vw"
             priority
           />

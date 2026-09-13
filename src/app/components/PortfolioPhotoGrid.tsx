@@ -15,11 +15,11 @@ export default function PortfolioPhotoGrid({ photos }: PortfolioPhotoGridProps) 
 
   if (photos.length === 0) {
     return (
-      <div className="rounded-sm border border-gray-200 bg-white py-24 text-center">
-        <p className="text-lg text-gray-900">
+      <div className="border border-ink/10 bg-paper py-24 text-center">
+        <p className="font-display text-lg text-ink">
           I&apos;m still curating this little gallery
         </p>
-        <p className="mt-3 text-gray-600">
+        <p className="mt-3 font-sans text-sm font-light text-ink-soft">
           Check back soon—I&apos;m always adding new favorites.
         </p>
       </div>

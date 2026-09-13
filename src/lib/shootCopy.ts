@@ -1,0 +1,252 @@
+import {
+  shootGalleryLabel,
+  type PortfolioShootDef,
+} from './portfolioShoots';
+import {
+  PRIMARY_CITY,
+  PRIMARY_STATE_ABBR,
+  SITE_NAME,
+} from './siteConfig';
+
+export type ShootCategoryCopy = {
+  name: string;
+  homeTagline: string;
+  metaTitle?: string;
+};
+
+export type ShootVenue = {
+  /** Slug tail: backyard, countryside, family-farm, furman-university… */
+  key: string | null;
+  /** Display name: Backyard, Family Farm, Adelaide Venue… */
+  label: string;
+  kind: 'setting' | 'named';
+  /** Greenville, SC */
+  city: string | null;
+};
+
+const SETTING_KEYS = new Set([
+  'backyard',
+  'countryside',
+  'family-farm',
+  'downtown',
+  'field',
+]);
+
+const SESSION_PREFIXES = [
+  'couples-portraits-',
+  'family-portraits-',
+  'senior-pictures-',
+  'engagement-',
+  'maternity-',
+  'portraits-',
+  'wedding-',
+] as const;
+
+const VENUE_LABELS: Record<string, string> = {
+  backyard: 'Backyard',
+  countryside: 'Countryside',
+  'family-farm': 'Family Farm',
+  downtown: 'Downtown',
+  field: 'Field',
+  'lake-robinson': 'Lake Robinson',
+  'furman-university': 'Furman University',
+  'adelaide-venue': 'Adelaide Venue',
+  'the-venue-at-edgewood': 'The Venue at Edgewood',
+};
+
+function titleCase(value: string): string {
+  return value
+    .split('-')
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ');
+}
+
+/** City from slug (`lyman-sc-…` → `Lyman, SC`; `raleigh-nc-…` → `Raleigh, NC`). */
+export function shootCityFromSlug(slug: string): string | null {
+  const match = slug.match(/^([a-z]+(?:-[a-z]+)*)-(sc|nc)(?:-|$)/i);
+  if (!match?.[1] || !match[2]) return null;
+  return `${titleCase(match[1])}, ${match[2].toUpperCase()}`;
+}
+
+/** Last slug segment after city, state, and session type. */
+export function slugVenueKey(slug: string): string | null {
+  const stripped = slug.replace(/^[a-z]+(?:-[a-z]+)*-(sc|nc)-/i, '');
+  if (!stripped || stripped === slug) return null;
+  for (const prefix of SESSION_PREFIXES) {
+    if (stripped.startsWith(prefix)) {
+      return stripped.slice(prefix.length) || null;
+    }
+  }
+  return stripped;
+}
+
+function formatVenueLabel(key: string): string {
+  return VENUE_LABELS[key] ?? titleCase(key);
+}
+
+function venueKeyFromText(value: string): string {
+  return value.trim().toLowerCase().replace(/\s+/g, '-');
+}
+
+export function shootVenue(shoot: PortfolioShootDef): ShootVenue {
+  const city = shootCityFromSlug(shoot.slug);
+  const fromSlug = slugVenueKey(shoot.slug);
+  const raw = shoot.venue?.trim();
+  const fromRaw = raw ? venueKeyFromText(raw) : null;
+
+  const key = fromSlug ?? fromRaw;
+  const slugIsSetting = Boolean(fromSlug && SETTING_KEYS.has(fromSlug));
+  const rawIsSetting = Boolean(fromRaw && SETTING_KEYS.has(fromRaw));
+
+  let label: string;
+  if (slugIsSetting && fromSlug) {
+    label = formatVenueLabel(fromSlug);
+  } else if (raw && !rawIsSetting) {
+    label = raw;
+  } else if (fromSlug) {
+    label = formatVenueLabel(fromSlug);
+  } else if (raw) {
+    label = raw;
+  } else {
+    label = city ?? `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR}`;
+  }
+
+  const kind: ShootVenue['kind'] =
+    key && SETTING_KEYS.has(key) ? 'setting' : 'named';
+
+  return { key, label, kind, city };
+}
+
+export function shootWho(shoot: PortfolioShootDef): string {
+  const fromName = shoot.name?.trim();
+  if (fromName) return fromName;
+  const fromTitle = shoot.title?.trim();
+  if (fromTitle) return fromTitle;
+  return 'Gallery';
+}
+
+export function shootPlace(shoot: PortfolioShootDef): string {
+  const venue = shootVenue(shoot);
+  if (venue.kind === 'named' && venue.city && !venue.label.includes(venue.city)) {
+    return `${venue.label} in ${venue.city}`;
+  }
+  if (venue.kind === 'setting' && venue.city) return venue.city;
+  return venue.city ?? venue.label;
+}
+
+function sessionNoun(category: ShootCategoryCopy, slug: string): string {
+  if (slug.includes('couples-portraits')) return 'Couples Portraits';
+  if (slug.includes('senior-pictures')) return 'Senior Pictures';
+  switch (category.name) {
+    case 'Weddings':
+      return 'Wedding';
+    case 'Engagement':
+      return 'Engagement';
+    case 'Family':
+      return 'Family Portraits';
+    case 'Maternity':
+      return 'Maternity';
+    case 'Portraits':
+      return 'Portraits';
+    case 'Seniors':
+      return 'Senior Pictures';
+    default:
+      return category.name;
+  }
+}
+
+function sessionAtVenue(
+  category: ShootCategoryCopy,
+  shoot: PortfolioShootDef,
+): string {
+  const venue = shootVenue(shoot);
+  const session = sessionNoun(category, shoot.slug);
+  if (venue.kind === 'setting') {
+    return `${venue.label} ${session}`;
+  }
+  return `${session} at ${venue.label}`;
+}
+
+/** Browser / Open Graph title (layout appends `| SITE_NAME`). */
+export function shootDocumentTitle(
+  category: ShootCategoryCopy,
+  shoot: PortfolioShootDef,
+): string {
+  const who = shootGalleryLabel(shoot) || shootWho(shoot);
+  const hook = sessionAtVenue(category, shoot);
+  const city = shootCityFromSlug(shoot.slug);
+  if (city && !hook.includes(city)) {
+    return `${who} | ${hook} in ${city}`;
+  }
+  return `${who} | ${hook}`;
+}
+
+/** On-page H1 — first names plus the venue. */
+export function shootHeadline(shoot: PortfolioShootDef): string {
+  const who = shootGalleryLabel(shoot) || shootWho(shoot);
+  const venue = shootVenue(shoot);
+  if (venue.kind === 'setting') {
+    if (venue.key === 'backyard') return `${who} in a backyard`;
+    if (venue.key === 'family-farm') return `${who} at the family farm`;
+    if (venue.key === 'countryside') return `${who} in the countryside`;
+    return `${who} in the ${venue.label.toLowerCase()}`;
+  }
+  return `${who} at ${venue.label}`;
+}
+
+function inSetting(shoot: PortfolioShootDef, venue: ShootVenue): string {
+  const city = venue.city;
+  if (venue.key === 'countryside' && city) return `the ${city} countryside`;
+  if (venue.key === 'backyard' && city) return `a ${city} backyard`;
+  if (venue.key === 'family-farm' && city) return `a family farm in ${city}`;
+  if (venue.kind === 'named' && city) return `${venue.label} in ${city}`;
+  if (venue.kind === 'named') return venue.label;
+  return city ?? venue.label;
+}
+
+/**
+ * Unique meta + on-page blurb from name, venue, session type, and city.
+ */
+export function shootPageDescription(
+  category: ShootCategoryCopy,
+  shoot: PortfolioShootDef,
+): string {
+  const custom = shoot.description?.trim();
+  if (custom) return custom;
+
+  const who = shootWho(shoot);
+  const venue = shootVenue(shoot);
+  const where = inSetting(shoot, venue);
+  const tag = category.homeTagline.toLowerCase();
+  const couples = shoot.slug.includes('couples-portraits');
+
+  switch (category.name) {
+    case 'Family':
+      return `${who} in ${where}—${tag}. Unhurried family portraits in natural light by ${SITE_NAME}.`;
+    case 'Engagement':
+      return `${who} in ${where}—${tag}. Engagement portraits that feel like you, not a pose, by ${SITE_NAME}.`;
+    case 'Weddings':
+      if (venue.key === 'backyard') {
+        return `${who} said I do in ${where}—an easy, documentary wedding day in natural light by ${SITE_NAME}.`;
+      }
+      if (venue.key === 'family-farm') {
+        return `${who} at ${where}—vows, details, and the in-between, documented by ${SITE_NAME}.`;
+      }
+      return `${who} at ${where}—documentary wedding-day galleries in natural light by ${SITE_NAME}.`;
+    case 'Maternity':
+      return `${who} at ${where}—${tag}. Soft documentary maternity portraits by ${SITE_NAME}.`;
+    case 'Portraits':
+      if (couples) {
+        return `${who} at ${where}—easy love, soft light, and room to laugh. Couples portraits by ${SITE_NAME}.`;
+      }
+      if (venue.kind === 'setting') {
+        return `${who} in ${where}—lifestyle portraits in soft light, with room to breathe. Photographed by ${SITE_NAME}.`;
+      }
+      return `${who} at ${where}—lifestyle portraits in soft light, with room to breathe. Photographed by ${SITE_NAME}.`;
+    case 'Seniors':
+      return `${who} at ${where}—${tag}. Senior portraits by ${SITE_NAME}.`;
+    default:
+      return `${who} — ${category.name.toLowerCase()} photography in ${where} by ${SITE_NAME}.`;
+  }
+}

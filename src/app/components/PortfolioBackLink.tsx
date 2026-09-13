@@ -12,7 +12,7 @@ export default function PortfolioBackLink({
   return (
     <Link
       href={href}
-      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-2 rounded-sm border border-gray-300 bg-white px-7 py-3 font-sans text-xl text-gray-900 transition hover:bg-gray-50 sm:w-fit sm:justify-start sm:px-8 sm:text-2xl"
+      className="inline-flex min-h-12 w-full touch-manipulation items-center justify-center gap-2 font-sans text-sm text-moss transition hover:text-ink sm:w-fit sm:justify-start sm:text-base"
     >
       <svg
         className="h-5 w-5 shrink-0"

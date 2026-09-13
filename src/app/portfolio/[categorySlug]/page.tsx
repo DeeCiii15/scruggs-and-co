@@ -52,7 +52,7 @@ export default async function PortfolioCategoryPage({
     <PortfolioPageShell>
       <PortfolioCategoryJsonLd category={category} />
       <section
-        className="border-t border-gray-200 bg-gray-50 px-6 py-16 dark:border-gray-700 dark:bg-gray-900 sm:px-10 lg:px-16 lg:py-20"
+        className="scroll-mt-24 border-t border-ink/8 px-5 py-12 sm:px-10 sm:py-16 lg:px-16 lg:py-20"
         aria-label={category.name}
       >
         <div className="mx-auto max-w-6xl">
@@ -62,13 +62,13 @@ export default async function PortfolioCategoryPage({
               <PortfolioRelatedLinks categoryName={category.name} />
             </div>
             <div className="text-left sm:text-right">
-              <p className="text-xs font-semibold uppercase tracking-wider text-gray-500 sm:text-right">
-                Gallery
+              <p className="font-script text-3xl text-moss sm:text-right">
+                gallery
               </p>
-              <h1 className="mt-2 font-sans text-2xl font-medium text-gray-900 dark:text-gray-100 md:text-3xl lg:text-[2.35rem]">
+              <h1 className="mt-2 font-display text-4xl text-ink md:text-5xl">
                 {category.pageHeading ?? category.name}
               </h1>
-              <p className="mt-3 max-w-md font-sans text-sm font-light leading-relaxed text-gray-600 dark:text-gray-400 sm:ml-auto sm:text-right">
+              <p className="mt-3 max-w-md font-sans text-sm font-light leading-relaxed text-ink-soft sm:ml-auto sm:text-right">
                 {category.description}
               </p>
             </div>
