@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { BRAND_IMAGE_ALT } from '@/lib/siteConfig';
+import { serviceHref } from '@/lib/servicesData';
 import { smoothstep, useScrollOpen } from '../hooks/useScrollOpen';
 
 /**
@@ -88,7 +89,7 @@ export default function ContinuumAbout() {
             <Link href="/contact" className="fl-btn">
               Let&apos;s connect
             </Link>
-            <Link href="/services/weddings" className="fl-link text-moss">
+            <Link href={serviceHref('weddings')} className="fl-link text-moss">
               Wedding collections
               <span aria-hidden>→</span>
             </Link>

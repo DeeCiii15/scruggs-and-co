@@ -1,11 +1,11 @@
 'use client';
 
-import type { ReactNode } from 'react';
+import type { FormEvent, ReactNode } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import { CONTACT_EMAIL } from '@/lib/siteConfig';
 
 const FORMSPREE_FORM_ID =
-  process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID?.trim() || 'your_form_id';
+  process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID?.trim() ?? '';
 
 type BookingFormProps = {
   className?: string;
@@ -38,7 +38,18 @@ export default function BookingForm({
   actionsClassName,
   afterActions,
 }: BookingFormProps) {
-  const [state, handleSubmit] = useForm(FORMSPREE_FORM_ID);
+  const formConfigured = FORMSPREE_FORM_ID.length > 0;
+  const [state, handleSubmit] = useForm(
+    formConfigured ? FORMSPREE_FORM_ID : 'formspree-not-configured',
+  );
+
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+    if (!formConfigured) {
+      event.preventDefault();
+      return;
+    }
+    void handleSubmit(event);
+  };
 
   if (state.succeeded) {
     return (
@@ -227,10 +238,22 @@ export default function BookingForm({
   );
 
   const submit = (
-    <div className="flex justify-start pt-2">
+    <div className="flex flex-col items-start gap-4 pt-2">
+      {!formConfigured ? (
+        <p className="max-w-md font-sans text-sm font-light leading-relaxed text-ink-soft">
+          The contact form is not connected yet. Email{' '}
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
+            className="text-moss underline decoration-moss/30 underline-offset-4 transition hover:text-ink hover:decoration-ink/40"
+          >
+            {CONTACT_EMAIL}
+          </a>{' '}
+          and I will get back to you.
+        </p>
+      ) : null}
       <button
         type="submit"
-        disabled={state.submitting}
+        disabled={state.submitting || !formConfigured}
         className="fl-btn disabled:cursor-not-allowed disabled:opacity-60"
       >
         {state.submitting ? 'Sending…' : 'Send message'}
@@ -241,7 +264,7 @@ export default function BookingForm({
 
   if (photo) {
     return (
-      <form onSubmit={handleSubmit} className="contents">
+      <form onSubmit={onSubmit} className="contents">
         <div
           className={`relative min-w-0 space-y-7 text-left sm:space-y-8 ${fieldsClassName ?? ''}`}
         >
@@ -259,7 +282,7 @@ export default function BookingForm({
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={onSubmit}
       className={`relative mx-auto min-w-0 w-full max-w-xl space-y-7 text-left sm:space-y-8 ${className ?? ''}`}
     >
       {fields}

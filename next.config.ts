@@ -13,17 +13,17 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/experience",
-        destination: "/services/weddings",
+        destination: "/services/wedding-photography",
         permanent: true,
       },
       {
         source: "/faq",
-        destination: "/services/weddings",
+        destination: "/services/wedding-photography",
         permanent: true,
       },
       {
         source: "/investment",
-        destination: "/services/weddings",
+        destination: "/services/wedding-photography",
         permanent: true,
       },
       {
@@ -33,12 +33,12 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/services/sessions",
-        destination: "/services/portraits",
+        destination: "/services/portrait-photography",
         permanent: true,
       },
       {
         source: "/services/couples",
-        destination: "/services/engagement",
+        destination: "/services/engagement-photography",
         permanent: true,
       },
       {

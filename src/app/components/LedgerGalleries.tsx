@@ -144,9 +144,20 @@ export default function LedgerGalleries() {
               ))}
             </div>
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/65 to-transparent p-3.5 sm:p-6">
-              <h3 className="font-display text-lg text-fog transition-opacity duration-500 sm:text-3xl">
-                {activeSlide.name}
-              </h3>
+              <div className="relative">
+                {cycleSlides.map((slide) => (
+                  <h3
+                    key={slide.name}
+                    className={`font-display text-lg text-fog transition-opacity duration-500 sm:text-3xl ${
+                      activeSlide.name === slide.name
+                        ? 'relative opacity-100'
+                        : 'pointer-events-none absolute inset-x-0 top-0 opacity-0'
+                    }`}
+                  >
+                    {slide.name}
+                  </h3>
+                ))}
+              </div>
             </div>
           </Link>
         </div>

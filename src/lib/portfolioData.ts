@@ -13,6 +13,7 @@
 import { SHOOTS_BY_CATEGORY, type PortfolioShootDef, shootGalleryLabel } from './portfolioShoots';
 import galleryManifest from './galleryManifest.json';
 import { shootHeadline, shootPlace, shootWho } from './shootCopy';
+import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from './siteConfig';
 
 type ShootManifestEntry = { cover: string | null; photos: string[] };
 type GalleryManifest = Record<string, Record<string, ShootManifestEntry>>;
@@ -155,8 +156,8 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       metaDescription:
         'Wedding photography portfolios from Chesnee, SC & the Upstate—documentary wedding-day galleries in natural light by Scruggs & Co Photo.',
       homeTagline: 'Documentary wedding days',
-      pageHeading: 'Wedding Portfolios',
-      metaTitle: 'Wedding Photography Portfolio',
+      pageHeading: 'Wedding photography galleries',
+      metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Wedding Galleries`,
     },
     {
       name: 'Engagement',
@@ -165,8 +166,8 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       metaDescription:
         'Engagement photography portfolios from Chesnee, SC & the Upstate—engagement galleries in honest light by Scruggs & Co Photo.',
       homeTagline: 'Easy love, soft light',
-      pageHeading: 'Engagement Portfolios',
-      metaTitle: 'Engagement Photography Portfolio',
+      pageHeading: 'Engagement photography galleries',
+      metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Engagement Galleries`,
     },
     {
       name: 'Family',
@@ -175,8 +176,8 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       metaDescription:
         'Family photography portfolios from Chesnee, SC & the Upstate—unhurried family galleries in natural light by Scruggs & Co Photo.',
       homeTagline: 'The everyday forever moments',
-      pageHeading: 'Family Portfolios',
-      metaTitle: 'Family Photography Portfolio',
+      pageHeading: 'Family photography galleries',
+      metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Family Galleries`,
     },
     {
       name: 'Maternity',
@@ -185,8 +186,8 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       metaDescription:
         'Maternity photography portfolios from Chesnee, SC & the Upstate—soft documentary bump galleries by Scruggs & Co Photo.',
       homeTagline: 'Quiet anticipation',
-      pageHeading: 'Maternity Portfolios',
-      metaTitle: 'Maternity Photography Portfolio',
+      pageHeading: 'Maternity photography galleries',
+      metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Maternity Galleries`,
     },
     {
       name: 'Portraits',
@@ -195,8 +196,8 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       metaDescription:
         'Portrait photography portfolios from Chesnee, SC & the Upstate—individual lifestyle galleries by Scruggs & Co Photo.',
       homeTagline: 'Lifestyle & portraits',
-      pageHeading: 'Portrait Portfolios',
-      metaTitle: 'Portrait Photography Portfolio',
+      pageHeading: 'Portrait photography galleries',
+      metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Portrait Galleries`,
     },
     {
       name: 'Seniors',
@@ -205,8 +206,8 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       metaDescription:
         'Senior photography portfolios from Chesnee, SC & the Upstate—graduation & senior galleries by Scruggs & Co Photo.',
       homeTagline: 'This chapter, documented',
-      pageHeading: 'Senior Portfolios',
-      metaTitle: 'Senior Photography Portfolio',
+      pageHeading: 'Senior photography galleries',
+      metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Senior Galleries`,
     },
   ];
 

@@ -7,7 +7,7 @@ import ServiceFaqJsonLd from '../../components/ServiceFaqJsonLd';
 import ServiceJsonLd from '../../components/ServiceJsonLd';
 import ServiceProcession from '../../components/ServiceProcession';
 import {
-  getAllServiceSlugs,
+  getAllServicePathSlugs,
   getServiceBySlug,
   getServiceHeroImage,
   getServicePortfolioHref,
@@ -22,7 +22,7 @@ type ServicePageProps = {
 };
 
 export async function generateStaticParams() {
-  return getAllServiceSlugs().map((serviceSlug) => ({ serviceSlug }));
+  return getAllServicePathSlugs().map((serviceSlug) => ({ serviceSlug }));
 }
 
 export async function generateMetadata({

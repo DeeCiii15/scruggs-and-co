@@ -1,8 +1,8 @@
 import {
   getCategoryByName,
   getShootCards,
+  getShootPhotos,
   portfolioCategoryHref,
-  shootCoverSrc,
   type PortfolioShootCard,
 } from './portfolioData';
 import {
@@ -414,8 +414,18 @@ export const SERVICE_DEFS: ServiceDef[] = [
   },
 ];
 
+/** Public URL segment — search-phrase slugs, not short stubs. */
+export const SERVICE_PATH_SLUG: Record<ServiceSlug, string> = {
+  engagement: 'engagement-photography',
+  family: 'family-portrait-photography',
+  maternity: 'maternity-photography',
+  portraits: 'portrait-photography',
+  seniors: 'senior-photography',
+  weddings: 'wedding-photography',
+};
+
 export function serviceHref(slug: ServiceSlug): string {
-  return `/services/${slug}`;
+  return `/services/${SERVICE_PATH_SLUG[slug]}`;
 }
 
 /** Nav / footer service list — one URL per offering */
@@ -425,7 +435,14 @@ export const FOOTER_SERVICE_LINKS = SERVICE_DEFS.map((service) => ({
 }));
 
 export function getServiceBySlug(slug: string): ServiceDef | undefined {
-  return SERVICE_DEFS.find((service) => service.slug === slug);
+  return (
+    SERVICE_DEFS.find((service) => SERVICE_PATH_SLUG[service.slug] === slug) ??
+    SERVICE_DEFS.find((service) => service.slug === slug)
+  );
+}
+
+export function getAllServicePathSlugs(): string[] {
+  return SERVICE_DEFS.map((service) => SERVICE_PATH_SLUG[service.slug]);
 }
 
 export function getServiceByPortfolioCategory(
@@ -444,6 +461,27 @@ export function getServiceShootCards(service: ServiceDef): PortfolioShootCard[] 
   return getShootCards(service.portfolioCategory);
 }
 
+/** Gallery stills for this service — covers first, then more frames from those shoots. */
+export function getServiceGalleryImages(service: ServiceDef): string[] {
+  const shoots = getServiceShootCards(service);
+  const srcs: string[] = [];
+  const seen = new Set<string>();
+  const add = (src?: string) => {
+    if (!src || seen.has(src)) return;
+    seen.add(src);
+    srcs.push(src);
+  };
+
+  for (const shoot of shoots) add(shoot.image);
+  for (const shoot of shoots) {
+    for (const photo of getShootPhotos(service.portfolioCategory, shoot.slug)) {
+      add(photo.src);
+    }
+  }
+
+  return srcs;
+}
+
 export function getServicePortfolioHref(service: ServiceDef): string {
   const category = getCategoryByName(service.portfolioCategory);
   return category ? portfolioCategoryHref(category.folder) : '/portfolio';
@@ -454,13 +492,38 @@ export function getServiceTestimonials(service: ServiceDef): Testimonial[] {
 }
 
 export function getServiceHeroImage(service: ServiceDef): string {
+  const gallery = getServiceGalleryImages(service);
+  if (gallery[0]) return gallery[0];
   if (service.heroImage) return service.heroImage;
   const category = getCategoryByName(service.portfolioCategory);
-  if (!category) return '/images/miscellaneous-site-photos/wedding_1.jpg';
-  if (category.shoots.length > 0) {
-    return shootCoverSrc(category.folder, category.shoots[0]!);
-  }
-  return category.coverSrc;
+  return (
+    category?.coverSrc ?? '/images/miscellaneous-site-photos/wedding_1.jpg'
+  );
+}
+
+/** Extra stills when a service has fewer than four unique gallery frames. */
+const CHAPTER_SPARE_IMAGES = [
+  '/images/miscellaneous-site-photos/inspiration_1.jpg',
+  '/images/miscellaneous-site-photos/inspiration_2.jpg',
+  '/images/miscellaneous-site-photos/hero_2.jpg',
+  '/images/miscellaneous-site-photos/hero_3.jpg',
+  '/images/miscellaneous-site-photos/contact.jpg',
+] as const;
+
+function uniqueImagePool(service: ServiceDef): string[] {
+  const seen = new Set<string>();
+  const pool: string[] = [];
+  const add = (src?: string) => {
+    if (!src || seen.has(src)) return;
+    seen.add(src);
+    pool.push(src);
+  };
+
+  for (const src of getServiceGalleryImages(service)) add(src);
+  add(service.heroImage);
+  add(getServiceHeroImage(service));
+  for (const src of CHAPTER_SPARE_IMAGES) add(src);
+  return pool;
 }
 
 /** Distinct stills for procession chapters (falls back to hero when thin). */
@@ -471,18 +534,28 @@ export function getServiceChapterImages(service: ServiceDef): {
   pricing: string;
   faq: string;
 } {
-  const shoots = getServiceShootCards(service);
-  const srcs = shoots.map((shoot) => shoot.image);
-  const hero = getServiceHeroImage(service);
-  if (srcs[0] !== hero) srcs.unshift(hero);
-
-  const at = (i: number) => srcs[i] ?? srcs[0] ?? hero;
+  const srcs = uniqueImagePool(service);
+  const fallback = getServiceHeroImage(service);
+  const at = (i: number) => srcs[i] ?? srcs[srcs.length - 1] ?? fallback;
 
   return {
     intro: at(0),
-    galleryPrimary: at(0),
-    gallerySecondary: srcs[1] ?? null,
-    pricing: at(1),
-    faq: at(2),
+    galleryPrimary: at(1),
+    gallerySecondary: srcs[4] ?? srcs[1] ?? null,
+    pricing: at(2),
+    faq: at(3),
   };
+}
+
+/** Large gallery-chapter still for a shoot, skipping photos already used nearby. */
+export function getServiceShootFeatureImage(
+  service: ServiceDef,
+  shoot: PortfolioShootCard,
+  reserved: ReadonlySet<string>,
+): string {
+  if (shoot.image && !reserved.has(shoot.image)) return shoot.image;
+  for (const photo of getShootPhotos(service.portfolioCategory, shoot.slug)) {
+    if (!reserved.has(photo.src)) return photo.src;
+  }
+  return shoot.image;
 }

@@ -3,27 +3,23 @@
  * Paths are under public/ (sourced from scruggsandcophoto.com + generated brand assets).
  */
 
-/** Legacy hero rotation slides */
+/** Homepage hero — crossfades every few seconds */
 export const HERO_SLIDES = [
   {
-    src: '/images/miscellaneous-site-photos/hero_1.jpg',
-    objectPosition: 'center 30%',
+    src: '/images/galleries/weddings/townville-sc-wedding-the-venue-at-edgewood/19.jpg',
+    objectPosition: 'center 68%',
   },
   {
-    src: '/images/miscellaneous-site-photos/hero_2.jpg',
-    objectPosition: 'center center',
+    src: '/images/galleries/portraits/greenville-sc-couples-portraits-furman-university/09.jpg',
+    objectPosition: 'center 62%',
   },
   {
-    src: '/images/miscellaneous-site-photos/hero_3.jpg',
-    objectPosition: 'center 40%',
+    src: '/images/galleries/weddings/greenville-sc-wedding-family-farm/03.jpg',
+    objectPosition: 'center 42%',
   },
   {
-    src: '/images/miscellaneous-site-photos/hero_4.jpg',
-    objectPosition: 'center center',
-  },
-  {
-    src: '/images/miscellaneous-site-photos/hero_5.jpg',
-    objectPosition: 'center 25%',
+    src: '/images/galleries/portraits/landrum-sc-portraits-countryside/17.jpg',
+    objectPosition: 'center 58%',
   },
 ] as const;
 
@@ -77,12 +73,12 @@ export const MOSAIC_FRAMES = [
   },
   {
     src: '/images/miscellaneous-site-photos/contact.jpg',
-    objectPosition: 'center 75%',
+    objectPosition: '68% 62%',
     area: 'i',
   },
   {
     src: '/images/miscellaneous-site-photos/liv-about.jpg',
-    objectPosition: 'center 62%',
+    objectPosition: '70% 52%',
     area: 'j',
   },
 ] as const;
@@ -148,11 +144,11 @@ export const FILMSTRIP_FRAMES = [
   },
   {
     src: '/images/miscellaneous-site-photos/contact.jpg',
-    objectPosition: 'center 75%',
+    objectPosition: '68% 62%',
   },
   {
     src: '/images/miscellaneous-site-photos/liv-about.jpg',
-    objectPosition: 'center 62%',
+    objectPosition: '70% 52%',
   },
 ] as const;
 

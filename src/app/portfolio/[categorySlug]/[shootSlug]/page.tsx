@@ -40,7 +40,7 @@ export async function generateMetadata({
 
   const meta = shootMetadata(category, shoot);
   return {
-    title: meta.title,
+    title: { absolute: meta.title },
     description: meta.description,
     alternates: { canonical: meta.path },
     openGraph: meta.openGraph,

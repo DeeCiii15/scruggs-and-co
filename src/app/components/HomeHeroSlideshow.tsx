@@ -2,15 +2,20 @@
 
 import { useEffect, useState, type ReactNode } from 'react';
 import Image from 'next/image';
-import { HERO_SLIDES } from '@/lib/siteImages';
+import { HERO_SLIDES, SITE_IMAGES } from '@/lib/siteImages';
+import { SITE_NAME } from '@/lib/siteConfig';
+import HeroBridgeType from './HeroBridgeType';
 
-const INTERVAL_MS = 6500;
-const FADE_MS = 700;
+const INTERVAL_MS = 5000;
+const FADE_MS = 900;
 
 type HomeHeroSlideshowProps = {
   children: ReactNode;
 };
 
+/**
+ * Full-viewport hero — gallery stills crossfade every few seconds.
+ */
 export default function HomeHeroSlideshow({ children }: HomeHeroSlideshowProps) {
   const [index, setIndex] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -32,41 +37,72 @@ export default function HomeHeroSlideshow({ children }: HomeHeroSlideshowProps) 
   }, [reduceMotion]);
 
   return (
-    <section className="relative min-h-svh w-full">
-      <div className="absolute inset-0" aria-hidden>
-        {HERO_SLIDES.map((slide, idx) => {
-          const active = idx === index;
-          return (
-            <div
-              key={slide.src}
-              className={`absolute inset-0 overflow-hidden ${active ? 'z-[1]' : 'z-0'}`}
-              style={{
-                opacity: active ? 1 : 0,
-                transition: reduceMotion
-                  ? undefined
-                  : `opacity ${FADE_MS}ms ease-out`,
-              }}
-            >
-              <Image
-                src={slide.src}
-                alt=""
-                fill
-                className={`object-cover ${active && !reduceMotion ? 'fl-image-settle' : ''}`}
-                style={{ objectPosition: slide.objectPosition }}
-                sizes="100vw"
-                unoptimized
-                priority={idx === 0}
-                fetchPriority={active ? 'high' : 'low'}
-              />
-            </div>
-          );
-        })}
+    <>
+      <section className="relative h-svh w-full bg-night">
+        <div className="fl-hero-stage relative h-svh w-full overflow-hidden bg-night">
+          <div className="absolute inset-0 z-0" aria-hidden>
+            {HERO_SLIDES.map((slide, idx) => {
+              const active = idx === index;
+              return (
+                <div
+                  key={slide.src}
+                  className={`absolute inset-0 overflow-hidden ${
+                    active ? 'z-[1]' : 'z-0'
+                  }`}
+                  style={{
+                    opacity: active ? 1 : 0,
+                    transition: reduceMotion
+                      ? undefined
+                      : `opacity ${FADE_MS}ms ease-out`,
+                  }}
+                >
+                  <Image
+                    src={slide.src}
+                    alt=""
+                    fill
+                    className={`object-cover fl-photo-earth ${
+                      active && !reduceMotion ? 'fl-image-settle' : ''
+                    }`}
+                    style={{ objectPosition: slide.objectPosition }}
+                    sizes="100vw"
+                    quality={85}
+                    priority={idx === 0}
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <div
+            className="fl-brand-mark pointer-events-none absolute inset-x-0 top-[16vh] z-[2] flex justify-center overflow-visible sm:top-[18vh]"
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={SITE_IMAGES.logoHero}
+              alt={SITE_NAME}
+              width={1024}
+              height={892}
+              decoding="async"
+              fetchPriority="high"
+              className="h-auto w-[clamp(7rem,22vw,9.5rem)] overflow-visible object-contain sm:drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)]"
+            />
+          </div>
+
+          <div className="fl-photo-wash z-[1]" aria-hidden />
+
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-[28%] bg-gradient-to-t from-night/70 via-night/20 to-transparent"
+            aria-hidden
+          />
+
+          <div className="absolute inset-0 z-[4] flex flex-col justify-end">
+            {children}
+          </div>
+        </div>
+      </section>
+      <div className="relative z-[1] flex h-[22vh] items-center justify-center bg-paper px-6 sm:px-10">
+        <HeroBridgeType />
       </div>
-      <div
-        className="pointer-events-none absolute inset-0 z-[2] bg-gradient-to-t from-night/80 via-night/25 to-night/30"
-        aria-hidden
-      />
-      <div className="relative z-[3]">{children}</div>
-    </section>
+    </>
   );
 }

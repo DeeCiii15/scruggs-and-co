@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getServiceByPortfolioCategory } from '@/lib/servicesData';
+import { getServiceByPortfolioCategory, serviceHref } from '@/lib/servicesData';
 
 type PortfolioRelatedLinksProps = {
   /** Portfolio category display name, e.g. "Weddings" */
@@ -24,7 +24,7 @@ export default function PortfolioRelatedLinks({
       className="flex flex-col items-stretch gap-2 sm:items-start"
     >
       <Link
-        href={`/services/${service.slug}`}
+        href={serviceHref(service.slug)}
         className="fl-link text-moss sm:text-base"
       >
         Learn about our {service.name.toLowerCase()} services →

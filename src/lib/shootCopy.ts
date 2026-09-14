@@ -135,54 +135,7 @@ export function shootPlace(shoot: PortfolioShootDef): string {
   return venue.city ?? venue.label;
 }
 
-function sessionNoun(category: ShootCategoryCopy, slug: string): string {
-  if (slug.includes('couples-portraits')) return 'Couples Portraits';
-  if (slug.includes('senior-pictures')) return 'Senior Pictures';
-  switch (category.name) {
-    case 'Weddings':
-      return 'Wedding';
-    case 'Engagement':
-      return 'Engagement';
-    case 'Family':
-      return 'Family Portraits';
-    case 'Maternity':
-      return 'Maternity';
-    case 'Portraits':
-      return 'Portraits';
-    case 'Seniors':
-      return 'Senior Pictures';
-    default:
-      return category.name;
-  }
-}
-
-function sessionAtVenue(
-  category: ShootCategoryCopy,
-  shoot: PortfolioShootDef,
-): string {
-  const venue = shootVenue(shoot);
-  const session = sessionNoun(category, shoot.slug);
-  if (venue.kind === 'setting') {
-    return `${venue.label} ${session}`;
-  }
-  return `${session} at ${venue.label}`;
-}
-
-/** Browser / Open Graph title (layout appends `| SITE_NAME`). */
-export function shootDocumentTitle(
-  category: ShootCategoryCopy,
-  shoot: PortfolioShootDef,
-): string {
-  const who = shootGalleryLabel(shoot) || shootWho(shoot);
-  const hook = sessionAtVenue(category, shoot);
-  const city = shootCityFromSlug(shoot.slug);
-  if (city && !hook.includes(city)) {
-    return `${who} | ${hook} in ${city}`;
-  }
-  return `${who} | ${hook}`;
-}
-
-/** On-page H1 — first names plus the venue. */
+/** On-page H1 and HTML title — names plus place, same as Taylor Rose Reels. */
 export function shootHeadline(shoot: PortfolioShootDef): string {
   const who = shootGalleryLabel(shoot) || shootWho(shoot);
   const venue = shootVenue(shoot);
@@ -190,9 +143,21 @@ export function shootHeadline(shoot: PortfolioShootDef): string {
     if (venue.key === 'backyard') return `${who} in a backyard`;
     if (venue.key === 'family-farm') return `${who} at the family farm`;
     if (venue.key === 'countryside') return `${who} in the countryside`;
+    if (venue.key === 'downtown' && venue.city) {
+      return `${who} in Downtown ${venue.city.replace(/,.*$/, '')}`;
+    }
+    if (venue.key === 'downtown') return `${who} downtown`;
     return `${who} in the ${venue.label.toLowerCase()}`;
   }
   return `${who} at ${venue.label}`;
+}
+
+/** Document title matches the H1. Do not append the brand here. */
+export function shootDocumentTitle(
+  _category: ShootCategoryCopy,
+  shoot: PortfolioShootDef,
+): string {
+  return shootHeadline(shoot);
 }
 
 function inSetting(shoot: PortfolioShootDef, venue: ShootVenue): string {

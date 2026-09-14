@@ -1,14 +1,12 @@
-'use client';
-
+import Link from 'next/link';
 import Navigation from './components/Navigation';
 import SiteFooter from './components/SiteFooter';
-import HomeHeroCurtain from './components/HomeHeroCurtain';
+import HomeHeroSlideshow from './components/HomeHeroSlideshow';
 import ProcessionIntro from './components/ProcessionIntro';
 import ProcessionAbout from './components/ProcessionAbout';
 import LedgerGalleries from './components/LedgerGalleries';
 import ContinuumReviews from './components/ContinuumReviews';
 import ReviewsJsonLd from './components/ReviewsJsonLd';
-import Link from 'next/link';
 import {
   PRIMARY_CITY,
   PRIMARY_STATE_ABBR,
@@ -16,7 +14,7 @@ import {
 import { TESTIMONIALS } from '@/lib/testimonialsData';
 
 /**
- * Home — curtain hero + Procession intro/about + Ledger galleries + Continuum reviews.
+ * Home — rotating gallery hero + Procession intro/about + Ledger galleries + Continuum reviews.
  */
 export default function Home() {
   return (
@@ -25,18 +23,18 @@ export default function Home() {
 
       <ReviewsJsonLd testimonials={TESTIMONIALS} />
       <main id="home">
-        <HomeHeroCurtain>
+        <HomeHeroSlideshow>
           <div className="px-6 pb-12 pt-24 sm:px-10 sm:pb-14 lg:px-16 lg:pb-16">
             <div className="mx-auto w-full max-w-6xl text-center sm:text-left">
-              <h1 className="mx-auto max-w-md text-center sm:mx-0 sm:text-left">
-                <span className="fl-fade-up-delay mt-4 block font-sans text-[0.65rem] font-medium uppercase tracking-[0.22em] text-fog/70">
+              <div className="mx-auto max-w-md text-center sm:mx-0 sm:text-left">
+                <h1 className="fl-fade-up-delay mt-4 block font-sans text-[0.65rem] font-medium uppercase tracking-[0.22em] text-fog/70">
                   {PRIMARY_CITY}, {PRIMARY_STATE_ABBR} photographer · Weddings
                   & portraits
-                </span>
-                <span className="fl-fade-up mx-auto mt-4 block max-w-md font-display text-xl italic leading-snug text-fog/92 sm:mx-0 sm:text-2xl md:text-[1.65rem]">
+                </h1>
+                <p className="fl-fade-up mx-auto mt-4 block max-w-md font-display text-xl italic leading-snug text-fog/92 sm:mx-0 sm:text-2xl md:text-[1.65rem]">
                   Forever moments, documented with heart.
-                </span>
-              </h1>
+                </p>
+              </div>
               <div className="fl-fade-up-delay-2 mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 sm:justify-start">
                 <Link href="/portfolio" className="fl-btn fl-btn-solid-light">
                   View the work
@@ -49,7 +47,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </HomeHeroCurtain>
+        </HomeHeroSlideshow>
 
         <ProcessionIntro />
         <ProcessionAbout />

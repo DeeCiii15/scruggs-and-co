@@ -74,7 +74,7 @@ export function shootMetadata(
   const who = shootWho(shoot);
   const place = shootPlace(shoot);
   const share = pageShareMeta({
-    title: `${title} | ${SITE_NAME}`,
+    title: `${title} | ${category.name} | ${SITE_NAME}`,
     description,
     url: path,
     image: cover || DEFAULT_OG_IMAGE_PATH,
@@ -102,7 +102,6 @@ export function getPortfolioSitemapEntries(): PortfolioSitemapEntry[] {
   ];
 
   for (const category of PORTFOLIO_CATEGORY_DEFS) {
-    if (category.shoots.length === 0) continue;
     entries.push({
       path: portfolioCategoryPath(category.folder),
       priority: 0.8,

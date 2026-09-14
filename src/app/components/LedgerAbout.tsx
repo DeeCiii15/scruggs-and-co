@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { BRAND_IMAGE_ALT } from '@/lib/siteConfig';
+import { serviceHref } from '@/lib/servicesData';
 
 /**
  * Ledger about — edge-to-edge editorial split, calm type on paper.
@@ -54,7 +55,7 @@ export default function LedgerAbout() {
             <Link href="/contact" className="fl-btn">
               Let&apos;s connect
             </Link>
-            <Link href="/services/weddings" className="fl-link text-moss">
+            <Link href={serviceHref('weddings')} className="fl-link text-moss">
               Wedding collections
               <span aria-hidden>→</span>
             </Link>

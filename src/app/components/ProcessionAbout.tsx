@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { SITE_IMAGES } from '@/lib/siteImages';
 import { BRAND_IMAGE_ALT } from '@/lib/siteConfig';
+import { serviceHref } from '@/lib/servicesData';
 import { smoothstep, useScrollOpen } from '../hooks/useScrollOpen';
 
 function AboutCopy({ headingAs = 'h2' }: { headingAs?: 'h2' | 'p' }) {
@@ -53,7 +54,7 @@ function AboutCopy({ headingAs = 'h2' }: { headingAs?: 'h2' | 'p' }) {
         <Link href="/contact" className="fl-btn">
           Let&apos;s connect
         </Link>
-        <Link href="/services/weddings" className="fl-btn fl-btn-ghost">
+        <Link href={serviceHref('weddings')} className="fl-btn fl-btn-ghost">
           Wedding collections
         </Link>
       </div>
@@ -114,9 +115,9 @@ export default function ProcessionAbout() {
             alt={BRAND_IMAGE_ALT}
             width={1600}
             height={2000}
-            className="h-[62svh] w-full object-cover object-[center_58%] fl-photo-earth"
+            className="h-[62svh] w-full object-cover object-[70%_52%]"
             sizes="100vw"
-            quality={95}
+            quality={85}
             priority
           />
         </div>
@@ -137,9 +138,9 @@ export default function ProcessionAbout() {
               src={SITE_IMAGES.photographer}
               alt={BRAND_IMAGE_ALT}
               fill
-              className="object-cover object-[center_58%] fl-photo-earth"
+              className="object-cover object-[70%_52%]"
               sizes="50vw"
-              quality={95}
+              quality={85}
               priority
             />
           </div>

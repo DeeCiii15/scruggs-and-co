@@ -52,9 +52,9 @@ export default function ContactPage() {
                 <p className="font-script text-4xl text-moss md:text-5xl">
                   say hello
                 </p>
-                <h1 className="mt-2 font-display text-4xl leading-none text-ink sm:text-5xl md:text-6xl">
+                <p className="mt-2 font-display text-4xl leading-none text-ink sm:text-5xl md:text-6xl">
                   Ready to connect?
-                </h1>
+                </p>
                 <p className="mt-5 font-sans text-sm font-light leading-[1.8] text-ink-soft md:text-base">
                   Share your date, location, and the kind of day you are
                   dreaming up—wedding, engagement, family, maternity, portraits,
@@ -65,9 +65,9 @@ export default function ContactPage() {
 
             <BookingForm
               beforeFields={
-                <h2 className="font-display text-2xl text-ink">
+                <h1 className="font-display text-2xl text-ink">
                   Send a message
-                </h2>
+                </h1>
               }
               fieldsClassName="order-3 mx-auto w-full max-w-lg bg-paper px-6 pb-0 pt-10 sm:px-12 lg:order-none lg:mx-0 lg:max-w-none lg:px-16 lg:pr-5 lg:pt-10 lg:[grid-area:fields] xl:px-20 xl:pr-6 2xl:pl-24 2xl:pr-8"
               actionsClassName="order-4 mx-auto w-full max-w-lg bg-paper px-6 pb-12 pt-8 sm:px-12 sm:pb-16 lg:order-none lg:mx-0 lg:max-w-none lg:px-16 lg:pr-5 lg:pb-20 xl:px-20 xl:pr-6 2xl:pl-24 2xl:pr-8 lg:[grid-area:footer]"
@@ -79,9 +79,9 @@ export default function ContactPage() {
                         src={SITE_IMAGES.contactPhoto}
                         alt={BRAND_IMAGE_ALT}
                         fill
-                        className="object-cover object-[center_72%] fl-photo-earth"
+                        className="object-cover object-[68%_62%] fl-photo-earth"
                         sizes="(max-width: 1024px) 100vw, 50vw"
-                        quality={95}
+                        quality={90}
                         priority
                       />
                     </div>

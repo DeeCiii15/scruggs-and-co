@@ -11,7 +11,7 @@ import {
 } from '@/lib/siteConfig';
 import { redirect } from 'next/navigation';
 
-const PORTFOLIO_TITLE = `Photography Portfolio in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} | ${SITE_NAME}`;
+const PORTFOLIO_TITLE = `Photography Galleries in ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} | ${SITE_NAME}`;
 const PORTFOLIO_DESCRIPTION = `Wedding, engagement, family, maternity, portrait, & senior galleries from ${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} & the Upstate. Natural light & honest color by ${SITE_NAME}.`;
 const portfolioShare = pageShareMeta({
   title: PORTFOLIO_TITLE,
@@ -52,12 +52,12 @@ export default async function PortfolioPage({
           <div className="mb-8 max-w-xl lg:mb-10">
             <p className="font-script text-3xl text-moss">galleries</p>
             <h1 className="mt-2 font-display text-4xl text-ink md:text-5xl">
-              See the latest work
+              Photography galleries
             </h1>
-            <h2 className="mt-4 font-sans text-sm font-light leading-relaxed text-ink-soft">
+            <p className="mt-4 font-sans text-sm font-light leading-relaxed text-ink-soft">
               Documentary wedding and lifestyle frames—linger, then wander
               deeper.
-            </h2>
+            </p>
           </div>
           <PortfolioHomeGallery variant="portfolio" />
         </div>

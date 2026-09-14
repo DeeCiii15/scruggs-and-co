@@ -112,7 +112,7 @@ export default function Navigation() {
         setNavVisible(true);
         return;
       }
-      // Pinned by the corner menu, or after a bit of curtain scroll
+      // Pinned by the corner menu, or after a bit of hero scroll
       if (navPinned) {
         setNavVisible(true);
         return;

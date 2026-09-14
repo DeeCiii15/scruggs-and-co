@@ -6,6 +6,7 @@ import Link from 'next/link';
 import type { PortfolioShootCard } from '@/lib/portfolioData';
 import {
   getServiceChapterImages,
+  getServiceShootFeatureImage,
   type ServiceDef,
 } from '@/lib/servicesData';
 import { SITE_NAME } from '@/lib/siteConfig';
@@ -167,11 +168,13 @@ function GalleryChapter({
   shoots,
   portfolioHref,
   fallbackImage,
+  reservedImages,
 }: {
   service: ServiceDef;
   shoots: PortfolioShootCard[];
   portfolioHref: string;
   fallbackImage: string;
+  reservedImages: ReadonlySet<string>;
 }) {
   const [activeSlug, setActiveSlug] = useState(shoots[0]?.slug ?? '');
   const active = shoots.find((s) => s.slug === activeSlug) ?? shoots[0];
@@ -188,7 +191,11 @@ function GalleryChapter({
             {shoots.map((shoot) => (
               <Image
                 key={shoot.slug}
-                src={shoot.image}
+                src={getServiceShootFeatureImage(
+                  service,
+                  shoot,
+                  reservedImages,
+                )}
                 alt={shoot.title}
                 fill
                 className={`object-cover object-center fl-photo-earth transition-opacity duration-500 ${
@@ -326,6 +333,9 @@ export default function ServiceProcession({
         shoots={shoots}
         portfolioHref={portfolioHref}
         fallbackImage={images.galleryPrimary}
+        reservedImages={
+          new Set([images.intro, images.pricing, images.faq])
+        }
       />
 
       <TheaterSplit
