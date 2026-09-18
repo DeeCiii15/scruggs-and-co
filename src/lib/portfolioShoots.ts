@@ -72,7 +72,26 @@ export const SHOOTS_BY_CATEGORY: Record<string, PortfolioShootDef[]> = {
       venue: 'The Venue at Edgewood',
     },
   ],
-  Engagement: [],
+  Engagement: [
+    {
+      slug: 'chesnee-sc-engagement-backyard',
+      title: 'Garrett & Allie | Backyard Engagement in Chesnee, SC',
+      name: 'Garrett & Allie',
+      venue: 'Backyard',
+    },
+    {
+      slug: 'greenville-sc-engagement-falls-park',
+      title: 'Katie & Cannon | Engagement at Falls Park in Greenville, SC',
+      name: 'Katie & Cannon',
+      venue: 'Falls Park',
+    },
+    {
+      slug: 'spartanburg-sc-engagement-lions-gate-manor',
+      title: 'Emily & Cole | Engagement at Lions Gate Manor in Spartanburg, SC',
+      name: 'Emily & Cole',
+      venue: 'Lions Gate Manor',
+    },
+  ],
   Family: [
     {
       slug: 'lyman-sc-family-portraits-countryside',

@@ -71,7 +71,6 @@ export default function ProcessionIntro() {
               className="object-cover fl-photo-earth"
               style={{ objectPosition: '72% 42%' }}
               sizes="120vw"
-              priority
             />
           </div>
         </div>
@@ -91,7 +90,6 @@ export default function ProcessionIntro() {
                 className="object-cover fl-photo-earth"
                 style={imageStyle}
                 sizes="100vw"
-                priority
               />
             </div>
           </div>
@@ -109,7 +107,6 @@ export default function ProcessionIntro() {
                 className="object-cover fl-photo-earth"
                 style={imageStyle}
                 sizes="100vw"
-                priority
               />
             </div>
           </div>

@@ -6,7 +6,6 @@ import ContactRibbon from "./components/ContactRibbon";
 import SiteJsonLd from "./components/SiteJsonLd";
 import { pageShareMeta } from "@/lib/shareMeta";
 import {
-  CANONICAL_SITE_URL,
   getSiteUrl,
   LOCAL_KEYWORDS,
   PRIMARY_CITY,
@@ -17,7 +16,7 @@ import {
 
 const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
-  weight: ["100", "200", "400"],
+  weight: ["200", "400"],
   variable: "--font-typewriter",
   display: "swap",
 });
@@ -36,7 +35,6 @@ const cabin = Cabin({
 });
 
 const siteUrl = getSiteUrl();
-const favicon = (path: string) => `${CANONICAL_SITE_URL}${path}`;
 
 const HOME_PAGE_TITLE = `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Photographer | Weddings & Portraits | ${SITE_NAME}`;
 const homeShare = pageShareMeta({
@@ -67,24 +65,25 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: favicon('/favicon-48x48.png'), sizes: '48x48', type: 'image/png' },
-      { url: favicon('/favicon-96x96.png'), sizes: '96x96', type: 'image/png' },
-      { url: favicon('/favicon-144x144.png'), sizes: '144x144', type: 'image/png' },
-      { url: favicon('/icon-192.png'), sizes: '192x192', type: 'image/png' },
-      { url: favicon('/favicon.ico'), sizes: '48x48', type: 'image/x-icon' },
-      { url: favicon('/favicon-32x32.png'), sizes: '32x32', type: 'image/png' },
-      { url: favicon('/favicon-16x16.png'), sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.svg?v=2', type: 'image/svg+xml' },
+      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-48x48.png?v=2', sizes: '48x48', type: 'image/png' },
+      { url: '/favicon-96x96.png?v=2', sizes: '96x96', type: 'image/png' },
+      { url: '/favicon-144x144.png?v=2', sizes: '144x144', type: 'image/png' },
+      { url: '/icon-192.png?v=2', sizes: '192x192', type: 'image/png' },
+      { url: '/favicon.ico?v=2', sizes: '48x48', type: 'image/x-icon' },
     ],
     apple: [
       {
-        url: favicon('/apple-touch-icon.png'),
+        url: '/apple-touch-icon.png?v=2',
         sizes: '180x180',
         type: 'image/png',
       },
     ],
-    shortcut: favicon('/favicon-48x48.png'),
+    shortcut: '/favicon.ico?v=2',
   },
-  manifest: favicon('/site.webmanifest'),
+  manifest: '/site.webmanifest',
   formatDetection: {
     telephone: false,
   },

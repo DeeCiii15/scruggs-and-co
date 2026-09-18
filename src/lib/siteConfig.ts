@@ -19,6 +19,17 @@ export function getSiteUrl(): string {
 
 export const SITE_NAME = 'Scruggs & Co Photo';
 
+/**
+ * Photographer behind the brand. Reviews and Google use Olivia;
+ * on-site copy uses Liv. Schema needs both so crawlers treat them as one person.
+ */
+export const PHOTOGRAPHER_GIVEN_NAME = 'Olivia';
+export const PHOTOGRAPHER_PREFERRED_NAME = 'Liv';
+export const PHOTOGRAPHER_FAMILY_NAME = 'Scruggs';
+export const PHOTOGRAPHER_LEGAL_NAME = `${PHOTOGRAPHER_GIVEN_NAME} ${PHOTOGRAPHER_FAMILY_NAME}`;
+export const PHOTOGRAPHER_JOB_TITLE =
+  'Wedding and lifestyle photographer';
+
 export const PRIMARY_CITY = 'Chesnee';
 export const PRIMARY_STATE = 'South Carolina';
 export const PRIMARY_STATE_ABBR = 'SC';

@@ -157,7 +157,7 @@ function ChapterStill({
       fill
       className="object-cover object-center fl-photo-earth"
       sizes="(max-width: 1024px) 100vw, 50vw"
-      quality={90}
+      quality={75}
       priority={priority}
     />
   );
@@ -188,23 +188,19 @@ function GalleryChapter({
       photo={
         active ? (
           <Link href={active.href} className="absolute inset-0 block">
-            {shoots.map((shoot) => (
-              <Image
-                key={shoot.slug}
-                src={getServiceShootFeatureImage(
-                  service,
-                  shoot,
-                  reservedImages,
-                )}
-                alt={shoot.title}
-                fill
-                className={`object-cover object-center fl-photo-earth transition-opacity duration-500 ${
-                  shoot.slug === active.slug ? 'opacity-100' : 'opacity-0'
-                }`}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                quality={90}
-              />
-            ))}
+            <Image
+              key={active.slug}
+              src={getServiceShootFeatureImage(
+                service,
+                active,
+                reservedImages,
+              )}
+              alt={active.title}
+              fill
+              className="object-cover object-center fl-photo-earth"
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={75}
+            />
           </Link>
         ) : (
           <ChapterStill
@@ -253,7 +249,7 @@ function GalleryChapter({
                           fill
                           className="object-cover fl-photo-earth"
                           sizes="(max-width: 1024px) 42vw, 16vw"
-                          quality={90}
+                          quality={75}
                         />
                         </div>
                       </div>

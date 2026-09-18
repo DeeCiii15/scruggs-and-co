@@ -52,6 +52,8 @@ const VENUE_LABELS: Record<string, string> = {
   'furman-university': 'Furman University',
   'adelaide-venue': 'Adelaide Venue',
   'the-venue-at-edgewood': 'The Venue at Edgewood',
+  'falls-park': 'Falls Park',
+  'lions-gate-manor': 'Lions Gate Manor',
 };
 
 function titleCase(value: string): string {

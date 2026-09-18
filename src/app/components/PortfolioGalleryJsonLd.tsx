@@ -57,7 +57,7 @@ export function PortfolioShootJsonLd({ category, shoot }: ShootJsonLdProps) {
     name: meta.title,
     description: meta.description,
     url,
-    author: { '@id': `${base}#business` },
+    author: { '@id': `${base}#person` },
     image: photos.map((photo) => `${base}${photo.src}`),
   };
 

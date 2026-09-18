@@ -81,7 +81,7 @@ export default function ContactPage() {
                         fill
                         className="object-cover object-[68%_62%] fl-photo-earth"
                         sizes="(max-width: 1024px) 100vw, 50vw"
-                        quality={90}
+                        quality={75}
                         priority
                       />
                     </div>

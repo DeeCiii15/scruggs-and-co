@@ -28,7 +28,7 @@ export const TESTIMONIALS: readonly Testimonial[] = [
   {
     quote:
       'Our session felt playful, not posed. Liv guided us just enough and let the rest happen. The gallery is full of forever moments.',
-    name: 'Paige & Kyle',
+    name: 'Perry & Katelyn',
     detail: 'Lifestyle session',
     portrait: '/images/miscellaneous-site-photos/portrait_1.jpg',
     services: ['engagement', 'portraits'],

@@ -6,20 +6,20 @@
 /** Homepage hero — crossfades every few seconds */
 export const HERO_SLIDES = [
   {
-    src: '/images/galleries/weddings/townville-sc-wedding-the-venue-at-edgewood/19.jpg',
-    objectPosition: 'center 68%',
+    src: '/images/high-res-hero/dscf3687.jpg',
+    objectPosition: 'center 46%',
   },
   {
-    src: '/images/galleries/portraits/greenville-sc-couples-portraits-furman-university/09.jpg',
-    objectPosition: 'center 62%',
-  },
-  {
-    src: '/images/galleries/weddings/greenville-sc-wedding-family-farm/03.jpg',
+    src: '/images/high-res-hero/heroheading-6188.jpg',
     objectPosition: 'center 42%',
   },
   {
-    src: '/images/galleries/portraits/landrum-sc-portraits-countryside/17.jpg',
-    objectPosition: 'center 58%',
+    src: '/images/high-res-hero/dscf0375.jpg',
+    objectPosition: 'center 68%',
+  },
+  {
+    src: '/images/high-res-hero/heroheading-5474.jpg',
+    objectPosition: '45% 70%',
   },
 ] as const;
 

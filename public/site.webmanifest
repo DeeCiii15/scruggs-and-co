@@ -3,6 +3,11 @@
   "short_name": "Scruggs & Co",
   "icons": [
     {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
       "src": "/favicon-48x48.png",
       "sizes": "48x48",
       "type": "image/png"

@@ -118,7 +118,6 @@ export default function ProcessionAbout() {
             className="h-[62svh] w-full object-cover object-[70%_52%]"
             sizes="100vw"
             quality={85}
-            priority
           />
         </div>
         <div className="px-6 py-10 sm:px-12 sm:py-14">
@@ -141,7 +140,6 @@ export default function ProcessionAbout() {
               className="object-cover object-[70%_52%]"
               sizes="50vw"
               quality={85}
-              priority
             />
           </div>
         </div>
