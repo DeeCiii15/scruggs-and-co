@@ -2,11 +2,7 @@ import {
   shootGalleryLabel,
   type PortfolioShootDef,
 } from './portfolioShoots';
-import {
-  PRIMARY_CITY,
-  PRIMARY_STATE_ABBR,
-  SITE_NAME,
-} from './siteConfig';
+import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from './siteConfig';
 
 export type ShootCategoryCopy = {
   name: string;
@@ -139,11 +135,20 @@ export function shootPlace(shoot: PortfolioShootDef): string {
 
 /** On-page H1 and HTML title — names plus place, same as Taylor Rose Reels. */
 export function shootHeadline(shoot: PortfolioShootDef): string {
+  const fromTitle = shoot.title?.trim();
+  if (fromTitle && !fromTitle.includes('|')) return fromTitle;
+
   const who = shootGalleryLabel(shoot) || shootWho(shoot);
   const venue = shootVenue(shoot);
   if (venue.kind === 'setting') {
+    if (venue.key === 'backyard' && venue.city) {
+      return `${who} in a ${venue.city.replace(/,.*$/, '')} backyard`;
+    }
     if (venue.key === 'backyard') return `${who} in a backyard`;
     if (venue.key === 'family-farm') return `${who} at the family farm`;
+    if (venue.key === 'countryside' && venue.city) {
+      return `${who} in the ${venue.city.replace(/,.*$/, '')} countryside`;
+    }
     if (venue.key === 'countryside') return `${who} in the countryside`;
     if (venue.key === 'downtown' && venue.city) {
       return `${who} in Downtown ${venue.city.replace(/,.*$/, '')}`;
@@ -185,35 +190,28 @@ export function shootPageDescription(
   const who = shootWho(shoot);
   const venue = shootVenue(shoot);
   const where = inSetting(shoot, venue);
-  const tag = category.homeTagline.toLowerCase();
   const couples = shoot.slug.includes('couples-portraits');
 
   switch (category.name) {
     case 'Family':
-      return `${who} in ${where}—${tag}. Unhurried family portraits in natural light by ${SITE_NAME}.`;
+      return `${who} in ${where}—unhurried family portraits, real laughs, & room to just be yourselves.`;
     case 'Engagement':
-      return `${who} in ${where}—${tag}. Engagement portraits that feel like you, not a pose, by ${SITE_NAME}.`;
+      return `${who} in ${where}—easy love, soft light, & the quiet in-between that doesn’t need a pose.`;
     case 'Weddings':
       if (venue.key === 'backyard') {
-        return `${who} said I do in ${where}—an easy, documentary wedding day in natural light by ${SITE_NAME}.`;
+        return `${who} said I do in ${where}—an easy celebration, honest light, & the people who love them most.`;
       }
-      if (venue.key === 'family-farm') {
-        return `${who} at ${where}—vows, details, and the in-between, documented by ${SITE_NAME}.`;
-      }
-      return `${who} at ${where}—documentary wedding-day galleries in natural light by ${SITE_NAME}.`;
+      return `${who} at ${where}—vows, details, & the in-between, documented as it unfolded.`;
     case 'Maternity':
-      return `${who} at ${where}—${tag}. Soft documentary maternity portraits by ${SITE_NAME}.`;
+      return `${who} at ${where}—this quiet, anticipating season, photographed in natural light.`;
     case 'Portraits':
       if (couples) {
-        return `${who} at ${where}—easy love, soft light, and room to laugh. Couples portraits by ${SITE_NAME}.`;
+        return `${who} at ${where}—easy love, soft light, & room to laugh.`;
       }
-      if (venue.kind === 'setting') {
-        return `${who} in ${where}—lifestyle portraits in soft light, with room to breathe. Photographed by ${SITE_NAME}.`;
-      }
-      return `${who} at ${where}—lifestyle portraits in soft light, with room to breathe. Photographed by ${SITE_NAME}.`;
+      return `${who} in ${where}—lifestyle portraits in soft light, with room to breathe.`;
     case 'Seniors':
-      return `${who} at ${where}—${tag}. Senior portraits by ${SITE_NAME}.`;
+      return `${who} at ${where}—senior portraits that feel like you, not a yearbook pose.`;
     default:
-      return `${who} — ${category.name.toLowerCase()} photography in ${where} by ${SITE_NAME}.`;
+      return `${who} — ${category.name.toLowerCase()} photography in ${where}.`;
   }
 }

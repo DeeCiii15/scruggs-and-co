@@ -1,10 +1,25 @@
 'use client';
 
-import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from 'react';
 import Image from 'next/image';
 import { HERO_SLIDES, SITE_IMAGES } from '@/lib/siteImages';
 import { SITE_NAME } from '@/lib/siteConfig';
 import HeroBridgeType from './HeroBridgeType';
+import './home-hero-slideshow.css';
+
+const DESKTOP_HERO_MQ = '(min-width: 1024px)';
+
+function useIsDesktopHero() {
+  return useSyncExternalStore(
+    (onStoreChange) => {
+      const mq = window.matchMedia(DESKTOP_HERO_MQ);
+      mq.addEventListener('change', onStoreChange);
+      return () => mq.removeEventListener('change', onStoreChange);
+    },
+    () => window.matchMedia(DESKTOP_HERO_MQ).matches,
+    () => false,
+  );
+}
 
 const INTERVAL_MS = 5000;
 const FADE_MS = 900;
@@ -21,11 +36,13 @@ function SlideFrame({
   active,
   priority,
   reduceMotion,
+  desktop,
 }: {
   slide: HeroSlide;
   active: boolean;
   priority?: boolean;
   reduceMotion: boolean;
+  desktop: boolean;
 }) {
   return (
     <div
@@ -41,12 +58,15 @@ function SlideFrame({
         src={slide.src}
         alt=""
         fill
-        className={`object-contain object-center md:object-cover fl-hero-slide ${
-          active && !reduceMotion ? 'fl-hero-settle' : ''
+        className={`fl-hero-slide ${
+          desktop && active && !reduceMotion ? 'fl-hero-settle' : ''
         }`}
-        style={{ objectPosition: slide.objectPosition }}
-        sizes="100vw"
-        quality={90}
+        style={{
+          objectFit: desktop ? 'cover' : 'contain',
+          objectPosition: desktop ? slide.objectPosition : 'center center',
+        }}
+        sizes="(max-width: 1023px) 100vw, 100vw"
+        quality={95}
         priority={priority}
       />
     </div>
@@ -59,6 +79,7 @@ function SlideFrame({
  * upcoming slide (after first paint) are in the DOM.
  */
 export default function HomeHeroSlideshow({ children }: HomeHeroSlideshowProps) {
+  const desktop = useIsDesktopHero();
   const [index, setIndex] = useState(0);
   const [outgoing, setOutgoing] = useState<number | null>(null);
   const [preloadNext, setPreloadNext] = useState(false);
@@ -116,6 +137,7 @@ export default function HomeHeroSlideshow({ children }: HomeHeroSlideshowProps) 
                   active={idx === index}
                   priority={idx === 0 && index === 0}
                   reduceMotion={reduceMotion}
+                  desktop={desktop}
                 />
               );
             })}

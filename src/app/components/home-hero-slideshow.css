@@ -1,0 +1,16 @@
+/* Not in globals.css: Tailwind v4 strips object-fit from custom classes there. */
+@media (max-width: 1023px) {
+  img.fl-hero-slide {
+    object-fit: contain !important;
+    object-position: center center !important;
+    filter: none !important;
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  img.fl-hero-slide {
+    object-fit: cover !important;
+  }
+}
