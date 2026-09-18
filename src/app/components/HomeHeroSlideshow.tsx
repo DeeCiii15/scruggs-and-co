@@ -41,12 +41,12 @@ function SlideFrame({
         src={slide.src}
         alt=""
         fill
-        className={`object-cover fl-photo-earth ${
-          active && !reduceMotion ? 'fl-image-settle' : ''
+        className={`object-contain object-center md:object-cover fl-hero-slide ${
+          active && !reduceMotion ? 'fl-hero-settle' : ''
         }`}
         style={{ objectPosition: slide.objectPosition }}
         sizes="100vw"
-        quality={85}
+        quality={90}
         priority={priority}
       />
     </div>

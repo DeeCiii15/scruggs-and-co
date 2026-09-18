@@ -13,7 +13,7 @@ const sourceSvg = path.join(
   'public/images/brand/scruggs-co-hero-mark-sage.svg',
 );
 const publicDir = path.join(root, 'public');
-const PAPER = { r: 244, g: 236, b: 225, alpha: 1 };
+const TRANSPARENT = { r: 0, g: 0, b: 0, alpha: 0 };
 
 const source = fs.readFileSync(sourceSvg, 'utf8');
 const pathMatch = source.match(/<path[\s\S]*?\/>/);
@@ -28,7 +28,6 @@ const boldPath = pathMatch[0].replace(
 
 const faviconSvg = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img">
-  <rect width="100" height="100" fill="#F4ECE1"/>
   <svg x="1" y="1" width="98" height="98" viewBox="0 0 1024 892" preserveAspectRatio="xMidYMid meet">
     ${boldPath}
   </svg>
@@ -41,8 +40,9 @@ fs.writeFileSync(faviconSvgPath, faviconSvg);
 const master = await sharp(Buffer.from(faviconSvg), { density: 480 })
   .resize(1024, 1024, {
     fit: 'cover',
-    background: PAPER,
+    background: TRANSPARENT,
   })
+  .ensureAlpha()
   .png()
   .toBuffer();
 
@@ -72,4 +72,4 @@ for (const { name, size } of sizes) {
 await iconPipeline(180).toFile(path.join(publicDir, 'apple-touch-icon.png'));
 await iconPipeline(48).toFile(path.join(publicDir, 'favicon.ico'));
 
-console.log('Generated larger, bolder favicons from the sage oval S logo');
+console.log('Generated transparent sage oval S favicons');
