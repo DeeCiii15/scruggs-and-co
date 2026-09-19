@@ -51,6 +51,8 @@ export type PortfolioCategoryDef = {
   metaTitle?: string;
   /** Full document title when set (absolute — skips layout template) */
   documentTitle?: string;
+  /** Shoot whose cover is the category thumbnail (home + portfolio) */
+  coverSlug?: string;
 };
 
 export type PortfolioShootCard = {
@@ -113,10 +115,12 @@ function getCategoryCoverSrc(
   categoryName: string,
   folder: string,
   shoots: PortfolioShootDef[],
+  coverSlug?: string,
 ): string {
-  if (shoots.length > 0) {
-    return shootCoverSrc(folder, shoots[0]!);
-  }
+  const featured =
+    (coverSlug ? shoots.find((shoot) => shoot.slug === coverSlug) : undefined) ??
+    shoots[0];
+  if (featured) return shootCoverSrc(folder, featured);
   return (
     LEGACY_CATEGORY_COVERS[categoryName] ??
     `/images/galleries/${folder}/cover.jpg`
@@ -158,6 +162,7 @@ const CATEGORY_COPY: Omit<PortfolioCategoryDef, 'folder' | 'coverSrc' | 'shoots'
       homeTagline: 'Documentary wedding days',
       pageHeading: 'Wedding photography galleries',
       metaTitle: `${PRIMARY_CITY}, ${PRIMARY_STATE_ABBR} Wedding Galleries`,
+      coverSlug: 'townville-sc-wedding-the-venue-at-edgewood',
     },
     {
       name: 'Engagement',
@@ -219,7 +224,7 @@ export const PORTFOLIO_CATEGORY_DEFS: PortfolioCategoryDef[] = CATEGORY_COPY.map
       ...cat,
       folder,
       shoots,
-      coverSrc: getCategoryCoverSrc(cat.name, folder, shoots),
+      coverSrc: getCategoryCoverSrc(cat.name, folder, shoots, cat.coverSlug),
     };
   },
 );
