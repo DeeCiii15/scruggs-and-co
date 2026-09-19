@@ -22,15 +22,15 @@ export default function ServiceGalleryRail({
   serviceName,
 }: ServiceGalleryRailProps) {
   const [cycleIndex, setCycleIndex] = useState(0);
-  const [hoveredName, setHoveredName] = useState<string | null>(null);
+  const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   useEffect(() => {
-    if (hoveredName || shoots.length < 2) return;
+    if (hoveredSlug || shoots.length < 2) return;
     const id = window.setInterval(() => {
       setCycleIndex((i) => (i + 1) % shoots.length);
     }, CYCLE_MS);
     return () => window.clearInterval(id);
-  }, [hoveredName, shoots.length]);
+  }, [hoveredSlug, shoots.length]);
 
   if (shoots.length === 0) {
     return (
@@ -40,7 +40,7 @@ export default function ServiceGalleryRail({
     );
   }
 
-  const hovered = shoots.find((s) => s.label === hoveredName);
+  const hovered = shoots.find((s) => s.slug === hoveredSlug);
   const active = hovered ?? shoots[cycleIndex]!;
 
   return (
@@ -66,7 +66,7 @@ export default function ServiceGalleryRail({
         </div>
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/70 to-transparent p-5 sm:p-6">
           <p className="font-display text-2xl text-fog sm:text-3xl">
-            {active.label}
+            {active.title}
           </p>
         </div>
       </Link>
@@ -75,7 +75,7 @@ export default function ServiceGalleryRail({
         <nav
           aria-label={`${serviceName} galleries`}
           className="flex flex-wrap items-baseline gap-x-3 gap-y-3 sm:gap-x-4"
-          onMouseLeave={() => setHoveredName(null)}
+          onMouseLeave={() => setHoveredSlug(null)}
         >
           {shoots.map((shoot, i) => (
             <span key={shoot.slug} className="contents">
@@ -90,25 +90,25 @@ export default function ServiceGalleryRail({
               <Link
                 href={shoot.href}
                 onMouseEnter={() => {
-                  setHoveredName(shoot.label);
+                  setHoveredSlug(shoot.slug);
                   const idx = shoots.findIndex((s) => s.slug === shoot.slug);
                   if (idx >= 0) setCycleIndex(idx);
                 }}
                 onFocus={() => {
-                  setHoveredName(shoot.label);
+                  setHoveredSlug(shoot.slug);
                   const idx = shoots.findIndex((s) => s.slug === shoot.slug);
                   if (idx >= 0) setCycleIndex(idx);
                 }}
-                onBlur={() => setHoveredName(null)}
+                onBlur={() => setHoveredSlug(null)}
                 className={`font-display text-xl transition-colors duration-300 sm:text-3xl md:text-4xl ${
                   active.slug === shoot.slug
                     ? 'text-moss'
-                    : hoveredName
+                    : hoveredSlug
                       ? 'text-ink/35'
                       : 'text-ink hover:text-moss'
                 }`}
               >
-                {shoot.label}
+                {shoot.title}
               </Link>
             </span>
           ))}

@@ -12,7 +12,7 @@
 
 import { SHOOTS_BY_CATEGORY, type PortfolioShootDef, shootGalleryLabel } from './portfolioShoots';
 import galleryManifest from './galleryManifest.json';
-import { shootHeadline, shootPlace, shootWho } from './shootCopy';
+import { shootHeadline, shootPageDescription, shootPlace, shootWho } from './shootCopy';
 import { PRIMARY_CITY, PRIMARY_STATE_ABBR } from './siteConfig';
 
 type ShootManifestEntry = { cover: string | null; photos: string[] };
@@ -60,6 +60,7 @@ export type PortfolioShootCard = {
   title: string;
   /** Short polaroid caption (first names when available) */
   label: string;
+  description: string;
   image: string;
   href: string;
 };
@@ -262,6 +263,7 @@ export function getShootCards(categoryName: string): PortfolioShootCard[] {
     slug: shoot.slug,
     title: shootHeadline(shoot),
     label: shootGalleryLabel(shoot),
+    description: shootPageDescription(category, shoot),
     image: shootCoverSrc(category.folder, shoot),
     href: portfolioShootHref(category.folder, shoot.slug),
   }));
