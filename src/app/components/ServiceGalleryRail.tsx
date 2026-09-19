@@ -66,7 +66,7 @@ export default function ServiceGalleryRail({
         </div>
         <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/70 to-transparent p-5 sm:p-6">
           <p className="font-display text-2xl text-fog sm:text-3xl">
-            {active.title}
+            {active.label}
           </p>
         </div>
       </Link>
@@ -108,7 +108,7 @@ export default function ServiceGalleryRail({
                       : 'text-ink hover:text-moss'
                 }`}
               >
-                {shoot.title}
+                {shoot.label}
               </Link>
             </span>
           ))}

@@ -7,7 +7,7 @@
 export const HERO_SLIDES = [
   {
     src: '/images/high-res-hero/dscf3687.jpg',
-    objectPosition: 'center 46%',
+    objectPosition: '68% 46%',
   },
   {
     src: '/images/high-res-hero/heroheading-6188.jpg',

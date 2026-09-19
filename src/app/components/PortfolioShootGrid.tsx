@@ -31,13 +31,10 @@ function ShootCard({
               sizes="(max-width: 640px) 33vw, 33vw"
             />
           </div>
-          <div className="mt-2 mb-2 shrink-0 px-1.5 text-center sm:mt-3 sm:mb-3 sm:px-2">
-            <h3 className="font-sans text-[0.7rem] leading-snug text-ink sm:text-lg md:text-xl">
-              {shoot.title}
+          <div className="mt-2 mb-2 shrink-0 px-2 text-center sm:mt-3 sm:mb-3">
+            <h3 className="font-sans text-[0.8rem] leading-snug text-ink sm:text-xl">
+              {shoot.label}
             </h3>
-            <p className="mt-1 line-clamp-4 font-sans text-[0.58rem] font-light leading-snug text-ink-soft sm:mt-1.5 sm:line-clamp-none sm:text-sm">
-              {shoot.description}
-            </p>
           </div>
         </div>
       </Link>
