@@ -22,6 +22,11 @@ export type PortfolioShootDef = {
   name?: string;
   /** Optional venue or place name (e.g. "Duncan Estate", "Lake Bowen") */
   venue?: string;
+  /**
+   * When false, the shoot stays in the portfolio gallery but is not used
+   * as a marketing/featured still (home, service heroes, OG).
+   */
+  featured?: boolean;
 };
 
 /**
@@ -46,12 +51,12 @@ export function shootGalleryLabel(shoot: PortfolioShootDef): string {
 export const SHOOTS_BY_CATEGORY: Record<string, PortfolioShootDef[]> = {
   Weddings: [
     {
-      slug: 'greenville-sc-wedding-family-farm',
-      title: 'Brook & Ethan at the family farm',
-      name: 'Brook & Ethan',
-      venue: 'Family Farm',
+      slug: 'townville-sc-wedding-the-venue-at-edgewood',
+      title: 'Lillie & Jake at The Venue at Edgewood',
+      name: 'Lillie & Jake',
+      venue: 'The Venue at Edgewood',
       description:
-        'Brook & Ethan’s family-farm wedding in Greenville, SC—an outdoor ceremony under the trees, sage dresses, cowboy boots, & joy you can hear from the back row.',
+        'Lillie & Jake at The Venue at Edgewood in Townville, SC—fall woods, a wooden deck, & a quiet forehead-to-forehead before walking back into the party.',
     },
     {
       slug: 'raleigh-nc-wedding-backyard',
@@ -70,12 +75,13 @@ export const SHOOTS_BY_CATEGORY: Record<string, PortfolioShootDef[]> = {
         'Abby & Dawson at Adelaide Venue in Spartanburg, SC—getting-ready jitters, a Diet Coke on the settee, & the real in-between that made their day feel like them.',
     },
     {
-      slug: 'townville-sc-wedding-the-venue-at-edgewood',
-      title: 'Lillie & Jake at The Venue at Edgewood',
-      name: 'Lillie & Jake',
-      venue: 'The Venue at Edgewood',
+      slug: 'greenville-sc-wedding-family-farm',
+      title: 'Brook & Ethan at the family farm',
+      name: 'Brook & Ethan',
+      venue: 'Family Farm',
+      featured: false,
       description:
-        'Lillie & Jake at The Venue at Edgewood in Townville, SC—fall woods, a wooden deck, & a quiet forehead-to-forehead before walking back into the party.',
+        'Brook & Ethan’s family-farm wedding in Greenville, SC—an outdoor ceremony under the trees, sage dresses, cowboy boots, & joy you can hear from the back row.',
     },
   ],
   Engagement: [

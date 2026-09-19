@@ -1,6 +1,7 @@
 import {
   getCategoryByName,
   getShootCards,
+  getShootInCategory,
   getShootPhotos,
   portfolioCategoryHref,
   type PortfolioShootCard,
@@ -458,7 +459,10 @@ export function getAllServiceSlugs(): ServiceSlug[] {
 }
 
 export function getServiceShootCards(service: ServiceDef): PortfolioShootCard[] {
-  return getShootCards(service.portfolioCategory);
+  return getShootCards(service.portfolioCategory).filter((card) => {
+    const shoot = getShootInCategory(service.portfolioCategory, card.slug);
+    return shoot?.featured !== false;
+  });
 }
 
 /** Gallery stills for this service — covers first, then more frames from those shoots. */
