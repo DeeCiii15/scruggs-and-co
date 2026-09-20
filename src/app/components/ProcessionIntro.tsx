@@ -68,7 +68,7 @@ export default function ProcessionIntro() {
               src={SITE_IMAGES.moodArch}
               alt=""
               fill
-              className="object-cover fl-photo-earth"
+              className="object-cover"
               style={{ objectPosition: '72% 42%' }}
               sizes="120vw"
             />
@@ -87,7 +87,7 @@ export default function ProcessionIntro() {
                 src={SITE_IMAGES.moodArch}
                 alt=""
                 fill
-                className="object-cover fl-photo-earth"
+                className="object-cover"
                 style={imageStyle}
                 sizes="100vw"
               />
@@ -104,7 +104,7 @@ export default function ProcessionIntro() {
                 src={SITE_IMAGES.moodArch}
                 alt=""
                 fill
-                className="object-cover fl-photo-earth"
+                className="object-cover"
                 style={imageStyle}
                 sizes="100vw"
               />
@@ -112,7 +112,6 @@ export default function ProcessionIntro() {
           </div>
         </div>
 
-        <div className="fl-photo-wash z-[1]" aria-hidden />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[50%] bg-gradient-to-t from-night/85 via-night/25 to-transparent" />
 
         <div

@@ -5,7 +5,7 @@ import { useForm, ValidationError } from '@formspree/react';
 import { CONTACT_EMAIL } from '@/lib/siteConfig';
 
 const FORMSPREE_FORM_ID =
-  process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID?.trim() ?? '';
+  process.env.NEXT_PUBLIC_FORMSPREE_FORM_ID?.trim() || 'mqpazkyj';
 
 type BookingFormProps = {
   className?: string;

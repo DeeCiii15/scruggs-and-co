@@ -27,7 +27,7 @@ function ShootCard({
               src={shoot.image}
               alt={shoot.title}
               fill
-              className="object-cover object-center fl-photo-earth transition duration-500 group-hover:scale-[1.02]"
+              className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
               sizes="(max-width: 640px) 33vw, 33vw"
             />
           </div>

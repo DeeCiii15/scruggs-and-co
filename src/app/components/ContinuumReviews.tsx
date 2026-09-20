@@ -30,7 +30,7 @@ export default function ContinuumReviews() {
                     src={review.portrait}
                     alt=""
                     fill
-                    className="object-cover fl-photo-earth"
+                    className="object-cover"
                     sizes="120px"
                   />
                 </div>

@@ -79,7 +79,7 @@ export default function ContactPage() {
                         src={SITE_IMAGES.contactPhoto}
                         alt={BRAND_IMAGE_ALT}
                         fill
-                        className="object-cover object-[68%_62%] fl-photo-earth"
+                        className="object-cover object-[68%_62%]"
                         sizes="(max-width: 1024px) 100vw, 50vw"
                         quality={75}
                         priority

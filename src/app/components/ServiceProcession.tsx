@@ -155,7 +155,7 @@ function ChapterStill({
       src={src}
       alt={alt}
       fill
-      className="object-cover object-center fl-photo-earth"
+      className="object-cover object-center"
       sizes="(max-width: 1024px) 100vw, 50vw"
       quality={75}
       priority={priority}
@@ -197,7 +197,7 @@ function GalleryChapter({
               )}
               alt={active.title}
               fill
-              className="object-cover object-center fl-photo-earth"
+              className="object-cover object-center"
               sizes="(max-width: 1024px) 100vw, 50vw"
               quality={75}
             />
@@ -247,7 +247,7 @@ function GalleryChapter({
                           src={shoot.image}
                           alt=""
                           fill
-                          className="object-cover fl-photo-earth"
+                          className="object-cover"
                           sizes="(max-width: 1024px) 42vw, 16vw"
                           quality={75}
                         />

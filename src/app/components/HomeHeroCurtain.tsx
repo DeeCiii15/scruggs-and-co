@@ -130,7 +130,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
             src={CURTAIN_IMAGES.back.src}
             alt=""
             fill
-            className="object-cover fl-photo-earth"
+            className="object-cover"
             style={{ objectPosition: CURTAIN_IMAGES.back.objectPosition }}
             sizes="100vw"
             unoptimized
@@ -166,7 +166,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
                 src={CURTAIN_IMAGES.front.src}
                 alt=""
                 fill
-                className="origin-center object-cover fl-photo-earth"
+                className="origin-center object-cover"
                 style={frontImageStyle}
                 sizes="100vw"
                 unoptimized
@@ -185,7 +185,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
                 src={CURTAIN_IMAGES.front.src}
                 alt=""
                 fill
-                className="origin-center object-cover fl-photo-earth"
+                className="origin-center object-cover"
                 style={frontImageStyle}
                 sizes="100vw"
                 unoptimized
@@ -195,7 +195,7 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
           </div>
         </div>
 
-        {/* Vector monogram on its own layer — above photos/wash, no paper grain */}
+        {/* Vector monogram on its own layer — above photos, no paper grain */}
         <div
           ref={monoRef}
           className="fl-brand-mark pointer-events-none absolute inset-x-0 top-[16vh] z-[2] flex justify-center overflow-visible sm:top-[18vh]"
@@ -211,11 +211,6 @@ export default function HomeHeroCurtain({ children }: HomeHeroCurtainProps) {
             className="h-auto w-[clamp(7rem,22vw,9.5rem)] overflow-visible object-contain sm:drop-shadow-[0_10px_30px_rgb(0_0_0_/_0.45)]"
           />
         </div>
-
-        <div
-          className="fl-photo-wash z-[1]"
-          aria-hidden
-        />
 
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-[22%] bg-gradient-to-t from-night/55 via-night/15 to-transparent"

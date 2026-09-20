@@ -33,7 +33,7 @@ export default function PortfolioHomeGallery({
               src={card.image}
               alt={card.name}
               fill
-              className="object-cover fl-media-zoom fl-photo-earth"
+              className="object-cover fl-media-zoom"
               sizes="(max-width: 640px) 50vw, 33vw"
             />
             <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-night/70 via-night/10 to-transparent" />

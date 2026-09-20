@@ -106,7 +106,7 @@ export default function LedgerGalleries() {
                 src={weddings.image}
                 alt={weddings.name}
                 fill
-                className="object-cover fl-photo-earth transition duration-700 group-hover:scale-[1.03]"
+                className="object-cover transition duration-700 group-hover:scale-[1.03]"
                 sizes="(max-width: 1024px) 88vw, 52vw"
               />
             </div>
@@ -133,7 +133,7 @@ export default function LedgerGalleries() {
                   src={slide.image}
                   alt={slide.name}
                   fill
-                  className={`object-cover fl-photo-earth transition-[opacity,transform] duration-700 group-hover:scale-[1.03] ${
+                  className={`object-cover transition-[opacity,transform] duration-700 group-hover:scale-[1.03] ${
                     activeSlide.name === slide.name
                       ? 'opacity-100'
                       : 'opacity-0'

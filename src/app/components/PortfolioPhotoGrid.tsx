@@ -45,7 +45,7 @@ export default function PortfolioPhotoGrid({ photos }: PortfolioPhotoGridProps) 
                   src={photo.src}
                   alt={photo.alt}
                   fill
-                  className="object-cover object-center fl-photo-earth transition duration-500 group-hover:scale-[1.02]"
+                  className="object-cover object-center transition duration-500 group-hover:scale-[1.02]"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>

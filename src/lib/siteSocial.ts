@@ -1,10 +1,10 @@
 /**
- * Social profile URLs — set in .env (public):
+ * Social profile URLs — set in .env (public) to override:
  * NEXT_PUBLIC_INSTAGRAM_URL, NEXT_PUBLIC_FACEBOOK_URL, NEXT_PUBLIC_PINTEREST_URL
  * NEXT_PUBLIC_GOOGLE_BUSINESS_URL
  *
- * Instagram is env-only. Facebook and Google Business Profile have defaults
- * so production still emits them if those vars are missing.
+ * Instagram and Facebook have defaults so they show in production
+ * without extra env vars. Pinterest is env-only.
  */
 export type SocialNetwork = 'instagram' | 'facebook' | 'pinterest';
 
@@ -20,7 +20,9 @@ export const GOOGLE_BUSINESS_PROFILE_URL =
   'https://maps.app.goo.gl/dCknc4GbYTMVNkpj8';
 
 export function getSocialLinks(): SocialLink[] {
-  const ig = process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim();
+  const ig =
+    process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() ||
+    'https://www.instagram.com/scruggsandcophoto/';
   const fb =
     process.env.NEXT_PUBLIC_FACEBOOK_URL?.trim() ||
     'https://www.facebook.com/Scruggsandcophoto';
