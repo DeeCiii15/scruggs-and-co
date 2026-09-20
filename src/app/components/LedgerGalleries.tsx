@@ -26,6 +26,12 @@ const SESSION_LINKS = [
     href: serviceHref('maternity'),
   },
   {
+    name: 'Portraits',
+    tagline: 'Lifestyle & portraits',
+    image: '/images/miscellaneous-site-photos/portrait_1.jpg',
+    href: serviceHref('portraits'),
+  },
+  {
     name: 'Seniors / Graduation',
     tagline: 'This chapter, documented',
     image: '/images/miscellaneous-site-photos/hero_5.jpg',
@@ -36,24 +42,12 @@ const SESSION_LINKS = [
 const CYCLE_MS = 3800;
 
 /**
- * Label rail — Weddings fixed; bottom-right cycles sessions + portraits,
+ * Label rail — Weddings fixed; bottom-right cycles the session categories
  * and snaps instantly when a rail label is hovered.
  */
 export default function LedgerGalleries() {
   const weddings = PORTFOLIO_HOME_CARDS.find((c) => c.name === 'Weddings');
-  const portraits = PORTFOLIO_HOME_CARDS.find((c) => c.name === 'Portraits');
-
-  const cycleSlides = portraits
-    ? [
-        ...SESSION_LINKS,
-        {
-          name: portraits.name,
-          tagline: portraits.tagline,
-          image: portraits.image,
-          href: portraits.href,
-        },
-      ]
-    : [...SESSION_LINKS];
+  const cycleSlides = SESSION_LINKS;
 
   const [cycleIndex, setCycleIndex] = useState(0);
   const [hoveredName, setHoveredName] = useState<string | null>(null);
@@ -66,15 +60,11 @@ export default function LedgerGalleries() {
     return () => window.clearInterval(id);
   }, [hoveredName, cycleSlides.length]);
 
-  if (!weddings || !portraits) return null;
+  if (!weddings) return null;
 
   const hoveredSlide = cycleSlides.find((s) => s.name === hoveredName);
   const activeSlide = hoveredSlide ?? cycleSlides[cycleIndex]!;
-  const activeRailName =
-    hoveredName ??
-    (SESSION_LINKS.some((s) => s.name === activeSlide.name)
-      ? activeSlide.name
-      : null);
+  const activeRailName = hoveredName ?? activeSlide.name;
 
   return (
     <section
@@ -139,7 +129,7 @@ export default function LedgerGalleries() {
                       : 'opacity-0'
                   }`}
                   sizes="(max-width: 1024px) 80vw, 32vw"
-                  priority={slide.name === portraits.name}
+                  priority={slide.name === cycleSlides[0]?.name}
                 />
               ))}
             </div>
