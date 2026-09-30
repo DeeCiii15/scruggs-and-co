@@ -370,7 +370,7 @@ export default function ServiceProcession({
                     <h3 className="font-display text-2xl text-ink sm:text-[1.65rem]">
                       {collection.name}
                     </h3>
-                    <p className="font-script text-2xl text-moss">
+                    <p className="font-display text-lg text-moss">
                       {collection.price}
                     </p>
                   </div>
