@@ -22,7 +22,7 @@ export const GOOGLE_BUSINESS_PROFILE_URL =
 export function getSocialLinks(): SocialLink[] {
   const ig =
     process.env.NEXT_PUBLIC_INSTAGRAM_URL?.trim() ||
-    'https://www.instagram.com/scruggsandcophoto/';
+    'https://www.instagram.com/scruggsandcophotollc/';
   const fb =
     process.env.NEXT_PUBLIC_FACEBOOK_URL?.trim() ||
     'https://www.facebook.com/Scruggsandcophoto';
